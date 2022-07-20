@@ -25,9 +25,8 @@ jobs:
         id: cache-modules
         uses: actions/cache@v1
         with:
-          path: node_modules
-          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
-          working-directory: ./drip-ts
+          path: ./drip-ts/node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('./drip-ts/package.json') }}
 
       - name: Setup node
         uses: actions/setup-node@v3
