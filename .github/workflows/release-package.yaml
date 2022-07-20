@@ -15,9 +15,9 @@ jobs:
       packages: write
       contents: write
 
-    defaults:
-      run:
-        working-directory: ./drip-ts
+    # defaults:
+    #   run:
+    #     working-directory: ./drip-ts
 
     steps:
       - name: Checkout repo
@@ -31,6 +31,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+          working-directory: ./drip-ts
 
       - name: Setup node
         uses: actions/setup-node@v3
@@ -41,6 +42,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: yarn
+        with:
+          working-directory: ./drip-ts
 
       - name: Fetch tags
         uses: actions-ecosystem/action-get-latest-tag@v1
@@ -69,6 +72,8 @@ jobs:
         run: yarn publish --non-interactive --new-version ${{ steps.bump-semver.outputs.new_version }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          working-directory: ./drip-ts
 
       - name: Push changes
         uses: ad-m/github-push-action@master
