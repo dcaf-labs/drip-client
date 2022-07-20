@@ -1,0 +1,1044 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: mocha@dcaf.so
+    name: Mocha
+  description: |
+    Drip backend service.
+    All API's have a IP rate limit of 10 requests per second.
+  title: Drip Backend
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /:
+    get:
+      description: Ping api.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pingResponse'
+          description: OK
+      summary: Health Check
+  /admin/vault/{pubkeyPath}/enable:
+    put:
+      description: Enable the specified vault
+      parameters:
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: token-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vault'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Enable a vault
+      tags:
+      - admin
+  /admin/vaults:
+    get:
+      description: Get all vaults with filters and expanded properties.
+      parameters:
+      - explode: false
+        in: header
+        name: token-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          items:
+            enum:
+            - all
+            - protoConfigValue
+            - tokenAMintValue
+            - tokenBMintValue
+            - tokenAAccountValue
+            - tokenBAccountValue
+            - treasuryTokenBAccountValue
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: enabled
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listExpandedAdminVaults'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get All Vaults
+      tags:
+      - admin
+  /mint:
+    post:
+      description: "mint test tokens to a desired associated token account, or passed\
+        \ in token account"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mintRequest'
+        description: Pet to add to the store
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mintResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Mint tokens (DEVNET ONLY)
+  /positions:
+    get:
+      description: Get all user positions.
+      parameters:
+      - explode: true
+        in: query
+        name: Wallet
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listPositions'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get User Positions
+  /protoconfigs:
+    get:
+      description: Get all proto configs with filters.
+      parameters:
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listProtoConfigs'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Proto Configs
+  /swagger.json:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      summary: Swagger spec
+  /swapConfigs:
+    get:
+      description: Get token swap configs fro triggerDCA.
+      parameters:
+      - explode: true
+        in: query
+        name: vault
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listSwapConfigs'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Token Swaps Configs
+  /swaps:
+    get:
+      description: Get token swaps with filters.
+      parameters:
+      - explode: true
+        in: query
+        name: tokenPair
+        required: false
+        schema:
+          description: Token pair identifier.
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listTokenSwaps'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Token Swaps
+  /tokenpairs:
+    get:
+      description: Get token pairs with filters.
+      parameters:
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listTokenPairs'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Token Pairs
+  /tokens:
+    get:
+      description: Get tokens with filters.
+      parameters:
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listTokens'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Tokens
+  /vaultperiods:
+    get:
+      description: Get vault periods with pagination and filters.
+      parameters:
+      - explode: true
+        in: query
+        name: vault
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: vaultPeriod
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listVaultPeriods'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Vault Periods
+  /vaults:
+    get:
+      description: Get all vaults with filters.
+      parameters:
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Vault proto config public key.
+        explode: true
+        in: query
+        name: protoConfig
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listVaults'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Supported Vaults
+components:
+  parameters:
+    enabledQueryParam:
+      explode: true
+      in: query
+      name: enabled
+      required: false
+      schema:
+        type: boolean
+      style: form
+    expandAdminVaultsQueryParam:
+      explode: true
+      in: query
+      name: expand
+      required: false
+      schema:
+        items:
+          enum:
+          - all
+          - protoConfigValue
+          - tokenAMintValue
+          - tokenBMintValue
+          - tokenAAccountValue
+          - tokenBAccountValue
+          - treasuryTokenBAccountValue
+          type: string
+        type: array
+      style: form
+    googleTokenIdHeaderParam:
+      explode: false
+      in: header
+      name: token-id
+      required: true
+      schema:
+        type: string
+      style: simple
+    limitQueryParam:
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+      style: form
+    offsetQueryParam:
+      explode: true
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+      style: form
+    pubkeyPathParam:
+      explode: false
+      in: path
+      name: pubkeyPath
+      required: true
+      schema:
+        type: string
+      style: simple
+    requiredVaultQueryParam:
+      explode: true
+      in: query
+      name: vault
+      required: true
+      schema:
+        type: string
+      style: form
+    requiredWalletQueryParam:
+      explode: true
+      in: query
+      name: Wallet
+      required: true
+      schema:
+        type: string
+      style: form
+    tokenAQueryParam:
+      explode: true
+      in: query
+      name: tokenA
+      required: false
+      schema:
+        type: string
+      style: form
+    tokenBQueryParam:
+      explode: true
+      in: query
+      name: tokenB
+      required: false
+      schema:
+        type: string
+      style: form
+    tokenPairQueryParam:
+      explode: true
+      in: query
+      name: tokenPair
+      required: false
+      schema:
+        description: Token pair identifier.
+        type: string
+      style: form
+    protoConfigQueryParam:
+      description: Vault proto config public key.
+      explode: true
+      in: query
+      name: protoConfig
+      required: false
+      schema:
+        type: string
+      style: form
+    vaultQueryParam:
+      explode: true
+      in: query
+      name: vault
+      required: false
+      schema:
+        type: string
+      style: form
+    vaultPeriodQueryParam:
+      explode: true
+      in: query
+      name: vaultPeriod
+      required: false
+      schema:
+        type: string
+      style: form
+  schemas:
+    errorResponse:
+      properties:
+        error:
+          type: string
+      required:
+      - error
+    expandedAdminVault:
+      allOf:
+      - $ref: '#/components/schemas/vault'
+      - $ref: '#/components/schemas/expandedAdminVault_allOf'
+      description: Internal vault schema.
+    listExpandedAdminVaults:
+      items:
+        $ref: '#/components/schemas/expandedAdminVault'
+      type: array
+    listPositions:
+      items:
+        $ref: '#/components/schemas/position'
+      type: array
+    listProtoConfigs:
+      items:
+        $ref: '#/components/schemas/protoConfig'
+      type: array
+    listSwapConfigs:
+      items:
+        $ref: '#/components/schemas/swapConfig'
+      type: array
+    listTokenPairs:
+      items:
+        $ref: '#/components/schemas/tokenPair'
+      type: array
+    listTokenSwaps:
+      items:
+        $ref: '#/components/schemas/tokenSwap'
+      type: array
+    listTokens:
+      items:
+        $ref: '#/components/schemas/token'
+      type: array
+    listVaultPeriods:
+      items:
+        $ref: '#/components/schemas/vaultPeriod'
+      type: array
+    listVaults:
+      items:
+        $ref: '#/components/schemas/vault'
+      type: array
+    mintRequest:
+      properties:
+        mint:
+          type: string
+        wallet:
+          type: string
+        amount:
+          type: string
+      required:
+      - amount
+      - mint
+      - wallet
+    mintResponse:
+      example:
+        txHash: txHash
+      properties:
+        txHash:
+          type: string
+      required:
+      - txHash
+    pingResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      required:
+      - message
+    position:
+      example:
+        depositedTokenAAmount: 10000
+        numberOfSwaps: 543
+        isClosed: true
+        authority: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        withdrawnTokenBAmount: 10000
+        depositTimestamp: "1652747980"
+        periodicDripAmount: 40
+        dcaPeriodIdBeforeDeposit: 10
+        vault: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+      properties:
+        pubkey:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        vault:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        authority:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        depositedTokenAAmount:
+          example: 10000
+          type: integer
+        withdrawnTokenBAmount:
+          example: 10000
+          type: integer
+        depositTimestamp:
+          example: "1652747980"
+          type: string
+        dcaPeriodIdBeforeDeposit:
+          example: 10
+          type: integer
+        numberOfSwaps:
+          example: 543
+          type: integer
+        periodicDripAmount:
+          example: 40
+          type: integer
+        isClosed:
+          type: boolean
+      required:
+      - authority
+      - dcaPeriodIdBeforeDeposit
+      - depositTimestamp
+      - depositedTokenAAmount
+      - isClosed
+      - numberOfSwaps
+      - periodicDripAmount
+      - pubkey
+      - vault
+      - withdrawnTokenBAmount
+      type: object
+    protoConfig:
+      example:
+        granularity: "60"
+        baseWithdrawalSpread: 50
+        triggerDcaSpread: 50
+        pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+      properties:
+        pubkey:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        granularity:
+          example: "60"
+          type: string
+        triggerDcaSpread:
+          example: 50
+          type: integer
+        baseWithdrawalSpread:
+          example: 50
+          type: integer
+      required:
+      - baseWithdrawalSpread
+      - granularity
+      - pubkey
+      - triggerDcaSpread
+      type: object
+    swapConfig:
+      example:
+        vaultProtoConfig: 9qHr7wYoRKkAFQEJw7BDB4Cq8sT4CGfAco3cNH7krBPW
+        swapFeeAccount: JbQVLnQNck1kGbrUJFjETxbFfRDhsuu9EqifFMdUSyH
+        swap: k9LNnxsgztcarvTQyFX6Lz5CG8pMV99RpeZz9ujEtz4
+        vaultTokenAAccount: GEZGArFvdqMyF4hixou9m6rEEQtKfSu7xKgi9iKejQ5Y
+        tokenBMint: 5r23oKMycxnnjAJ4cEEkh1bbCowcZwzL6HYmhLqRazQa
+        vault: 2k3nyxNQM9uZYqjg9QMZX6bgysdX33qA2K1S32GFryA5
+        vaultTokenBAccount: 91wtsxi19rDSuh2TuQKxZvWyi1STDQEpYimAFoMy58by
+        tokenAMint: BTZN3hrJ2S8s4A5iAEfUEEeaRnMUX8EsuG1nvTah2hmX
+        swapTokenMint: 8R9mBFFr621RKDZNak1KLabLstUE4Aejb8LBfDhNPsa3
+        swapTokenAAccount: 8KtF8GWBm2P9wdAxNZhmiZqR15TKnBVBE9XsfJ8wixZp
+        swapTokenBAccount: 35q6Uv3h3oS6Guc6QQ8HxQDZzzbVYtxL1tRWW7hF1i5L
+        swapAuthority: HtXk9cvY5isaeVawiaTFUrM6AH31g2Xbrq9qVQRvJVdL
+      properties:
+        vault:
+          example: 2k3nyxNQM9uZYqjg9QMZX6bgysdX33qA2K1S32GFryA5
+          type: string
+        vaultProtoConfig:
+          example: 9qHr7wYoRKkAFQEJw7BDB4Cq8sT4CGfAco3cNH7krBPW
+          type: string
+        vaultTokenAAccount:
+          example: GEZGArFvdqMyF4hixou9m6rEEQtKfSu7xKgi9iKejQ5Y
+          type: string
+        vaultTokenBAccount:
+          example: 91wtsxi19rDSuh2TuQKxZvWyi1STDQEpYimAFoMy58by
+          type: string
+        tokenAMint:
+          example: BTZN3hrJ2S8s4A5iAEfUEEeaRnMUX8EsuG1nvTah2hmX
+          type: string
+        tokenBMint:
+          example: 5r23oKMycxnnjAJ4cEEkh1bbCowcZwzL6HYmhLqRazQa
+          type: string
+        swapTokenMint:
+          example: 8R9mBFFr621RKDZNak1KLabLstUE4Aejb8LBfDhNPsa3
+          type: string
+        swapTokenAAccount:
+          example: 8KtF8GWBm2P9wdAxNZhmiZqR15TKnBVBE9XsfJ8wixZp
+          type: string
+        swapTokenBAccount:
+          example: 35q6Uv3h3oS6Guc6QQ8HxQDZzzbVYtxL1tRWW7hF1i5L
+          type: string
+        swapFeeAccount:
+          example: JbQVLnQNck1kGbrUJFjETxbFfRDhsuu9EqifFMdUSyH
+          type: string
+        swapAuthority:
+          example: HtXk9cvY5isaeVawiaTFUrM6AH31g2Xbrq9qVQRvJVdL
+          type: string
+        swap:
+          example: k9LNnxsgztcarvTQyFX6Lz5CG8pMV99RpeZz9ujEtz4
+          type: string
+      required:
+      - swap
+      - swapAuthority
+      - swapFeeAccount
+      - swapTokenAAccount
+      - swapTokenBAccount
+      - swapTokenMint
+      - tokenAMint
+      - tokenBMint
+      - vault
+      - vaultProtoConfig
+      - vaultTokenAAccount
+      - vaultTokenBAccount
+      type: object
+    tokenAccountBalance:
+      properties:
+        pubkey:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        mint:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        owner:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        amount:
+          example: "10000"
+          type: string
+        state:
+          example: initialized
+          type: string
+      required:
+      - amount
+      - mint
+      - owner
+      - pubkey
+      - state
+      type: object
+    tokenPair:
+      example:
+        tokenA: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        tokenB: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+        id: 96b8b0ed-79a9-4972-bf5e-4ac8ab9e7fda
+      properties:
+        id:
+          example: 96b8b0ed-79a9-4972-bf5e-4ac8ab9e7fda
+          type: string
+        tokenA:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        tokenB:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+      required:
+      - id
+      - tokenA
+      - tokenB
+      type: object
+    tokenSwap:
+      example:
+        mint: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        feeAccount: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+        tokenAAccount: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+        tokenBAccount: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+        authority: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+        pair: "123"
+        pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+      properties:
+        pubkey:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        mint:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        authority:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+        feeAccount:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+        tokenAAccount:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+        tokenBAccount:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+        pair:
+          description: token pair reference identifier
+          example: "123"
+          type: string
+      required:
+      - authority
+      - feeAccount
+      - mint
+      - pair
+      - pubkey
+      - tokenAAccount
+      - tokenBAccount
+      type: object
+    token:
+      example:
+        symbol: SOL
+        decimals: 10
+        pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+      properties:
+        pubkey:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        symbol:
+          example: SOL
+          type: string
+        decimals:
+          example: 10
+          type: integer
+      required:
+      - decimals
+      - iconUrl
+      - pubkey
+      type: object
+    vault:
+      example:
+        tokenAAccount: 6PmcdLzbELLxaPc3Fq6FjiSj7wtjA4MEt1UCZBnHh6tw
+        tokenBAccount: 5q7HLgfvxmkqAK6QaEFYrNmvKvzQZjWJzjwRu4toi9Sw
+        dripAmount: "123"
+        protoConfig: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        dcaActivationTimestamp: "1652747980"
+        treasuryTokenBAccount: CrVdqMmYCbBs8zG2rmwdWgmsSArKTbMUv3qvTz8J6YWC
+        tokenBMint: ASuqwxvC4FXxJGT9XqZMXbCKDQBaRTApEhN2oN3VL3A8
+        lastDcaPeriod: "123"
+        tokenAMint: BfqATYbPZJFdEdYWkEbFRBnhv1LB6wtLn299HjMmE4uq
+        enabled: true
+        pubkey: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+      properties:
+        pubkey:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+        protoConfig:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        tokenAAccount:
+          example: 6PmcdLzbELLxaPc3Fq6FjiSj7wtjA4MEt1UCZBnHh6tw
+          type: string
+        tokenBAccount:
+          example: 5q7HLgfvxmkqAK6QaEFYrNmvKvzQZjWJzjwRu4toi9Sw
+          type: string
+        treasuryTokenBAccount:
+          example: CrVdqMmYCbBs8zG2rmwdWgmsSArKTbMUv3qvTz8J6YWC
+          type: string
+        tokenAMint:
+          example: BfqATYbPZJFdEdYWkEbFRBnhv1LB6wtLn299HjMmE4uq
+          type: string
+        tokenBMint:
+          example: ASuqwxvC4FXxJGT9XqZMXbCKDQBaRTApEhN2oN3VL3A8
+          type: string
+        lastDcaPeriod:
+          example: "123"
+          type: string
+        dripAmount:
+          example: "123"
+          type: string
+        dcaActivationTimestamp:
+          description: unix timestamp
+          example: "1652747980"
+          type: string
+        enabled:
+          type: boolean
+      required:
+      - dcaActivationTimestamp
+      - dripAmount
+      - enabled
+      - lastDcaPeriod
+      - protoConfig
+      - pubkey
+      - tokenAAccount
+      - tokenAMint
+      - tokenBAccount
+      - tokenBMint
+      - treasuryTokenBAccount
+      type: object
+    vaultPeriod:
+      example:
+        periodId: "123"
+        twap: "123"
+        dar: "123"
+        vault: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+        pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+      properties:
+        pubkey:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
+        vault:
+          example: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
+          type: string
+        periodId:
+          example: "123"
+          type: string
+        twap:
+          example: "123"
+          type: string
+        dar:
+          example: "123"
+          type: string
+      required:
+      - dar
+      - periodId
+      - pubkey
+      - twap
+      - vault
+      type: object
+    expandedAdminVault_allOf:
+      properties:
+        protoConfigValue:
+          $ref: '#/components/schemas/protoConfig'
+        tokenAMintValue:
+          $ref: '#/components/schemas/token'
+        tokenBMintValue:
+          $ref: '#/components/schemas/token'
+        tokenAAccountValue:
+          $ref: '#/components/schemas/tokenAccountBalance'
+        tokenBAccountValue:
+          $ref: '#/components/schemas/tokenAccountBalance'
+        treasuryTokenBAccountValue:
+          $ref: '#/components/schemas/tokenAccountBalance'
+      type: object

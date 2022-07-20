@@ -1,0 +1,83 @@
+name: Publish drip
+
+on:
+  push: { branches: main }
+
+env:
+  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+jobs:
+  publish-gpr:
+    name: Publish
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+      contents: write
+
+    defaults:
+      run:
+        working-directory: ./drip-ts
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Cache Modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install dependencies
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Fetch tags
+        uses: actions-ecosystem/action-get-latest-tag@v1
+
+      - name: Store latest tag
+        run: echo "LAST_TAG=$(git tag  | grep -E '^[0-9]' | sort -V | tail -1)" >> $GITHUB_ENV
+
+      - name: Current version
+        run: echo $LAST_TAG
+
+      - name: Bump version
+        uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
+        with:
+          current_version: ${{ env.LAST_TAG }}
+          level: prerelease
+
+      - run: echo ${{ steps.bump-semver.outputs.new_version }}
+
+      - name: Setup dummy git config
+        run: |
+          git config --global user.name "Drip Dcaf"
+          git config --global user.email "drip@dcaf.so"
+
+      - name: Publish
+        run: yarn publish --non-interactive --new-version ${{ steps.bump-semver.outputs.new_version }}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Push tag
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
+          message: "New version: ${{ steps.bump-semver.outputs.new_version }}"
