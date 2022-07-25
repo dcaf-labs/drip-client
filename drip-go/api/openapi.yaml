@@ -249,9 +249,9 @@ paths:
                 type: object
           description: OK
       summary: Swagger spec
-  /swapConfigs:
+  /spltokenswapconfigs:
     get:
-      description: Get token swap configs fro triggerDCA.
+      description: Get token swap configs for triggerDCA.
       parameters:
       - explode: true
         in: query
@@ -265,7 +265,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/listSwapConfigs'
+                $ref: '#/components/schemas/listSplTokenSwapConfigs'
           description: OK
         "400":
           content:
@@ -280,6 +280,37 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get Token Swaps Configs
+  /orcawhirlpoolconfigs:
+    get:
+      description: Get whirlpool configs for dripOrcaWhirlpool.
+      parameters:
+      - explode: true
+        in: query
+        name: vault
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listOrcaWhirlpoolConfigs'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Orca Whirlpool Swap Configs
   /swaps:
     get:
       description: Get token swaps with filters.
@@ -636,9 +667,13 @@ components:
       items:
         $ref: '#/components/schemas/protoConfig'
       type: array
-    listSwapConfigs:
+    listSplTokenSwapConfigs:
       items:
-        $ref: '#/components/schemas/swapConfig'
+        $ref: '#/components/schemas/splTokenSwapConfig'
+      type: array
+    listOrcaWhirlpoolConfigs:
+      items:
+        $ref: '#/components/schemas/orcaWhirlpoolConfig'
       type: array
     listTokenPairs:
       items:
@@ -767,20 +802,7 @@ components:
       - pubkey
       - triggerDcaSpread
       type: object
-    swapConfig:
-      example:
-        vaultProtoConfig: 9qHr7wYoRKkAFQEJw7BDB4Cq8sT4CGfAco3cNH7krBPW
-        swapFeeAccount: JbQVLnQNck1kGbrUJFjETxbFfRDhsuu9EqifFMdUSyH
-        swap: k9LNnxsgztcarvTQyFX6Lz5CG8pMV99RpeZz9ujEtz4
-        vaultTokenAAccount: GEZGArFvdqMyF4hixou9m6rEEQtKfSu7xKgi9iKejQ5Y
-        tokenBMint: 5r23oKMycxnnjAJ4cEEkh1bbCowcZwzL6HYmhLqRazQa
-        vault: 2k3nyxNQM9uZYqjg9QMZX6bgysdX33qA2K1S32GFryA5
-        vaultTokenBAccount: 91wtsxi19rDSuh2TuQKxZvWyi1STDQEpYimAFoMy58by
-        tokenAMint: BTZN3hrJ2S8s4A5iAEfUEEeaRnMUX8EsuG1nvTah2hmX
-        swapTokenMint: 8R9mBFFr621RKDZNak1KLabLstUE4Aejb8LBfDhNPsa3
-        swapTokenAAccount: 8KtF8GWBm2P9wdAxNZhmiZqR15TKnBVBE9XsfJ8wixZp
-        swapTokenBAccount: 35q6Uv3h3oS6Guc6QQ8HxQDZzzbVYtxL1tRWW7hF1i5L
-        swapAuthority: HtXk9cvY5isaeVawiaTFUrM6AH31g2Xbrq9qVQRvJVdL
+    dripCommon:
       properties:
         vault:
           example: 2k3nyxNQM9uZYqjg9QMZX6bgysdX33qA2K1S32GFryA5
@@ -800,37 +822,23 @@ components:
         tokenBMint:
           example: 5r23oKMycxnnjAJ4cEEkh1bbCowcZwzL6HYmhLqRazQa
           type: string
-        swapTokenMint:
-          example: 8R9mBFFr621RKDZNak1KLabLstUE4Aejb8LBfDhNPsa3
-          type: string
-        swapTokenAAccount:
-          example: 8KtF8GWBm2P9wdAxNZhmiZqR15TKnBVBE9XsfJ8wixZp
-          type: string
-        swapTokenBAccount:
-          example: 35q6Uv3h3oS6Guc6QQ8HxQDZzzbVYtxL1tRWW7hF1i5L
-          type: string
-        swapFeeAccount:
-          example: JbQVLnQNck1kGbrUJFjETxbFfRDhsuu9EqifFMdUSyH
-          type: string
-        swapAuthority:
-          example: HtXk9cvY5isaeVawiaTFUrM6AH31g2Xbrq9qVQRvJVdL
-          type: string
-        swap:
-          example: k9LNnxsgztcarvTQyFX6Lz5CG8pMV99RpeZz9ujEtz4
-          type: string
       required:
-      - swap
-      - swapAuthority
-      - swapFeeAccount
-      - swapTokenAAccount
-      - swapTokenBAccount
-      - swapTokenMint
       - tokenAMint
       - tokenBMint
       - vault
       - vaultProtoConfig
       - vaultTokenAAccount
       - vaultTokenBAccount
+      type: object
+    splTokenSwapConfig:
+      allOf:
+      - $ref: '#/components/schemas/dripCommon'
+      - $ref: '#/components/schemas/splTokenSwapConfig_allOf'
+      type: object
+    orcaWhirlpoolConfig:
+      allOf:
+      - $ref: '#/components/schemas/dripCommon'
+      - $ref: '#/components/schemas/orcaWhirlpoolConfig_allOf'
       type: object
     tokenAccountBalance:
       properties:
@@ -1041,4 +1049,52 @@ components:
           $ref: '#/components/schemas/tokenAccountBalance'
         treasuryTokenBAccountValue:
           $ref: '#/components/schemas/tokenAccountBalance'
+      type: object
+    splTokenSwapConfig_allOf:
+      properties:
+        swapTokenMint:
+          example: 8R9mBFFr621RKDZNak1KLabLstUE4Aejb8LBfDhNPsa3
+          type: string
+        swapTokenAAccount:
+          example: 8KtF8GWBm2P9wdAxNZhmiZqR15TKnBVBE9XsfJ8wixZp
+          type: string
+        swapTokenBAccount:
+          example: 35q6Uv3h3oS6Guc6QQ8HxQDZzzbVYtxL1tRWW7hF1i5L
+          type: string
+        swapFeeAccount:
+          example: JbQVLnQNck1kGbrUJFjETxbFfRDhsuu9EqifFMdUSyH
+          type: string
+        swapAuthority:
+          example: HtXk9cvY5isaeVawiaTFUrM6AH31g2Xbrq9qVQRvJVdL
+          type: string
+        swap:
+          example: k9LNnxsgztcarvTQyFX6Lz5CG8pMV99RpeZz9ujEtz4
+          type: string
+      required:
+      - swap
+      - swapAuthority
+      - swapFeeAccount
+      - swapTokenAAccount
+      - swapTokenBAccount
+      - swapTokenMint
+      type: object
+    orcaWhirlpoolConfig_allOf:
+      properties:
+        whirlpool:
+          example: 6w19Y57V1mk2C65E5qF376XzBuV1ijvx4h2KZNNHqqVh
+          type: string
+        tokenVaultA:
+          example: FPPhRPM85ovw3pUHk8QqPk28Tj724cNXf3xzejCVbFHn
+          type: string
+        tokenVaultB:
+          example: 2wMQTELEgEcK7V3gwZBH58WvGcRZsyaWNpebqyFugGKe
+          type: string
+        oracle:
+          example: HtXk9cvY5isaeVawiaTFUrM6AH31g2Xbrq9qVQRvJVdL
+          type: string
+      required:
+      - oracle
+      - tokenVaultA
+      - tokenVaultB
+      - whirlpool
       type: object

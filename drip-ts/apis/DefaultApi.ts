@@ -24,6 +24,9 @@ import {
     MintResponse,
     MintResponseFromJSON,
     MintResponseToJSON,
+    OrcaWhirlpoolConfig,
+    OrcaWhirlpoolConfigFromJSON,
+    OrcaWhirlpoolConfigToJSON,
     PingResponse,
     PingResponseFromJSON,
     PingResponseToJSON,
@@ -33,9 +36,9 @@ import {
     ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigToJSON,
-    SwapConfig,
-    SwapConfigFromJSON,
-    SwapConfigToJSON,
+    SplTokenSwapConfig,
+    SplTokenSwapConfigFromJSON,
+    SplTokenSwapConfigToJSON,
     Token,
     TokenFromJSON,
     TokenToJSON,
@@ -57,6 +60,10 @@ export interface MintPostRequest {
     mintRequest: MintRequest;
 }
 
+export interface OrcawhirlpoolconfigsGetRequest {
+    vault?: string;
+}
+
 export interface PositionsGetRequest {
     wallet: string;
 }
@@ -66,7 +73,7 @@ export interface ProtoconfigsGetRequest {
     tokenB?: string;
 }
 
-export interface SwapConfigsGetRequest {
+export interface SpltokenswapconfigsGetRequest {
     vault?: string;
 }
 
@@ -134,6 +141,38 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async mintPost(requestParameters: MintPostRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<MintResponse> {
         const response = await this.mintPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get whirlpool configs for dripOrcaWhirlpool.
+     * Get Orca Whirlpool Swap Configs
+     */
+    async orcawhirlpoolconfigsGetRaw(requestParameters: OrcawhirlpoolconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<OrcaWhirlpoolConfig>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.vault !== undefined) {
+            queryParameters['vault'] = requestParameters.vault;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/orcawhirlpoolconfigs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OrcaWhirlpoolConfigFromJSON));
+    }
+
+    /**
+     * Get whirlpool configs for dripOrcaWhirlpool.
+     * Get Orca Whirlpool Swap Configs
+     */
+    async orcawhirlpoolconfigsGet(requestParameters: OrcawhirlpoolconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<OrcaWhirlpoolConfig>> {
+        const response = await this.orcawhirlpoolconfigsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -238,6 +277,38 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get token swap configs for triggerDCA.
+     * Get Token Swaps Configs
+     */
+    async spltokenswapconfigsGetRaw(requestParameters: SpltokenswapconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<SplTokenSwapConfig>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.vault !== undefined) {
+            queryParameters['vault'] = requestParameters.vault;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/spltokenswapconfigs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SplTokenSwapConfigFromJSON));
+    }
+
+    /**
+     * Get token swap configs for triggerDCA.
+     * Get Token Swaps Configs
+     */
+    async spltokenswapconfigsGet(requestParameters: SpltokenswapconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<SplTokenSwapConfig>> {
+        const response = await this.spltokenswapconfigsGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Swagger spec
      */
     async swaggerJsonGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<object>> {
@@ -260,38 +331,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async swaggerJsonGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<object> {
         const response = await this.swaggerJsonGetRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get token swap configs fro triggerDCA.
-     * Get Token Swaps Configs
-     */
-    async swapConfigsGetRaw(requestParameters: SwapConfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<SwapConfig>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.vault !== undefined) {
-            queryParameters['vault'] = requestParameters.vault;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/swapConfigs`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SwapConfigFromJSON));
-    }
-
-    /**
-     * Get token swap configs fro triggerDCA.
-     * Get Token Swaps Configs
-     */
-    async swapConfigsGet(requestParameters: SwapConfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<SwapConfig>> {
-        const response = await this.swapConfigsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -24,7 +24,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import drip "github.com/GIT_USER_ID/GIT_REPO_ID"
+import drip "github.com/GIT_USER_ID/GIT_REPO_ID/drip"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -83,11 +83,12 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#adminvaultpubkeypathenableput) | **Put** /admin/vault/{pubkeyPath}/enable | Enable a vault
 *AdminApi* | [**AdminVaultsGet**](docs/AdminApi.md#adminvaultsget) | **Get** /admin/vaults | Get All Vaults
 *DefaultApi* | [**MintPost**](docs/DefaultApi.md#mintpost) | **Post** /mint | Mint tokens (DEVNET ONLY)
+*DefaultApi* | [**OrcawhirlpoolconfigsGet**](docs/DefaultApi.md#orcawhirlpoolconfigsget) | **Get** /orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
 *DefaultApi* | [**PositionsGet**](docs/DefaultApi.md#positionsget) | **Get** /positions | Get User Positions
 *DefaultApi* | [**ProtoconfigsGet**](docs/DefaultApi.md#protoconfigsget) | **Get** /protoconfigs | Get Proto Configs
 *DefaultApi* | [**RootGet**](docs/DefaultApi.md#rootget) | **Get** / | Health Check
+*DefaultApi* | [**SpltokenswapconfigsGet**](docs/DefaultApi.md#spltokenswapconfigsget) | **Get** /spltokenswapconfigs | Get Token Swaps Configs
 *DefaultApi* | [**SwaggerJsonGet**](docs/DefaultApi.md#swaggerjsonget) | **Get** /swagger.json | Swagger spec
-*DefaultApi* | [**SwapConfigsGet**](docs/DefaultApi.md#swapconfigsget) | **Get** /swapConfigs | Get Token Swaps Configs
 *DefaultApi* | [**SwapsGet**](docs/DefaultApi.md#swapsget) | **Get** /swaps | Get Token Swaps
 *DefaultApi* | [**TokenpairsGet**](docs/DefaultApi.md#tokenpairsget) | **Get** /tokenpairs | Get Token Pairs
 *DefaultApi* | [**TokensGet**](docs/DefaultApi.md#tokensget) | **Get** /tokens | Get Tokens
@@ -97,15 +98,19 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [DripCommon](docs/DripCommon.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [ExpandedAdminVault](docs/ExpandedAdminVault.md)
  - [ExpandedAdminVaultAllOf](docs/ExpandedAdminVaultAllOf.md)
  - [MintRequest](docs/MintRequest.md)
  - [MintResponse](docs/MintResponse.md)
+ - [OrcaWhirlpoolConfig](docs/OrcaWhirlpoolConfig.md)
+ - [OrcaWhirlpoolConfigAllOf](docs/OrcaWhirlpoolConfigAllOf.md)
  - [PingResponse](docs/PingResponse.md)
  - [Position](docs/Position.md)
  - [ProtoConfig](docs/ProtoConfig.md)
- - [SwapConfig](docs/SwapConfig.md)
+ - [SplTokenSwapConfig](docs/SplTokenSwapConfig.md)
+ - [SplTokenSwapConfigAllOf](docs/SplTokenSwapConfigAllOf.md)
  - [Token](docs/Token.md)
  - [TokenAccountBalance](docs/TokenAccountBalance.md)
  - [TokenPair](docs/TokenPair.md)

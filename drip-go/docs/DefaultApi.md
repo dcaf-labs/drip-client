@@ -5,11 +5,12 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**MintPost**](DefaultApi.md#MintPost) | **Post** /mint | Mint tokens (DEVNET ONLY)
+[**OrcawhirlpoolconfigsGet**](DefaultApi.md#OrcawhirlpoolconfigsGet) | **Get** /orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
 [**PositionsGet**](DefaultApi.md#PositionsGet) | **Get** /positions | Get User Positions
 [**ProtoconfigsGet**](DefaultApi.md#ProtoconfigsGet) | **Get** /protoconfigs | Get Proto Configs
 [**RootGet**](DefaultApi.md#RootGet) | **Get** / | Health Check
+[**SpltokenswapconfigsGet**](DefaultApi.md#SpltokenswapconfigsGet) | **Get** /spltokenswapconfigs | Get Token Swaps Configs
 [**SwaggerJsonGet**](DefaultApi.md#SwaggerJsonGet) | **Get** /swagger.json | Swagger spec
-[**SwapConfigsGet**](DefaultApi.md#SwapConfigsGet) | **Get** /swapConfigs | Get Token Swaps Configs
 [**SwapsGet**](DefaultApi.md#SwapsGet) | **Get** /swaps | Get Token Swaps
 [**TokenpairsGet**](DefaultApi.md#TokenpairsGet) | **Get** /tokenpairs | Get Token Pairs
 [**TokensGet**](DefaultApi.md#TokensGet) | **Get** /tokens | Get Tokens
@@ -77,6 +78,72 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## OrcawhirlpoolconfigsGet
+
+> []OrcaWhirlpoolConfig OrcawhirlpoolconfigsGet(ctx).Vault(vault).Execute()
+
+Get Orca Whirlpool Swap Configs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    vault := "vault_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.OrcawhirlpoolconfigsGet(context.Background()).Vault(vault).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrcawhirlpoolconfigsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `OrcawhirlpoolconfigsGet`: []OrcaWhirlpoolConfig
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrcawhirlpoolconfigsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOrcawhirlpoolconfigsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault** | **string** |  | 
+
+### Return type
+
+[**[]OrcaWhirlpoolConfig**](OrcaWhirlpoolConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -279,6 +346,72 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## SpltokenswapconfigsGet
+
+> []SplTokenSwapConfig SpltokenswapconfigsGet(ctx).Vault(vault).Execute()
+
+Get Token Swaps Configs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    vault := "vault_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.SpltokenswapconfigsGet(context.Background()).Vault(vault).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SpltokenswapconfigsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SpltokenswapconfigsGet`: []SplTokenSwapConfig
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SpltokenswapconfigsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSpltokenswapconfigsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault** | **string** |  | 
+
+### Return type
+
+[**[]SplTokenSwapConfig**](SplTokenSwapConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SwaggerJsonGet
 
 > map[string]interface{} SwaggerJsonGet(ctx).Execute()
@@ -323,72 +456,6 @@ Other parameters are passed through a pointer to a apiSwaggerJsonGetRequest stru
 ### Return type
 
 **map[string]interface{}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SwapConfigsGet
-
-> []SwapConfig SwapConfigsGet(ctx).Vault(vault).Execute()
-
-Get Token Swaps Configs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    vault := "vault_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SwapConfigsGet(context.Background()).Vault(vault).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SwapConfigsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SwapConfigsGet`: []SwapConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SwapConfigsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSwapConfigsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **vault** | **string** |  | 
-
-### Return type
-
-[**[]SwapConfig**](SwapConfig.md)
 
 ### Authorization
 

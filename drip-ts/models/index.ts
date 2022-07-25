@@ -1,14 +1,18 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './DripCommon';
 export * from './ErrorResponse';
 export * from './ExpandedAdminVault';
 export * from './ExpandedAdminVaultAllOf';
 export * from './MintRequest';
 export * from './MintResponse';
+export * from './OrcaWhirlpoolConfig';
+export * from './OrcaWhirlpoolConfigAllOf';
 export * from './PingResponse';
 export * from './Position';
 export * from './ProtoConfig';
-export * from './SwapConfig';
+export * from './SplTokenSwapConfig';
+export * from './SplTokenSwapConfigAllOf';
 export * from './Token';
 export * from './TokenAccountBalance';
 export * from './TokenPair';

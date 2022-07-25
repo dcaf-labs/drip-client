@@ -37,6 +37,20 @@ type DefaultApi interface {
 	MintPostExecute(r ApiMintPostRequest) (*MintResponse, *http.Response, error)
 
 	/*
+	OrcawhirlpoolconfigsGet Get Orca Whirlpool Swap Configs
+
+	Get whirlpool configs for dripOrcaWhirlpool.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiOrcawhirlpoolconfigsGetRequest
+	*/
+	OrcawhirlpoolconfigsGet(ctx context.Context) ApiOrcawhirlpoolconfigsGetRequest
+
+	// OrcawhirlpoolconfigsGetExecute executes the request
+	//  @return []OrcaWhirlpoolConfig
+	OrcawhirlpoolconfigsGetExecute(r ApiOrcawhirlpoolconfigsGetRequest) ([]OrcaWhirlpoolConfig, *http.Response, error)
+
+	/*
 	PositionsGet Get User Positions
 
 	Get all user positions.
@@ -79,6 +93,20 @@ type DefaultApi interface {
 	RootGetExecute(r ApiRootGetRequest) (*PingResponse, *http.Response, error)
 
 	/*
+	SpltokenswapconfigsGet Get Token Swaps Configs
+
+	Get token swap configs for triggerDCA.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSpltokenswapconfigsGetRequest
+	*/
+	SpltokenswapconfigsGet(ctx context.Context) ApiSpltokenswapconfigsGetRequest
+
+	// SpltokenswapconfigsGetExecute executes the request
+	//  @return []SplTokenSwapConfig
+	SpltokenswapconfigsGetExecute(r ApiSpltokenswapconfigsGetRequest) ([]SplTokenSwapConfig, *http.Response, error)
+
+	/*
 	SwaggerJsonGet Swagger spec
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -89,20 +117,6 @@ type DefaultApi interface {
 	// SwaggerJsonGetExecute executes the request
 	//  @return map[string]interface{}
 	SwaggerJsonGetExecute(r ApiSwaggerJsonGetRequest) (map[string]interface{}, *http.Response, error)
-
-	/*
-	SwapConfigsGet Get Token Swaps Configs
-
-	Get token swap configs fro triggerDCA.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiSwapConfigsGetRequest
-	*/
-	SwapConfigsGet(ctx context.Context) ApiSwapConfigsGetRequest
-
-	// SwapConfigsGetExecute executes the request
-	//  @return []SwapConfig
-	SwapConfigsGetExecute(r ApiSwapConfigsGetRequest) ([]SwapConfig, *http.Response, error)
 
 	/*
 	SwapsGet Get Token Swaps
@@ -252,6 +266,133 @@ func (a *DefaultApiService) MintPostExecute(r ApiMintPostRequest) (*MintResponse
 	}
 	// body params
 	localVarPostBody = r.mintRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiOrcawhirlpoolconfigsGetRequest struct {
+	ctx context.Context
+	ApiService DefaultApi
+	vault *string
+}
+
+func (r ApiOrcawhirlpoolconfigsGetRequest) Vault(vault string) ApiOrcawhirlpoolconfigsGetRequest {
+	r.vault = &vault
+	return r
+}
+
+func (r ApiOrcawhirlpoolconfigsGetRequest) Execute() ([]OrcaWhirlpoolConfig, *http.Response, error) {
+	return r.ApiService.OrcawhirlpoolconfigsGetExecute(r)
+}
+
+/*
+OrcawhirlpoolconfigsGet Get Orca Whirlpool Swap Configs
+
+Get whirlpool configs for dripOrcaWhirlpool.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiOrcawhirlpoolconfigsGetRequest
+*/
+func (a *DefaultApiService) OrcawhirlpoolconfigsGet(ctx context.Context) ApiOrcawhirlpoolconfigsGetRequest {
+	return ApiOrcawhirlpoolconfigsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []OrcaWhirlpoolConfig
+func (a *DefaultApiService) OrcawhirlpoolconfigsGetExecute(r ApiOrcawhirlpoolconfigsGetRequest) ([]OrcaWhirlpoolConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []OrcaWhirlpoolConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.OrcawhirlpoolconfigsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/orcawhirlpoolconfigs"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.vault != nil {
+		localVarQueryParams.Add("vault", parameterToString(*r.vault, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -671,6 +812,133 @@ func (a *DefaultApiService) RootGetExecute(r ApiRootGetRequest) (*PingResponse, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiSpltokenswapconfigsGetRequest struct {
+	ctx context.Context
+	ApiService DefaultApi
+	vault *string
+}
+
+func (r ApiSpltokenswapconfigsGetRequest) Vault(vault string) ApiSpltokenswapconfigsGetRequest {
+	r.vault = &vault
+	return r
+}
+
+func (r ApiSpltokenswapconfigsGetRequest) Execute() ([]SplTokenSwapConfig, *http.Response, error) {
+	return r.ApiService.SpltokenswapconfigsGetExecute(r)
+}
+
+/*
+SpltokenswapconfigsGet Get Token Swaps Configs
+
+Get token swap configs for triggerDCA.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiSpltokenswapconfigsGetRequest
+*/
+func (a *DefaultApiService) SpltokenswapconfigsGet(ctx context.Context) ApiSpltokenswapconfigsGetRequest {
+	return ApiSpltokenswapconfigsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []SplTokenSwapConfig
+func (a *DefaultApiService) SpltokenswapconfigsGetExecute(r ApiSpltokenswapconfigsGetRequest) ([]SplTokenSwapConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SplTokenSwapConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SpltokenswapconfigsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/spltokenswapconfigs"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.vault != nil {
+		localVarQueryParams.Add("vault", parameterToString(*r.vault, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSwaggerJsonGetRequest struct {
 	ctx context.Context
 	ApiService DefaultApi
@@ -752,133 +1020,6 @@ func (a *DefaultApiService) SwaggerJsonGetExecute(r ApiSwaggerJsonGetRequest) (m
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSwapConfigsGetRequest struct {
-	ctx context.Context
-	ApiService DefaultApi
-	vault *string
-}
-
-func (r ApiSwapConfigsGetRequest) Vault(vault string) ApiSwapConfigsGetRequest {
-	r.vault = &vault
-	return r
-}
-
-func (r ApiSwapConfigsGetRequest) Execute() ([]SwapConfig, *http.Response, error) {
-	return r.ApiService.SwapConfigsGetExecute(r)
-}
-
-/*
-SwapConfigsGet Get Token Swaps Configs
-
-Get token swap configs fro triggerDCA.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSwapConfigsGetRequest
-*/
-func (a *DefaultApiService) SwapConfigsGet(ctx context.Context) ApiSwapConfigsGetRequest {
-	return ApiSwapConfigsGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []SwapConfig
-func (a *DefaultApiService) SwapConfigsGetExecute(r ApiSwapConfigsGetRequest) ([]SwapConfig, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []SwapConfig
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SwapConfigsGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/swapConfigs"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.vault != nil {
-		localVarQueryParams.Add("vault", parameterToString(*r.vault, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
