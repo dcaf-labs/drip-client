@@ -5,7 +5,6 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AdminVaultPubkeyPathEnablePut**](AdminApi.md#AdminVaultPubkeyPathEnablePut) | **Put** /admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
-[**AdminVaultsGet**](AdminApi.md#AdminVaultsGet) | **Get** /admin/vaults | Get All Vaults
 [**V1AdminPositionsGet**](AdminApi.md#V1AdminPositionsGet) | **Get** /v1/admin/positions | Get All Positions
 [**V1AdminVaultPubkeyPathEnablePut**](AdminApi.md#V1AdminVaultPubkeyPathEnablePut) | **Put** /v1/admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 [**V1AdminVaultsGet**](AdminApi.md#V1AdminVaultsGet) | **Get** /v1/admin/vaults | Get All Vaults
@@ -69,80 +68,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Vault**](Vault.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## AdminVaultsGet
-
-> []ExpandedAdminVault AdminVaultsGet(ctx).TokenId(tokenId).Expand(expand).Enabled(enabled).Offset(offset).Limit(limit).Execute()
-
-Get All Vaults
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    tokenId := "tokenId_example" // string | 
-    expand := []string{"Expand_example"} // []string |  (optional)
-    enabled := true // bool |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    limit := int32(56) // int32 |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AdminVaultsGet(context.Background()).TokenId(tokenId).Expand(expand).Enabled(enabled).Offset(offset).Limit(limit).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminVaultsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AdminVaultsGet`: []ExpandedAdminVault
-    fmt.Fprintf(os.Stdout, "Response from `AdminApi.AdminVaultsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAdminVaultsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tokenId** | **string** |  | 
- **expand** | **[]string** |  | 
- **enabled** | **bool** |  | 
- **offset** | **int32** |  | 
- **limit** | **int32** |  | 
-
-### Return type
-
-[**[]ExpandedAdminVault**](ExpandedAdminVault.md)
 
 ### Authorization
 
@@ -306,7 +231,7 @@ No authorization required
 
 ## V1AdminVaultsGet
 
-> []ExpandedAdminVault V1AdminVaultsGet(ctx).TokenId(tokenId).Expand(expand).Enabled(enabled).Offset(offset).Limit(limit).Execute()
+> []ExpandedAdminVault V1AdminVaultsGet(ctx).TokenId(tokenId).Expand(expand).Vault(vault).TokenA(tokenA).TokenB(tokenB).Enabled(enabled).Offset(offset).Limit(limit).Execute()
 
 Get All Vaults
 
@@ -327,13 +252,16 @@ import (
 func main() {
     tokenId := "tokenId_example" // string | 
     expand := []string{"Expand_example"} // []string |  (optional)
+    vault := "vault_example" // string |  (optional)
+    tokenA := "tokenA_example" // string |  (optional)
+    tokenB := "tokenB_example" // string |  (optional)
     enabled := true // bool |  (optional)
     offset := int32(56) // int32 |  (optional)
     limit := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.V1AdminVaultsGet(context.Background()).TokenId(tokenId).Expand(expand).Enabled(enabled).Offset(offset).Limit(limit).Execute()
+    resp, r, err := apiClient.AdminApi.V1AdminVaultsGet(context.Background()).TokenId(tokenId).Expand(expand).Vault(vault).TokenA(tokenA).TokenB(tokenB).Enabled(enabled).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.V1AdminVaultsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -356,6 +284,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tokenId** | **string** |  | 
  **expand** | **[]string** |  | 
+ **vault** | **string** |  | 
+ **tokenA** | **string** |  | 
+ **tokenB** | **string** |  | 
  **enabled** | **bool** |  | 
  **offset** | **int32** |  | 
  **limit** | **int32** |  | 

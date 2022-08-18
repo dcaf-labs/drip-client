@@ -114,77 +114,6 @@ paths:
       summary: Toggle the 'enabled' flag on a vault
       tags:
       - admin
-  /admin/vaults:
-    get:
-      description: Get all vaults with filters and expanded properties.
-      parameters:
-      - explode: false
-        in: header
-        name: token-id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          items:
-            enum:
-            - all
-            - protoConfigValue
-            - tokenAMintValue
-            - tokenBMintValue
-            - tokenAAccountValue
-            - tokenBAccountValue
-            - treasuryTokenBAccountValue
-            type: string
-          type: array
-        style: form
-      - explode: true
-        in: query
-        name: enabled
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/listExpandedAdminVaults'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Internal Server Error
-      summary: Get All Vaults
-      tags:
-      - admin
   /v1/admin/vaults:
     get:
       description: Get all vaults with filters and expanded properties.
@@ -212,6 +141,27 @@ paths:
             - treasuryTokenBAccountValue
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: vault
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
         style: form
       - explode: true
         in: query
@@ -785,6 +735,30 @@ components:
       required: false
       schema:
         type: boolean
+      style: form
+    likeTokenAQueryParam:
+      explode: true
+      in: query
+      name: tokenA
+      required: false
+      schema:
+        type: string
+      style: form
+    likeTokenBQueryParam:
+      explode: true
+      in: query
+      name: tokenB
+      required: false
+      schema:
+        type: string
+      style: form
+    likeVaultQueryParam:
+      explode: true
+      in: query
+      name: vault
+      required: false
+      schema:
+        type: string
       style: form
     isClosedQueryParam:
       explode: true

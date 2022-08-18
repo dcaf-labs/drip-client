@@ -81,7 +81,6 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AdminApi* | [**AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#adminvaultpubkeypathenableput) | **Put** /admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
-*AdminApi* | [**AdminVaultsGet**](docs/AdminApi.md#adminvaultsget) | **Get** /admin/vaults | Get All Vaults
 *AdminApi* | [**V1AdminPositionsGet**](docs/AdminApi.md#v1adminpositionsget) | **Get** /v1/admin/positions | Get All Positions
 *AdminApi* | [**V1AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#v1adminvaultpubkeypathenableput) | **Put** /v1/admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 *AdminApi* | [**V1AdminVaultsGet**](docs/AdminApi.md#v1adminvaultsget) | **Get** /v1/admin/vaults | Get All Vaults

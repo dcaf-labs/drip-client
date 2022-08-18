@@ -34,14 +34,6 @@ export interface AdminVaultPubkeyPathEnablePutRequest {
     tokenId: string;
 }
 
-export interface AdminVaultsGetRequest {
-    tokenId: string;
-    expand?: Array<AdminVaultsGetExpandEnum>;
-    enabled?: boolean;
-    offset?: number;
-    limit?: number;
-}
-
 export interface V1AdminPositionsGetRequest {
     tokenId: string;
     enabled?: boolean;
@@ -58,6 +50,9 @@ export interface V1AdminVaultPubkeyPathEnablePutRequest {
 export interface V1AdminVaultsGetRequest {
     tokenId: string;
     expand?: Array<V1AdminVaultsGetExpandEnum>;
+    vault?: string;
+    tokenA?: string;
+    tokenB?: string;
     enabled?: boolean;
     offset?: number;
     limit?: number;
@@ -105,58 +100,6 @@ export class AdminApi extends runtime.BaseAPI {
      */
     async adminVaultPubkeyPathEnablePut(requestParameters: AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Vault> {
         const response = await this.adminVaultPubkeyPathEnablePutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get all vaults with filters and expanded properties.
-     * Get All Vaults
-     */
-    async adminVaultsGetRaw(requestParameters: AdminVaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ExpandedAdminVault>>> {
-        if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
-            throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling adminVaultsGet.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.expand) {
-            queryParameters['expand'] = requestParameters.expand;
-        }
-
-        if (requestParameters.enabled !== undefined) {
-            queryParameters['enabled'] = requestParameters.enabled;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.tokenId !== undefined && requestParameters.tokenId !== null) {
-            headerParameters['token-id'] = String(requestParameters.tokenId);
-        }
-
-        const response = await this.request({
-            path: `/admin/vaults`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpandedAdminVaultFromJSON));
-    }
-
-    /**
-     * Get all vaults with filters and expanded properties.
-     * Get All Vaults
-     */
-    async adminVaultsGet(requestParameters: AdminVaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ExpandedAdminVault>> {
-        const response = await this.adminVaultsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -267,6 +210,18 @@ export class AdminApi extends runtime.BaseAPI {
             queryParameters['expand'] = requestParameters.expand;
         }
 
+        if (requestParameters.vault !== undefined) {
+            queryParameters['vault'] = requestParameters.vault;
+        }
+
+        if (requestParameters.tokenA !== undefined) {
+            queryParameters['tokenA'] = requestParameters.tokenA;
+        }
+
+        if (requestParameters.tokenB !== undefined) {
+            queryParameters['tokenB'] = requestParameters.tokenB;
+        }
+
         if (requestParameters.enabled !== undefined) {
             queryParameters['enabled'] = requestParameters.enabled;
         }
@@ -306,19 +261,6 @@ export class AdminApi extends runtime.BaseAPI {
 
 }
 
-/**
- * @export
- */
-export const AdminVaultsGetExpandEnum = {
-    All: 'all',
-    ProtoConfigValue: 'protoConfigValue',
-    TokenAMintValue: 'tokenAMintValue',
-    TokenBMintValue: 'tokenBMintValue',
-    TokenAAccountValue: 'tokenAAccountValue',
-    TokenBAccountValue: 'tokenBAccountValue',
-    TreasuryTokenBAccountValue: 'treasuryTokenBAccountValue'
-} as const;
-export type AdminVaultsGetExpandEnum = typeof AdminVaultsGetExpandEnum[keyof typeof AdminVaultsGetExpandEnum];
 /**
  * @export
  */

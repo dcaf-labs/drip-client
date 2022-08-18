@@ -40,20 +40,6 @@ type AdminApi interface {
 	AdminVaultPubkeyPathEnablePutExecute(r ApiAdminVaultPubkeyPathEnablePutRequest) (*Vault, *http.Response, error)
 
 	/*
-	AdminVaultsGet Get All Vaults
-
-	Get all vaults with filters and expanded properties.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAdminVaultsGetRequest
-	*/
-	AdminVaultsGet(ctx context.Context) ApiAdminVaultsGetRequest
-
-	// AdminVaultsGetExecute executes the request
-	//  @return []ExpandedAdminVault
-	AdminVaultsGetExecute(r ApiAdminVaultsGetRequest) ([]ExpandedAdminVault, *http.Response, error)
-
-	/*
 	V1AdminPositionsGet Get All Positions
 
 	Get all positions with pagination.
@@ -209,178 +195,6 @@ func (a *AdminApiService) AdminVaultPubkeyPathEnablePutExecute(r ApiAdminVaultPu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiAdminVaultsGetRequest struct {
-	ctx context.Context
-	ApiService AdminApi
-	tokenId *string
-	expand *[]string
-	enabled *bool
-	offset *int32
-	limit *int32
-}
-
-func (r ApiAdminVaultsGetRequest) TokenId(tokenId string) ApiAdminVaultsGetRequest {
-	r.tokenId = &tokenId
-	return r
-}
-
-func (r ApiAdminVaultsGetRequest) Expand(expand []string) ApiAdminVaultsGetRequest {
-	r.expand = &expand
-	return r
-}
-
-func (r ApiAdminVaultsGetRequest) Enabled(enabled bool) ApiAdminVaultsGetRequest {
-	r.enabled = &enabled
-	return r
-}
-
-func (r ApiAdminVaultsGetRequest) Offset(offset int32) ApiAdminVaultsGetRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiAdminVaultsGetRequest) Limit(limit int32) ApiAdminVaultsGetRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiAdminVaultsGetRequest) Execute() ([]ExpandedAdminVault, *http.Response, error) {
-	return r.ApiService.AdminVaultsGetExecute(r)
-}
-
-/*
-AdminVaultsGet Get All Vaults
-
-Get all vaults with filters and expanded properties.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAdminVaultsGetRequest
-*/
-func (a *AdminApiService) AdminVaultsGet(ctx context.Context) ApiAdminVaultsGetRequest {
-	return ApiAdminVaultsGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []ExpandedAdminVault
-func (a *AdminApiService) AdminVaultsGetExecute(r ApiAdminVaultsGetRequest) ([]ExpandedAdminVault, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ExpandedAdminVault
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.AdminVaultsGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/admin/vaults"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.tokenId == nil {
-		return localVarReturnValue, nil, reportError("tokenId is required and must be specified")
-	}
-
-	if r.expand != nil {
-		t := *r.expand
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("expand", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("expand", parameterToString(t, "multi"))
-		}
-	}
-	if r.enabled != nil {
-		localVarQueryParams.Add("enabled", parameterToString(*r.enabled, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	localVarHeaderParams["token-id"] = parameterToString(*r.tokenId, "")
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -725,6 +539,9 @@ type ApiV1AdminVaultsGetRequest struct {
 	ApiService AdminApi
 	tokenId *string
 	expand *[]string
+	vault *string
+	tokenA *string
+	tokenB *string
 	enabled *bool
 	offset *int32
 	limit *int32
@@ -737,6 +554,21 @@ func (r ApiV1AdminVaultsGetRequest) TokenId(tokenId string) ApiV1AdminVaultsGetR
 
 func (r ApiV1AdminVaultsGetRequest) Expand(expand []string) ApiV1AdminVaultsGetRequest {
 	r.expand = &expand
+	return r
+}
+
+func (r ApiV1AdminVaultsGetRequest) Vault(vault string) ApiV1AdminVaultsGetRequest {
+	r.vault = &vault
+	return r
+}
+
+func (r ApiV1AdminVaultsGetRequest) TokenA(tokenA string) ApiV1AdminVaultsGetRequest {
+	r.tokenA = &tokenA
+	return r
+}
+
+func (r ApiV1AdminVaultsGetRequest) TokenB(tokenB string) ApiV1AdminVaultsGetRequest {
+	r.tokenB = &tokenB
 	return r
 }
 
@@ -808,6 +640,15 @@ func (a *AdminApiService) V1AdminVaultsGetExecute(r ApiV1AdminVaultsGetRequest) 
 		} else {
 			localVarQueryParams.Add("expand", parameterToString(t, "multi"))
 		}
+	}
+	if r.vault != nil {
+		localVarQueryParams.Add("vault", parameterToString(*r.vault, ""))
+	}
+	if r.tokenA != nil {
+		localVarQueryParams.Add("tokenA", parameterToString(*r.tokenA, ""))
+	}
+	if r.tokenB != nil {
+		localVarQueryParams.Add("tokenB", parameterToString(*r.tokenB, ""))
 	}
 	if r.enabled != nil {
 		localVarQueryParams.Add("enabled", parameterToString(*r.enabled, ""))
