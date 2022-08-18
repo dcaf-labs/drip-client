@@ -3,23 +3,16 @@ name: Publish drip
 on:
   push: { branches: main }
 
-env:
-  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
 jobs:
   publish-gpr:
     name: Publish
     runs-on: ubuntu-latest
-
     permissions:
       packages: write
       contents: write
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Cache Modules
         id: cache-modules
