@@ -17,6 +17,8 @@ models/SplTokenSwapConfig.ts
 models/SplTokenSwapConfigAllOf.ts
 models/Token.ts
 models/TokenAccountBalance.ts
+models/TokenMetadata.ts
+models/TokenMetadataCollection.ts
 models/TokenPair.ts
 models/TokenSwap.ts
 models/Vault.ts

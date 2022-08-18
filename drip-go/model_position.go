@@ -20,12 +20,12 @@ type Position struct {
 	Pubkey string `json:"pubkey"`
 	Vault string `json:"vault"`
 	Authority string `json:"authority"`
-	DepositedTokenAAmount int32 `json:"depositedTokenAAmount"`
-	WithdrawnTokenBAmount int32 `json:"withdrawnTokenBAmount"`
+	DepositedTokenAAmount string `json:"depositedTokenAAmount"`
+	WithdrawnTokenBAmount string `json:"withdrawnTokenBAmount"`
 	DepositTimestamp string `json:"depositTimestamp"`
-	DcaPeriodIdBeforeDeposit int32 `json:"dcaPeriodIdBeforeDeposit"`
-	NumberOfSwaps int32 `json:"numberOfSwaps"`
-	PeriodicDripAmount int32 `json:"periodicDripAmount"`
+	DcaPeriodIdBeforeDeposit string `json:"dcaPeriodIdBeforeDeposit"`
+	NumberOfSwaps string `json:"numberOfSwaps"`
+	PeriodicDripAmount string `json:"periodicDripAmount"`
 	IsClosed bool `json:"isClosed"`
 }
 
@@ -33,7 +33,7 @@ type Position struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPosition(pubkey string, vault string, authority string, depositedTokenAAmount int32, withdrawnTokenBAmount int32, depositTimestamp string, dcaPeriodIdBeforeDeposit int32, numberOfSwaps int32, periodicDripAmount int32, isClosed bool) *Position {
+func NewPosition(pubkey string, vault string, authority string, depositedTokenAAmount string, withdrawnTokenBAmount string, depositTimestamp string, dcaPeriodIdBeforeDeposit string, numberOfSwaps string, periodicDripAmount string, isClosed bool) *Position {
 	this := Position{}
 	this.Pubkey = pubkey
 	this.Vault = vault
@@ -129,9 +129,9 @@ func (o *Position) SetAuthority(v string) {
 }
 
 // GetDepositedTokenAAmount returns the DepositedTokenAAmount field value
-func (o *Position) GetDepositedTokenAAmount() int32 {
+func (o *Position) GetDepositedTokenAAmount() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -140,7 +140,7 @@ func (o *Position) GetDepositedTokenAAmount() int32 {
 
 // GetDepositedTokenAAmountOk returns a tuple with the DepositedTokenAAmount field value
 // and a boolean to check if the value has been set.
-func (o *Position) GetDepositedTokenAAmountOk() (*int32, bool) {
+func (o *Position) GetDepositedTokenAAmountOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -148,14 +148,14 @@ func (o *Position) GetDepositedTokenAAmountOk() (*int32, bool) {
 }
 
 // SetDepositedTokenAAmount sets field value
-func (o *Position) SetDepositedTokenAAmount(v int32) {
+func (o *Position) SetDepositedTokenAAmount(v string) {
 	o.DepositedTokenAAmount = v
 }
 
 // GetWithdrawnTokenBAmount returns the WithdrawnTokenBAmount field value
-func (o *Position) GetWithdrawnTokenBAmount() int32 {
+func (o *Position) GetWithdrawnTokenBAmount() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -164,7 +164,7 @@ func (o *Position) GetWithdrawnTokenBAmount() int32 {
 
 // GetWithdrawnTokenBAmountOk returns a tuple with the WithdrawnTokenBAmount field value
 // and a boolean to check if the value has been set.
-func (o *Position) GetWithdrawnTokenBAmountOk() (*int32, bool) {
+func (o *Position) GetWithdrawnTokenBAmountOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -172,7 +172,7 @@ func (o *Position) GetWithdrawnTokenBAmountOk() (*int32, bool) {
 }
 
 // SetWithdrawnTokenBAmount sets field value
-func (o *Position) SetWithdrawnTokenBAmount(v int32) {
+func (o *Position) SetWithdrawnTokenBAmount(v string) {
 	o.WithdrawnTokenBAmount = v
 }
 
@@ -201,9 +201,9 @@ func (o *Position) SetDepositTimestamp(v string) {
 }
 
 // GetDcaPeriodIdBeforeDeposit returns the DcaPeriodIdBeforeDeposit field value
-func (o *Position) GetDcaPeriodIdBeforeDeposit() int32 {
+func (o *Position) GetDcaPeriodIdBeforeDeposit() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -212,7 +212,7 @@ func (o *Position) GetDcaPeriodIdBeforeDeposit() int32 {
 
 // GetDcaPeriodIdBeforeDepositOk returns a tuple with the DcaPeriodIdBeforeDeposit field value
 // and a boolean to check if the value has been set.
-func (o *Position) GetDcaPeriodIdBeforeDepositOk() (*int32, bool) {
+func (o *Position) GetDcaPeriodIdBeforeDepositOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -220,14 +220,14 @@ func (o *Position) GetDcaPeriodIdBeforeDepositOk() (*int32, bool) {
 }
 
 // SetDcaPeriodIdBeforeDeposit sets field value
-func (o *Position) SetDcaPeriodIdBeforeDeposit(v int32) {
+func (o *Position) SetDcaPeriodIdBeforeDeposit(v string) {
 	o.DcaPeriodIdBeforeDeposit = v
 }
 
 // GetNumberOfSwaps returns the NumberOfSwaps field value
-func (o *Position) GetNumberOfSwaps() int32 {
+func (o *Position) GetNumberOfSwaps() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -236,7 +236,7 @@ func (o *Position) GetNumberOfSwaps() int32 {
 
 // GetNumberOfSwapsOk returns a tuple with the NumberOfSwaps field value
 // and a boolean to check if the value has been set.
-func (o *Position) GetNumberOfSwapsOk() (*int32, bool) {
+func (o *Position) GetNumberOfSwapsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -244,14 +244,14 @@ func (o *Position) GetNumberOfSwapsOk() (*int32, bool) {
 }
 
 // SetNumberOfSwaps sets field value
-func (o *Position) SetNumberOfSwaps(v int32) {
+func (o *Position) SetNumberOfSwaps(v string) {
 	o.NumberOfSwaps = v
 }
 
 // GetPeriodicDripAmount returns the PeriodicDripAmount field value
-func (o *Position) GetPeriodicDripAmount() int32 {
+func (o *Position) GetPeriodicDripAmount() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -260,7 +260,7 @@ func (o *Position) GetPeriodicDripAmount() int32 {
 
 // GetPeriodicDripAmountOk returns a tuple with the PeriodicDripAmount field value
 // and a boolean to check if the value has been set.
-func (o *Position) GetPeriodicDripAmountOk() (*int32, bool) {
+func (o *Position) GetPeriodicDripAmountOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -268,7 +268,7 @@ func (o *Position) GetPeriodicDripAmountOk() (*int32, bool) {
 }
 
 // SetPeriodicDripAmount sets field value
-func (o *Position) SetPeriodicDripAmount(v int32) {
+func (o *Position) SetPeriodicDripAmount(v string) {
 	o.PeriodicDripAmount = v
 }
 

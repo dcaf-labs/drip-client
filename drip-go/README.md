@@ -80,11 +80,13 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AdminApi* | [**AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#adminvaultpubkeypathenableput) | **Put** /admin/vault/{pubkeyPath}/enable | Enable a vault
+*AdminApi* | [**AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#adminvaultpubkeypathenableput) | **Put** /admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 *AdminApi* | [**AdminVaultsGet**](docs/AdminApi.md#adminvaultsget) | **Get** /admin/vaults | Get All Vaults
+*AdminApi* | [**V1AdminPositionsGet**](docs/AdminApi.md#v1adminpositionsget) | **Get** /v1/admin/positions | Get All Positions
+*AdminApi* | [**V1AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#v1adminvaultpubkeypathenableput) | **Put** /v1/admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
+*AdminApi* | [**V1AdminVaultsGet**](docs/AdminApi.md#v1adminvaultsget) | **Get** /v1/admin/vaults | Get All Vaults
 *DefaultApi* | [**MintPost**](docs/DefaultApi.md#mintpost) | **Post** /mint | Mint tokens (DEVNET ONLY)
 *DefaultApi* | [**OrcawhirlpoolconfigsGet**](docs/DefaultApi.md#orcawhirlpoolconfigsget) | **Get** /orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
-*DefaultApi* | [**PositionsGet**](docs/DefaultApi.md#positionsget) | **Get** /positions | Get User Positions
 *DefaultApi* | [**ProtoconfigsGet**](docs/DefaultApi.md#protoconfigsget) | **Get** /protoconfigs | Get Proto Configs
 *DefaultApi* | [**RootGet**](docs/DefaultApi.md#rootget) | **Get** / | Health Check
 *DefaultApi* | [**SpltokenswapconfigsGet**](docs/DefaultApi.md#spltokenswapconfigsget) | **Get** /spltokenswapconfigs | Get Token Swaps Configs
@@ -92,6 +94,9 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**SwapsGet**](docs/DefaultApi.md#swapsget) | **Get** /swaps | Get Token Swaps
 *DefaultApi* | [**TokenpairsGet**](docs/DefaultApi.md#tokenpairsget) | **Get** /tokenpairs | Get Token Pairs
 *DefaultApi* | [**TokensGet**](docs/DefaultApi.md#tokensget) | **Get** /tokens | Get Tokens
+*DefaultApi* | [**V1DripPositionPubkeyPathMetadataGet**](docs/DefaultApi.md#v1drippositionpubkeypathmetadataget) | **Get** /v1/drip/position/{pubkeyPath}/metadata | Get Drip Position Metadata
+*DefaultApi* | [**V1DripPubkeyPathTokenmetadataGet**](docs/DefaultApi.md#v1drippubkeypathtokenmetadataget) | **Get** /v1/drip/{pubkeyPath}/tokenmetadata | Get TokenMetadata for Devnet Mints.
+*DefaultApi* | [**V1PositionsGet**](docs/DefaultApi.md#v1positionsget) | **Get** /v1/positions | Get User Positions
 *DefaultApi* | [**VaultperiodsGet**](docs/DefaultApi.md#vaultperiodsget) | **Get** /vaultperiods | Get Vault Periods
 *DefaultApi* | [**VaultsGet**](docs/DefaultApi.md#vaultsget) | **Get** /vaults | Get Supported Vaults
 
@@ -113,6 +118,8 @@ Class | Method | HTTP request | Description
  - [SplTokenSwapConfigAllOf](docs/SplTokenSwapConfigAllOf.md)
  - [Token](docs/Token.md)
  - [TokenAccountBalance](docs/TokenAccountBalance.md)
+ - [TokenMetadata](docs/TokenMetadata.md)
+ - [TokenMetadataCollection](docs/TokenMetadataCollection.md)
  - [TokenPair](docs/TokenPair.md)
  - [TokenSwap](docs/TokenSwap.md)
  - [Vault](docs/Vault.md)

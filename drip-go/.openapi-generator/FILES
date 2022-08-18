@@ -23,6 +23,8 @@ docs/SplTokenSwapConfig.md
 docs/SplTokenSwapConfigAllOf.md
 docs/Token.md
 docs/TokenAccountBalance.md
+docs/TokenMetadata.md
+docs/TokenMetadataCollection.md
 docs/TokenPair.md
 docs/TokenSwap.md
 docs/Vault.md
@@ -45,6 +47,8 @@ model_spl_token_swap_config.go
 model_spl_token_swap_config_all_of.go
 model_token.go
 model_token_account_balance.go
+model_token_metadata.go
+model_token_metadata_collection.go
 model_token_pair.go
 model_token_swap.go
 model_vault.go

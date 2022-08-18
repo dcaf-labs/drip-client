@@ -7,19 +7,19 @@ Name | Type | Description | Notes
 **Pubkey** | **string** |  | 
 **Vault** | **string** |  | 
 **Authority** | **string** |  | 
-**DepositedTokenAAmount** | **int32** |  | 
-**WithdrawnTokenBAmount** | **int32** |  | 
+**DepositedTokenAAmount** | **string** |  | 
+**WithdrawnTokenBAmount** | **string** |  | 
 **DepositTimestamp** | **string** |  | 
-**DcaPeriodIdBeforeDeposit** | **int32** |  | 
-**NumberOfSwaps** | **int32** |  | 
-**PeriodicDripAmount** | **int32** |  | 
+**DcaPeriodIdBeforeDeposit** | **string** |  | 
+**NumberOfSwaps** | **string** |  | 
+**PeriodicDripAmount** | **string** |  | 
 **IsClosed** | **bool** |  | 
 
 ## Methods
 
 ### NewPosition
 
-`func NewPosition(pubkey string, vault string, authority string, depositedTokenAAmount int32, withdrawnTokenBAmount int32, depositTimestamp string, dcaPeriodIdBeforeDeposit int32, numberOfSwaps int32, periodicDripAmount int32, isClosed bool, ) *Position`
+`func NewPosition(pubkey string, vault string, authority string, depositedTokenAAmount string, withdrawnTokenBAmount string, depositTimestamp string, dcaPeriodIdBeforeDeposit string, numberOfSwaps string, periodicDripAmount string, isClosed bool, ) *Position`
 
 NewPosition instantiates a new Position object
 This constructor will assign default values to properties that have it defined,
@@ -96,40 +96,40 @@ SetAuthority sets Authority field to given value.
 
 ### GetDepositedTokenAAmount
 
-`func (o *Position) GetDepositedTokenAAmount() int32`
+`func (o *Position) GetDepositedTokenAAmount() string`
 
 GetDepositedTokenAAmount returns the DepositedTokenAAmount field if non-nil, zero value otherwise.
 
 ### GetDepositedTokenAAmountOk
 
-`func (o *Position) GetDepositedTokenAAmountOk() (*int32, bool)`
+`func (o *Position) GetDepositedTokenAAmountOk() (*string, bool)`
 
 GetDepositedTokenAAmountOk returns a tuple with the DepositedTokenAAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDepositedTokenAAmount
 
-`func (o *Position) SetDepositedTokenAAmount(v int32)`
+`func (o *Position) SetDepositedTokenAAmount(v string)`
 
 SetDepositedTokenAAmount sets DepositedTokenAAmount field to given value.
 
 
 ### GetWithdrawnTokenBAmount
 
-`func (o *Position) GetWithdrawnTokenBAmount() int32`
+`func (o *Position) GetWithdrawnTokenBAmount() string`
 
 GetWithdrawnTokenBAmount returns the WithdrawnTokenBAmount field if non-nil, zero value otherwise.
 
 ### GetWithdrawnTokenBAmountOk
 
-`func (o *Position) GetWithdrawnTokenBAmountOk() (*int32, bool)`
+`func (o *Position) GetWithdrawnTokenBAmountOk() (*string, bool)`
 
 GetWithdrawnTokenBAmountOk returns a tuple with the WithdrawnTokenBAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWithdrawnTokenBAmount
 
-`func (o *Position) SetWithdrawnTokenBAmount(v int32)`
+`func (o *Position) SetWithdrawnTokenBAmount(v string)`
 
 SetWithdrawnTokenBAmount sets WithdrawnTokenBAmount field to given value.
 
@@ -156,60 +156,60 @@ SetDepositTimestamp sets DepositTimestamp field to given value.
 
 ### GetDcaPeriodIdBeforeDeposit
 
-`func (o *Position) GetDcaPeriodIdBeforeDeposit() int32`
+`func (o *Position) GetDcaPeriodIdBeforeDeposit() string`
 
 GetDcaPeriodIdBeforeDeposit returns the DcaPeriodIdBeforeDeposit field if non-nil, zero value otherwise.
 
 ### GetDcaPeriodIdBeforeDepositOk
 
-`func (o *Position) GetDcaPeriodIdBeforeDepositOk() (*int32, bool)`
+`func (o *Position) GetDcaPeriodIdBeforeDepositOk() (*string, bool)`
 
 GetDcaPeriodIdBeforeDepositOk returns a tuple with the DcaPeriodIdBeforeDeposit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDcaPeriodIdBeforeDeposit
 
-`func (o *Position) SetDcaPeriodIdBeforeDeposit(v int32)`
+`func (o *Position) SetDcaPeriodIdBeforeDeposit(v string)`
 
 SetDcaPeriodIdBeforeDeposit sets DcaPeriodIdBeforeDeposit field to given value.
 
 
 ### GetNumberOfSwaps
 
-`func (o *Position) GetNumberOfSwaps() int32`
+`func (o *Position) GetNumberOfSwaps() string`
 
 GetNumberOfSwaps returns the NumberOfSwaps field if non-nil, zero value otherwise.
 
 ### GetNumberOfSwapsOk
 
-`func (o *Position) GetNumberOfSwapsOk() (*int32, bool)`
+`func (o *Position) GetNumberOfSwapsOk() (*string, bool)`
 
 GetNumberOfSwapsOk returns a tuple with the NumberOfSwaps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNumberOfSwaps
 
-`func (o *Position) SetNumberOfSwaps(v int32)`
+`func (o *Position) SetNumberOfSwaps(v string)`
 
 SetNumberOfSwaps sets NumberOfSwaps field to given value.
 
 
 ### GetPeriodicDripAmount
 
-`func (o *Position) GetPeriodicDripAmount() int32`
+`func (o *Position) GetPeriodicDripAmount() string`
 
 GetPeriodicDripAmount returns the PeriodicDripAmount field if non-nil, zero value otherwise.
 
 ### GetPeriodicDripAmountOk
 
-`func (o *Position) GetPeriodicDripAmountOk() (*int32, bool)`
+`func (o *Position) GetPeriodicDripAmountOk() (*string, bool)`
 
 GetPeriodicDripAmountOk returns a tuple with the PeriodicDripAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPeriodicDripAmount
 
-`func (o *Position) SetPeriodicDripAmount(v int32)`
+`func (o *Position) SetPeriodicDripAmount(v string)`
 
 SetPeriodicDripAmount sets PeriodicDripAmount field to given value.
 

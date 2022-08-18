@@ -17,6 +17,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 
@@ -49,20 +50,6 @@ type DefaultApi interface {
 	// OrcawhirlpoolconfigsGetExecute executes the request
 	//  @return []OrcaWhirlpoolConfig
 	OrcawhirlpoolconfigsGetExecute(r ApiOrcawhirlpoolconfigsGetRequest) ([]OrcaWhirlpoolConfig, *http.Response, error)
-
-	/*
-	PositionsGet Get User Positions
-
-	Get all user positions.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPositionsGetRequest
-	*/
-	PositionsGet(ctx context.Context) ApiPositionsGetRequest
-
-	// PositionsGetExecute executes the request
-	//  @return []Position
-	PositionsGetExecute(r ApiPositionsGetRequest) ([]Position, *http.Response, error)
 
 	/*
 	ProtoconfigsGet Get Proto Configs
@@ -159,6 +146,46 @@ type DefaultApi interface {
 	// TokensGetExecute executes the request
 	//  @return []Token
 	TokensGetExecute(r ApiTokensGetRequest) ([]Token, *http.Response, error)
+
+	/*
+	V1DripPositionPubkeyPathMetadataGet Get Drip Position Metadata
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pubkeyPath
+	@return ApiV1DripPositionPubkeyPathMetadataGetRequest
+	*/
+	V1DripPositionPubkeyPathMetadataGet(ctx context.Context, pubkeyPath string) ApiV1DripPositionPubkeyPathMetadataGetRequest
+
+	// V1DripPositionPubkeyPathMetadataGetExecute executes the request
+	//  @return TokenMetadata
+	V1DripPositionPubkeyPathMetadataGetExecute(r ApiV1DripPositionPubkeyPathMetadataGetRequest) (*TokenMetadata, *http.Response, error)
+
+	/*
+	V1DripPubkeyPathTokenmetadataGet Get TokenMetadata for Devnet Mints.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pubkeyPath
+	@return ApiV1DripPubkeyPathTokenmetadataGetRequest
+	*/
+	V1DripPubkeyPathTokenmetadataGet(ctx context.Context, pubkeyPath string) ApiV1DripPubkeyPathTokenmetadataGetRequest
+
+	// V1DripPubkeyPathTokenmetadataGetExecute executes the request
+	//  @return TokenMetadata
+	V1DripPubkeyPathTokenmetadataGetExecute(r ApiV1DripPubkeyPathTokenmetadataGetRequest) (*TokenMetadata, *http.Response, error)
+
+	/*
+	V1PositionsGet Get User Positions
+
+	Get all user positions.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiV1PositionsGetRequest
+	*/
+	V1PositionsGet(ctx context.Context) ApiV1PositionsGetRequest
+
+	// V1PositionsGetExecute executes the request
+	//  @return []Position
+	V1PositionsGetExecute(r ApiV1PositionsGetRequest) ([]Position, *http.Response, error)
 
 	/*
 	VaultperiodsGet Get Vault Periods
@@ -376,134 +403,6 @@ func (a *DefaultApiService) OrcawhirlpoolconfigsGetExecute(r ApiOrcawhirlpoolcon
 	if r.vault != nil {
 		localVarQueryParams.Add("vault", parameterToString(*r.vault, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPositionsGetRequest struct {
-	ctx context.Context
-	ApiService DefaultApi
-	wallet *string
-}
-
-func (r ApiPositionsGetRequest) Wallet(wallet string) ApiPositionsGetRequest {
-	r.wallet = &wallet
-	return r
-}
-
-func (r ApiPositionsGetRequest) Execute() ([]Position, *http.Response, error) {
-	return r.ApiService.PositionsGetExecute(r)
-}
-
-/*
-PositionsGet Get User Positions
-
-Get all user positions.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPositionsGetRequest
-*/
-func (a *DefaultApiService) PositionsGet(ctx context.Context) ApiPositionsGetRequest {
-	return ApiPositionsGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []Position
-func (a *DefaultApiService) PositionsGetExecute(r ApiPositionsGetRequest) ([]Position, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []Position
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PositionsGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/positions"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.wallet == nil {
-		return localVarReturnValue, nil, reportError("wallet is required and must be specified")
-	}
-
-	localVarQueryParams.Add("Wallet", parameterToString(*r.wallet, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1361,6 +1260,401 @@ func (a *DefaultApiService) TokensGetExecute(r ApiTokensGetRequest) ([]Token, *h
 	}
 	if r.tokenB != nil {
 		localVarQueryParams.Add("tokenB", parameterToString(*r.tokenB, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiV1DripPositionPubkeyPathMetadataGetRequest struct {
+	ctx context.Context
+	ApiService DefaultApi
+	pubkeyPath string
+}
+
+func (r ApiV1DripPositionPubkeyPathMetadataGetRequest) Execute() (*TokenMetadata, *http.Response, error) {
+	return r.ApiService.V1DripPositionPubkeyPathMetadataGetExecute(r)
+}
+
+/*
+V1DripPositionPubkeyPathMetadataGet Get Drip Position Metadata
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pubkeyPath
+ @return ApiV1DripPositionPubkeyPathMetadataGetRequest
+*/
+func (a *DefaultApiService) V1DripPositionPubkeyPathMetadataGet(ctx context.Context, pubkeyPath string) ApiV1DripPositionPubkeyPathMetadataGetRequest {
+	return ApiV1DripPositionPubkeyPathMetadataGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		pubkeyPath: pubkeyPath,
+	}
+}
+
+// Execute executes the request
+//  @return TokenMetadata
+func (a *DefaultApiService) V1DripPositionPubkeyPathMetadataGetExecute(r ApiV1DripPositionPubkeyPathMetadataGetRequest) (*TokenMetadata, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TokenMetadata
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.V1DripPositionPubkeyPathMetadataGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/drip/position/{pubkeyPath}/metadata"
+	localVarPath = strings.Replace(localVarPath, "{"+"pubkeyPath"+"}", url.PathEscape(parameterToString(r.pubkeyPath, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiV1DripPubkeyPathTokenmetadataGetRequest struct {
+	ctx context.Context
+	ApiService DefaultApi
+	pubkeyPath string
+}
+
+func (r ApiV1DripPubkeyPathTokenmetadataGetRequest) Execute() (*TokenMetadata, *http.Response, error) {
+	return r.ApiService.V1DripPubkeyPathTokenmetadataGetExecute(r)
+}
+
+/*
+V1DripPubkeyPathTokenmetadataGet Get TokenMetadata for Devnet Mints.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pubkeyPath
+ @return ApiV1DripPubkeyPathTokenmetadataGetRequest
+*/
+func (a *DefaultApiService) V1DripPubkeyPathTokenmetadataGet(ctx context.Context, pubkeyPath string) ApiV1DripPubkeyPathTokenmetadataGetRequest {
+	return ApiV1DripPubkeyPathTokenmetadataGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		pubkeyPath: pubkeyPath,
+	}
+}
+
+// Execute executes the request
+//  @return TokenMetadata
+func (a *DefaultApiService) V1DripPubkeyPathTokenmetadataGetExecute(r ApiV1DripPubkeyPathTokenmetadataGetRequest) (*TokenMetadata, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TokenMetadata
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.V1DripPubkeyPathTokenmetadataGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/drip/{pubkeyPath}/tokenmetadata"
+	localVarPath = strings.Replace(localVarPath, "{"+"pubkeyPath"+"}", url.PathEscape(parameterToString(r.pubkeyPath, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiV1PositionsGetRequest struct {
+	ctx context.Context
+	ApiService DefaultApi
+	wallet *string
+	isClosed *bool
+	offset *int32
+	limit *int32
+}
+
+func (r ApiV1PositionsGetRequest) Wallet(wallet string) ApiV1PositionsGetRequest {
+	r.wallet = &wallet
+	return r
+}
+
+func (r ApiV1PositionsGetRequest) IsClosed(isClosed bool) ApiV1PositionsGetRequest {
+	r.isClosed = &isClosed
+	return r
+}
+
+func (r ApiV1PositionsGetRequest) Offset(offset int32) ApiV1PositionsGetRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiV1PositionsGetRequest) Limit(limit int32) ApiV1PositionsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiV1PositionsGetRequest) Execute() ([]Position, *http.Response, error) {
+	return r.ApiService.V1PositionsGetExecute(r)
+}
+
+/*
+V1PositionsGet Get User Positions
+
+Get all user positions.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiV1PositionsGetRequest
+*/
+func (a *DefaultApiService) V1PositionsGet(ctx context.Context) ApiV1PositionsGetRequest {
+	return ApiV1PositionsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []Position
+func (a *DefaultApiService) V1PositionsGetExecute(r ApiV1PositionsGetRequest) ([]Position, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []Position
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.V1PositionsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/positions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.wallet == nil {
+		return localVarReturnValue, nil, reportError("wallet is required and must be specified")
+	}
+
+	localVarQueryParams.Add("wallet", parameterToString(*r.wallet, ""))
+	if r.isClosed != nil {
+		localVarQueryParams.Add("isClosed", parameterToString(*r.isClosed, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

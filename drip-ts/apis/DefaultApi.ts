@@ -42,6 +42,9 @@ import {
     Token,
     TokenFromJSON,
     TokenToJSON,
+    TokenMetadata,
+    TokenMetadataFromJSON,
+    TokenMetadataToJSON,
     TokenPair,
     TokenPairFromJSON,
     TokenPairToJSON,
@@ -62,10 +65,6 @@ export interface MintPostRequest {
 
 export interface OrcawhirlpoolconfigsGetRequest {
     vault?: string;
-}
-
-export interface PositionsGetRequest {
-    wallet: string;
 }
 
 export interface ProtoconfigsGetRequest {
@@ -89,6 +88,21 @@ export interface TokenpairsGetRequest {
 export interface TokensGetRequest {
     tokenA?: string;
     tokenB?: string;
+}
+
+export interface V1DripPositionPubkeyPathMetadataGetRequest {
+    pubkeyPath: string;
+}
+
+export interface V1DripPubkeyPathTokenmetadataGetRequest {
+    pubkeyPath: string;
+}
+
+export interface V1PositionsGetRequest {
+    wallet: string;
+    isClosed?: boolean;
+    offset?: number;
+    limit?: number;
 }
 
 export interface VaultperiodsGetRequest {
@@ -173,42 +187,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async orcawhirlpoolconfigsGet(requestParameters: OrcawhirlpoolconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<OrcaWhirlpoolConfig>> {
         const response = await this.orcawhirlpoolconfigsGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get all user positions.
-     * Get User Positions
-     */
-    async positionsGetRaw(requestParameters: PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Position>>> {
-        if (requestParameters.wallet === null || requestParameters.wallet === undefined) {
-            throw new runtime.RequiredError('wallet','Required parameter requestParameters.wallet was null or undefined when calling positionsGet.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.wallet !== undefined) {
-            queryParameters['Wallet'] = requestParameters.wallet;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/positions`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PositionFromJSON));
-    }
-
-    /**
-     * Get all user positions.
-     * Get User Positions
-     */
-    async positionsGet(requestParameters: PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Position>> {
-        const response = await this.positionsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -435,6 +413,114 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async tokensGet(requestParameters: TokensGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {
         const response = await this.tokensGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get Drip Position Metadata
+     */
+    async v1DripPositionPubkeyPathMetadataGetRaw(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
+        if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
+            throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1DripPositionPubkeyPathMetadataGet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/drip/position/{pubkeyPath}/metadata`.replace(`{${"pubkeyPath"}}`, encodeURIComponent(String(requestParameters.pubkeyPath))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokenMetadataFromJSON(jsonValue));
+    }
+
+    /**
+     * Get Drip Position Metadata
+     */
+    async v1DripPositionPubkeyPathMetadataGet(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<TokenMetadata> {
+        const response = await this.v1DripPositionPubkeyPathMetadataGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get TokenMetadata for Devnet Mints.
+     */
+    async v1DripPubkeyPathTokenmetadataGetRaw(requestParameters: V1DripPubkeyPathTokenmetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
+        if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
+            throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1DripPubkeyPathTokenmetadataGet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/drip/{pubkeyPath}/tokenmetadata`.replace(`{${"pubkeyPath"}}`, encodeURIComponent(String(requestParameters.pubkeyPath))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokenMetadataFromJSON(jsonValue));
+    }
+
+    /**
+     * Get TokenMetadata for Devnet Mints.
+     */
+    async v1DripPubkeyPathTokenmetadataGet(requestParameters: V1DripPubkeyPathTokenmetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<TokenMetadata> {
+        const response = await this.v1DripPubkeyPathTokenmetadataGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get all user positions.
+     * Get User Positions
+     */
+    async v1PositionsGetRaw(requestParameters: V1PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Position>>> {
+        if (requestParameters.wallet === null || requestParameters.wallet === undefined) {
+            throw new runtime.RequiredError('wallet','Required parameter requestParameters.wallet was null or undefined when calling v1PositionsGet.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.wallet !== undefined) {
+            queryParameters['wallet'] = requestParameters.wallet;
+        }
+
+        if (requestParameters.isClosed !== undefined) {
+            queryParameters['isClosed'] = requestParameters.isClosed;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/positions`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PositionFromJSON));
+    }
+
+    /**
+     * Get all user positions.
+     * Get User Positions
+     */
+    async v1PositionsGet(requestParameters: V1PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Position>> {
+        const response = await this.v1PositionsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

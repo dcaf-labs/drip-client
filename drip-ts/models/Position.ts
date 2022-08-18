@@ -39,16 +39,16 @@ export interface Position {
     authority: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Position
      */
-    depositedTokenAAmount: number;
+    depositedTokenAAmount: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Position
      */
-    withdrawnTokenBAmount: number;
+    withdrawnTokenBAmount: string;
     /**
      * 
      * @type {string}
@@ -57,22 +57,22 @@ export interface Position {
     depositTimestamp: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Position
      */
-    dcaPeriodIdBeforeDeposit: number;
+    dcaPeriodIdBeforeDeposit: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Position
      */
-    numberOfSwaps: number;
+    numberOfSwaps: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Position
      */
-    periodicDripAmount: number;
+    periodicDripAmount: string;
     /**
      * 
      * @type {boolean}

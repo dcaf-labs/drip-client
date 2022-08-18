@@ -24,7 +24,7 @@ paths:
       summary: Health Check
   /admin/vault/{pubkeyPath}/enable:
     put:
-      description: Enable the specified vault
+      description: Enable/disable the specified vault
       parameters:
       - explode: false
         in: path
@@ -65,7 +65,53 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Enable a vault
+      summary: Toggle the 'enabled' flag on a vault
+      tags:
+      - admin
+  /v1/admin/vault/{pubkeyPath}/enable:
+    put:
+      description: Enable/disable the specified vault
+      parameters:
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: token-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vault'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Toggle the 'enabled' flag on a vault
       tags:
       - admin
   /admin/vaults:
@@ -139,6 +185,138 @@ paths:
       summary: Get All Vaults
       tags:
       - admin
+  /v1/admin/vaults:
+    get:
+      description: Get all vaults with filters and expanded properties.
+      parameters:
+      - explode: false
+        in: header
+        name: token-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          items:
+            enum:
+            - all
+            - protoConfigValue
+            - tokenAMintValue
+            - tokenBMintValue
+            - tokenAAccountValue
+            - tokenBAccountValue
+            - treasuryTokenBAccountValue
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: enabled
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listExpandedAdminVaults'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get All Vaults
+      tags:
+      - admin
+  /v1/admin/positions:
+    get:
+      description: Get all positions with pagination.
+      parameters:
+      - explode: false
+        in: header
+        name: token-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: enabled
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: isClosed
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listAdminPositions'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get All Positions
+      tags:
+      - admin
   /mint:
     post:
       description: "mint test tokens to a desired associated token account, or passed\
@@ -170,16 +348,37 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Mint tokens (DEVNET ONLY)
-  /positions:
+  /v1/positions:
     get:
       description: Get all user positions.
       parameters:
       - explode: true
         in: query
-        name: Wallet
+        name: wallet
         required: true
         schema:
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: isClosed
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
         style: form
       responses:
         "200":
@@ -517,12 +716,80 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get Supported Vaults
+  /v1/drip/position/{pubkeyPath}/metadata:
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenMetadata'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Drip Position Metadata
+  /v1/drip/{pubkeyPath}/tokenmetadata:
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenMetadata'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get TokenMetadata for Devnet Mints.
 components:
   parameters:
     enabledQueryParam:
       explode: true
       in: query
       name: enabled
+      required: false
+      schema:
+        type: boolean
+      style: form
+    isClosedQueryParam:
+      explode: true
+      in: query
+      name: isClosed
       required: false
       schema:
         type: boolean
@@ -588,7 +855,7 @@ components:
     requiredWalletQueryParam:
       explode: true
       in: query
-      name: Wallet
+      name: wallet
       required: true
       schema:
         type: string
@@ -644,17 +911,10 @@ components:
         type: string
       style: form
   schemas:
-    errorResponse:
-      properties:
-        error:
-          type: string
-      required:
-      - error
-    expandedAdminVault:
-      allOf:
-      - $ref: '#/components/schemas/vault'
-      - $ref: '#/components/schemas/expandedAdminVault_allOf'
-      description: Internal vault schema.
+    listAdminPositions:
+      items:
+        $ref: '#/components/schemas/position'
+      type: array
     listExpandedAdminVaults:
       items:
         $ref: '#/components/schemas/expandedAdminVault'
@@ -723,16 +983,27 @@ components:
           type: string
       required:
       - message
+    errorResponse:
+      properties:
+        error:
+          type: string
+      required:
+      - error
+    expandedAdminVault:
+      allOf:
+      - $ref: '#/components/schemas/vault'
+      - $ref: '#/components/schemas/expandedAdminVault_allOf'
+      description: Internal vault schema.
     position:
       example:
-        depositedTokenAAmount: 10000
-        numberOfSwaps: 543
+        depositedTokenAAmount: "10000"
+        numberOfSwaps: "543"
         isClosed: true
         authority: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
-        withdrawnTokenBAmount: 10000
+        withdrawnTokenBAmount: "10000"
         depositTimestamp: "1652747980"
-        periodicDripAmount: 40
-        dcaPeriodIdBeforeDeposit: 10
+        periodicDripAmount: "40"
+        dcaPeriodIdBeforeDeposit: "10"
         vault: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
         pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
       properties:
@@ -746,23 +1017,23 @@ components:
           example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
           type: string
         depositedTokenAAmount:
-          example: 10000
-          type: integer
+          example: "10000"
+          type: string
         withdrawnTokenBAmount:
-          example: 10000
-          type: integer
+          example: "10000"
+          type: string
         depositTimestamp:
           example: "1652747980"
           type: string
         dcaPeriodIdBeforeDeposit:
-          example: 10
-          type: integer
+          example: "10"
+          type: string
         numberOfSwaps:
-          example: 543
-          type: integer
+          example: "543"
+          type: string
         periodicDripAmount:
-          example: 40
-          type: integer
+          example: "40"
+          type: string
         isClosed:
           type: boolean
       required:
@@ -776,6 +1047,37 @@ components:
       - pubkey
       - vault
       - withdrawnTokenBAmount
+      type: object
+    tokenMetadata:
+      example:
+        symbol: symbol
+        image: image
+        external_url: external_url
+        name: name
+        description: description
+        collection:
+          name: name
+          family: family
+      properties:
+        name:
+          type: string
+        symbol:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        external_url:
+          type: string
+        collection:
+          $ref: '#/components/schemas/tokenMetadata_collection'
+      required:
+      - collection
+      - description
+      - external_url
+      - image
+      - name
+      - symbol
       type: object
     protoConfig:
       example:
@@ -1049,6 +1351,19 @@ components:
           $ref: '#/components/schemas/tokenAccountBalance'
         treasuryTokenBAccountValue:
           $ref: '#/components/schemas/tokenAccountBalance'
+      type: object
+    tokenMetadata_collection:
+      example:
+        name: name
+        family: family
+      properties:
+        name:
+          type: string
+        family:
+          type: string
+      required:
+      - family
+      - name
       type: object
     splTokenSwapConfig_allOf:
       properties:

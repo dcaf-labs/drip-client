@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**MintPost**](DefaultApi.md#MintPost) | **Post** /mint | Mint tokens (DEVNET ONLY)
 [**OrcawhirlpoolconfigsGet**](DefaultApi.md#OrcawhirlpoolconfigsGet) | **Get** /orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
-[**PositionsGet**](DefaultApi.md#PositionsGet) | **Get** /positions | Get User Positions
 [**ProtoconfigsGet**](DefaultApi.md#ProtoconfigsGet) | **Get** /protoconfigs | Get Proto Configs
 [**RootGet**](DefaultApi.md#RootGet) | **Get** / | Health Check
 [**SpltokenswapconfigsGet**](DefaultApi.md#SpltokenswapconfigsGet) | **Get** /spltokenswapconfigs | Get Token Swaps Configs
@@ -14,6 +13,9 @@ Method | HTTP request | Description
 [**SwapsGet**](DefaultApi.md#SwapsGet) | **Get** /swaps | Get Token Swaps
 [**TokenpairsGet**](DefaultApi.md#TokenpairsGet) | **Get** /tokenpairs | Get Token Pairs
 [**TokensGet**](DefaultApi.md#TokensGet) | **Get** /tokens | Get Tokens
+[**V1DripPositionPubkeyPathMetadataGet**](DefaultApi.md#V1DripPositionPubkeyPathMetadataGet) | **Get** /v1/drip/position/{pubkeyPath}/metadata | Get Drip Position Metadata
+[**V1DripPubkeyPathTokenmetadataGet**](DefaultApi.md#V1DripPubkeyPathTokenmetadataGet) | **Get** /v1/drip/{pubkeyPath}/tokenmetadata | Get TokenMetadata for Devnet Mints.
+[**V1PositionsGet**](DefaultApi.md#V1PositionsGet) | **Get** /v1/positions | Get User Positions
 [**VaultperiodsGet**](DefaultApi.md#VaultperiodsGet) | **Get** /vaultperiods | Get Vault Periods
 [**VaultsGet**](DefaultApi.md#VaultsGet) | **Get** /vaults | Get Supported Vaults
 
@@ -136,72 +138,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]OrcaWhirlpoolConfig**](OrcaWhirlpoolConfig.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PositionsGet
-
-> []Position PositionsGet(ctx).Wallet(wallet).Execute()
-
-Get User Positions
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    wallet := "wallet_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.PositionsGet(context.Background()).Wallet(wallet).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.PositionsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PositionsGet`: []Position
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.PositionsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPositionsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **wallet** | **string** |  | 
-
-### Return type
-
-[**[]Position**](Position.md)
 
 ### Authorization
 
@@ -658,6 +594,214 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Token**](Token.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1DripPositionPubkeyPathMetadataGet
+
+> TokenMetadata V1DripPositionPubkeyPathMetadataGet(ctx, pubkeyPath).Execute()
+
+Get Drip Position Metadata
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pubkeyPath := "pubkeyPath_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1DripPositionPubkeyPathMetadataGet(context.Background(), pubkeyPath).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1DripPositionPubkeyPathMetadataGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1DripPositionPubkeyPathMetadataGet`: TokenMetadata
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1DripPositionPubkeyPathMetadataGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pubkeyPath** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1DripPositionPubkeyPathMetadataGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**TokenMetadata**](TokenMetadata.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1DripPubkeyPathTokenmetadataGet
+
+> TokenMetadata V1DripPubkeyPathTokenmetadataGet(ctx, pubkeyPath).Execute()
+
+Get TokenMetadata for Devnet Mints.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pubkeyPath := "pubkeyPath_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1DripPubkeyPathTokenmetadataGet(context.Background(), pubkeyPath).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1DripPubkeyPathTokenmetadataGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1DripPubkeyPathTokenmetadataGet`: TokenMetadata
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1DripPubkeyPathTokenmetadataGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pubkeyPath** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1DripPubkeyPathTokenmetadataGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**TokenMetadata**](TokenMetadata.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1PositionsGet
+
+> []Position V1PositionsGet(ctx).Wallet(wallet).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
+
+Get User Positions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    wallet := "wallet_example" // string | 
+    isClosed := true // bool |  (optional)
+    offset := int32(56) // int32 |  (optional)
+    limit := int32(56) // int32 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1PositionsGet(context.Background()).Wallet(wallet).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1PositionsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1PositionsGet`: []Position
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1PositionsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1PositionsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **wallet** | **string** |  | 
+ **isClosed** | **bool** |  | 
+ **offset** | **int32** |  | 
+ **limit** | **int32** |  | 
+
+### Return type
+
+[**[]Position**](Position.md)
 
 ### Authorization
 

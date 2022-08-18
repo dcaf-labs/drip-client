@@ -15,6 +15,8 @@ export * from './SplTokenSwapConfig';
 export * from './SplTokenSwapConfigAllOf';
 export * from './Token';
 export * from './TokenAccountBalance';
+export * from './TokenMetadata';
+export * from './TokenMetadataCollection';
 export * from './TokenPair';
 export * from './TokenSwap';
 export * from './Vault';
