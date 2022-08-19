@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './ActiveWallet';
 export * from './DripCommon';
 export * from './ErrorResponse';
 export * from './ExpandedAdminVault';

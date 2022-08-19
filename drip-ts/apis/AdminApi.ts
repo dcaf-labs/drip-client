@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ActiveWallet,
+    ActiveWalletFromJSON,
+    ActiveWalletToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -40,6 +43,13 @@ export interface V1AdminPositionsGetRequest {
     isClosed?: boolean;
     offset?: number;
     limit?: number;
+}
+
+export interface V1AdminSummaryActivewalletsGetRequest {
+    tokenId: string;
+    vault?: string;
+    isClosed?: boolean;
+    owner?: string;
 }
 
 export interface V1AdminVaultPubkeyPathEnablePutRequest {
@@ -152,6 +162,54 @@ export class AdminApi extends runtime.BaseAPI {
      */
     async v1AdminPositionsGet(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Position>> {
         const response = await this.v1AdminPositionsGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get all wallet addresses with open positions.
+     * Get All Active Wallet Addresses
+     */
+    async v1AdminSummaryActivewalletsGetRaw(requestParameters: V1AdminSummaryActivewalletsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ActiveWallet>>> {
+        if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
+            throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling v1AdminSummaryActivewalletsGet.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.vault !== undefined) {
+            queryParameters['vault'] = requestParameters.vault;
+        }
+
+        if (requestParameters.isClosed !== undefined) {
+            queryParameters['isClosed'] = requestParameters.isClosed;
+        }
+
+        if (requestParameters.owner !== undefined) {
+            queryParameters['owner'] = requestParameters.owner;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.tokenId !== undefined && requestParameters.tokenId !== null) {
+            headerParameters['token-id'] = String(requestParameters.tokenId);
+        }
+
+        const response = await this.request({
+            path: `/v1/admin/summary/activewallets`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ActiveWalletFromJSON));
+    }
+
+    /**
+     * Get all wallet addresses with open positions.
+     * Get All Active Wallet Addresses
+     */
+    async v1AdminSummaryActivewalletsGet(requestParameters: V1AdminSummaryActivewalletsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ActiveWallet>> {
+        const response = await this.v1AdminSummaryActivewalletsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
