@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AdminVaultPubkeyPathEnablePut**](AdminApi.md#AdminVaultPubkeyPathEnablePut) | **Put** /admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 [**V1AdminPositionsGet**](AdminApi.md#V1AdminPositionsGet) | **Get** /v1/admin/positions | Get All Positions
+[**V1AdminSummaryActivewalletsGet**](AdminApi.md#V1AdminSummaryActivewalletsGet) | **Get** /v1/admin/summary/activewallets | Get All Active Wallet Addresses
 [**V1AdminVaultPubkeyPathEnablePut**](AdminApi.md#V1AdminVaultPubkeyPathEnablePut) | **Put** /v1/admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 [**V1AdminVaultsGet**](AdminApi.md#V1AdminVaultsGet) | **Get** /v1/admin/vaults | Get All Vaults
 
@@ -142,6 +143,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Position**](Position.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1AdminSummaryActivewalletsGet
+
+> []ActiveWallet V1AdminSummaryActivewalletsGet(ctx).TokenId(tokenId).Vault(vault).IsClosed(isClosed).Owner(owner).Execute()
+
+Get All Active Wallet Addresses
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    tokenId := "tokenId_example" // string | 
+    vault := "vault_example" // string |  (optional)
+    isClosed := true // bool |  (optional)
+    owner := "owner_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminApi.V1AdminSummaryActivewalletsGet(context.Background()).TokenId(tokenId).Vault(vault).IsClosed(isClosed).Owner(owner).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.V1AdminSummaryActivewalletsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1AdminSummaryActivewalletsGet`: []ActiveWallet
+    fmt.Fprintf(os.Stdout, "Response from `AdminApi.V1AdminSummaryActivewalletsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1AdminSummaryActivewalletsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tokenId** | **string** |  | 
+ **vault** | **string** |  | 
+ **isClosed** | **bool** |  | 
+ **owner** | **string** |  | 
+
+### Return type
+
+[**[]ActiveWallet**](ActiveWallet.md)
 
 ### Authorization
 

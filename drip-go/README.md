@@ -82,6 +82,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AdminApi* | [**AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#adminvaultpubkeypathenableput) | **Put** /admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 *AdminApi* | [**V1AdminPositionsGet**](docs/AdminApi.md#v1adminpositionsget) | **Get** /v1/admin/positions | Get All Positions
+*AdminApi* | [**V1AdminSummaryActivewalletsGet**](docs/AdminApi.md#v1adminsummaryactivewalletsget) | **Get** /v1/admin/summary/activewallets | Get All Active Wallet Addresses
 *AdminApi* | [**V1AdminVaultPubkeyPathEnablePut**](docs/AdminApi.md#v1adminvaultpubkeypathenableput) | **Put** /v1/admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 *AdminApi* | [**V1AdminVaultsGet**](docs/AdminApi.md#v1adminvaultsget) | **Get** /v1/admin/vaults | Get All Vaults
 *DefaultApi* | [**MintPost**](docs/DefaultApi.md#mintpost) | **Post** /mint | Mint tokens (DEVNET ONLY)
@@ -102,6 +103,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ActiveWallet](docs/ActiveWallet.md)
  - [DripCommon](docs/DripCommon.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [ExpandedAdminVault](docs/ExpandedAdminVault.md)

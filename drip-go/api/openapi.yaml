@@ -206,6 +206,60 @@ paths:
       summary: Get All Vaults
       tags:
       - admin
+  /v1/admin/summary/activewallets:
+    get:
+      description: Get all wallet addresses with open positions.
+      parameters:
+      - explode: false
+        in: header
+        name: token-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: vault
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: isClosed
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: owner
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listActiveWallets'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get All Active Wallet Addresses
+      tags:
+      - admin
   /v1/admin/positions:
     get:
       description: Get all positions with pagination.
@@ -834,6 +888,14 @@ components:
       schema:
         type: string
       style: form
+    ownerQueryParam:
+      explode: true
+      in: query
+      name: owner
+      required: false
+      schema:
+        type: string
+      style: form
     tokenAQueryParam:
       explode: true
       in: query
@@ -888,6 +950,10 @@ components:
     listAdminPositions:
       items:
         $ref: '#/components/schemas/position'
+      type: array
+    listActiveWallets:
+      items:
+        $ref: '#/components/schemas/activeWallet'
       type: array
     listExpandedAdminVaults:
       items:
@@ -957,6 +1023,19 @@ components:
           type: string
       required:
       - message
+    activeWallet:
+      example:
+        owner: owner
+        positionCount: 0
+      properties:
+        owner:
+          type: string
+        positionCount:
+          type: integer
+      required:
+      - owner
+      - positionCount
+      type: object
     errorResponse:
       properties:
         error:
