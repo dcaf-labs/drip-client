@@ -1,6 +1,6 @@
-cd ../drip-backend && git stash && gco main && cd ../drip-client
+cd ../drip-backend && git stash && git checkout main && cd ../drip-client
 git stash
-gco main
+git checkout main
 git pull
 
 openapi-generator generate -i ../drip-backend/docs/swagger.yaml -g typescript-fetch -o drip-ts
