@@ -5,15 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pubkey** | **string** |  | 
+**Admin** | **string** |  | 
 **Granularity** | **string** |  | 
-**TriggerDcaSpread** | **int32** |  | 
-**BaseWithdrawalSpread** | **int32** |  | 
+**TokenADripTriggerSpread** | **int32** |  | 
+**TokenBWithdrawalSpread** | **int32** |  | 
+**TokenBReferralSpread** | **int32** |  | 
 
 ## Methods
 
 ### NewProtoConfig
 
-`func NewProtoConfig(pubkey string, granularity string, triggerDcaSpread int32, baseWithdrawalSpread int32, ) *ProtoConfig`
+`func NewProtoConfig(pubkey string, admin string, granularity string, tokenADripTriggerSpread int32, tokenBWithdrawalSpread int32, tokenBReferralSpread int32, ) *ProtoConfig`
 
 NewProtoConfig instantiates a new ProtoConfig object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +50,26 @@ and a boolean to check if the value has been set.
 SetPubkey sets Pubkey field to given value.
 
 
+### GetAdmin
+
+`func (o *ProtoConfig) GetAdmin() string`
+
+GetAdmin returns the Admin field if non-nil, zero value otherwise.
+
+### GetAdminOk
+
+`func (o *ProtoConfig) GetAdminOk() (*string, bool)`
+
+GetAdminOk returns a tuple with the Admin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdmin
+
+`func (o *ProtoConfig) SetAdmin(v string)`
+
+SetAdmin sets Admin field to given value.
+
+
 ### GetGranularity
 
 `func (o *ProtoConfig) GetGranularity() string`
@@ -68,44 +90,64 @@ and a boolean to check if the value has been set.
 SetGranularity sets Granularity field to given value.
 
 
-### GetTriggerDcaSpread
+### GetTokenADripTriggerSpread
 
-`func (o *ProtoConfig) GetTriggerDcaSpread() int32`
+`func (o *ProtoConfig) GetTokenADripTriggerSpread() int32`
 
-GetTriggerDcaSpread returns the TriggerDcaSpread field if non-nil, zero value otherwise.
+GetTokenADripTriggerSpread returns the TokenADripTriggerSpread field if non-nil, zero value otherwise.
 
-### GetTriggerDcaSpreadOk
+### GetTokenADripTriggerSpreadOk
 
-`func (o *ProtoConfig) GetTriggerDcaSpreadOk() (*int32, bool)`
+`func (o *ProtoConfig) GetTokenADripTriggerSpreadOk() (*int32, bool)`
 
-GetTriggerDcaSpreadOk returns a tuple with the TriggerDcaSpread field if it's non-nil, zero value otherwise
+GetTokenADripTriggerSpreadOk returns a tuple with the TokenADripTriggerSpread field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTriggerDcaSpread
+### SetTokenADripTriggerSpread
 
-`func (o *ProtoConfig) SetTriggerDcaSpread(v int32)`
+`func (o *ProtoConfig) SetTokenADripTriggerSpread(v int32)`
 
-SetTriggerDcaSpread sets TriggerDcaSpread field to given value.
+SetTokenADripTriggerSpread sets TokenADripTriggerSpread field to given value.
 
 
-### GetBaseWithdrawalSpread
+### GetTokenBWithdrawalSpread
 
-`func (o *ProtoConfig) GetBaseWithdrawalSpread() int32`
+`func (o *ProtoConfig) GetTokenBWithdrawalSpread() int32`
 
-GetBaseWithdrawalSpread returns the BaseWithdrawalSpread field if non-nil, zero value otherwise.
+GetTokenBWithdrawalSpread returns the TokenBWithdrawalSpread field if non-nil, zero value otherwise.
 
-### GetBaseWithdrawalSpreadOk
+### GetTokenBWithdrawalSpreadOk
 
-`func (o *ProtoConfig) GetBaseWithdrawalSpreadOk() (*int32, bool)`
+`func (o *ProtoConfig) GetTokenBWithdrawalSpreadOk() (*int32, bool)`
 
-GetBaseWithdrawalSpreadOk returns a tuple with the BaseWithdrawalSpread field if it's non-nil, zero value otherwise
+GetTokenBWithdrawalSpreadOk returns a tuple with the TokenBWithdrawalSpread field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBaseWithdrawalSpread
+### SetTokenBWithdrawalSpread
 
-`func (o *ProtoConfig) SetBaseWithdrawalSpread(v int32)`
+`func (o *ProtoConfig) SetTokenBWithdrawalSpread(v int32)`
 
-SetBaseWithdrawalSpread sets BaseWithdrawalSpread field to given value.
+SetTokenBWithdrawalSpread sets TokenBWithdrawalSpread field to given value.
+
+
+### GetTokenBReferralSpread
+
+`func (o *ProtoConfig) GetTokenBReferralSpread() int32`
+
+GetTokenBReferralSpread returns the TokenBReferralSpread field if non-nil, zero value otherwise.
+
+### GetTokenBReferralSpreadOk
+
+`func (o *ProtoConfig) GetTokenBReferralSpreadOk() (*int32, bool)`
+
+GetTokenBReferralSpreadOk returns a tuple with the TokenBReferralSpread field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTokenBReferralSpread
+
+`func (o *ProtoConfig) SetTokenBReferralSpread(v int32)`
+
+SetTokenBReferralSpread sets TokenBReferralSpread field to given value.
 
 
 

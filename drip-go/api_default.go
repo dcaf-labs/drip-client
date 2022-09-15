@@ -54,7 +54,7 @@ type DefaultApi interface {
 	/*
 	ProtoconfigsGet Get Proto Configs
 
-	Get all proto configs with filters.
+	Get all proto configs.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiProtoconfigsGetRequest
@@ -82,7 +82,7 @@ type DefaultApi interface {
 	/*
 	SpltokenswapconfigsGet Get Token Swaps Configs
 
-	Get token swap configs for triggerDCA.
+	Get token swap configs for DripSPLTokenSwap.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiSpltokenswapconfigsGetRequest
@@ -479,18 +479,6 @@ func (a *DefaultApiService) OrcawhirlpoolconfigsGetExecute(r ApiOrcawhirlpoolcon
 type ApiProtoconfigsGetRequest struct {
 	ctx context.Context
 	ApiService DefaultApi
-	tokenA *string
-	tokenB *string
-}
-
-func (r ApiProtoconfigsGetRequest) TokenA(tokenA string) ApiProtoconfigsGetRequest {
-	r.tokenA = &tokenA
-	return r
-}
-
-func (r ApiProtoconfigsGetRequest) TokenB(tokenB string) ApiProtoconfigsGetRequest {
-	r.tokenB = &tokenB
-	return r
 }
 
 func (r ApiProtoconfigsGetRequest) Execute() ([]ProtoConfig, *http.Response, error) {
@@ -500,7 +488,7 @@ func (r ApiProtoconfigsGetRequest) Execute() ([]ProtoConfig, *http.Response, err
 /*
 ProtoconfigsGet Get Proto Configs
 
-Get all proto configs with filters.
+Get all proto configs.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiProtoconfigsGetRequest
@@ -533,12 +521,6 @@ func (a *DefaultApiService) ProtoconfigsGetExecute(r ApiProtoconfigsGetRequest) 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.tokenA != nil {
-		localVarQueryParams.Add("tokenA", parameterToString(*r.tokenA, ""))
-	}
-	if r.tokenB != nil {
-		localVarQueryParams.Add("tokenB", parameterToString(*r.tokenB, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -729,7 +711,7 @@ func (r ApiSpltokenswapconfigsGetRequest) Execute() ([]SplTokenSwapConfig, *http
 /*
 SpltokenswapconfigsGet Get Token Swaps Configs
 
-Get token swap configs for triggerDCA.
+Get token swap configs for DripSPLTokenSwap.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSpltokenswapconfigsGetRequest

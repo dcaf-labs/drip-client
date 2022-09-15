@@ -67,11 +67,6 @@ export interface OrcawhirlpoolconfigsGetRequest {
     vault?: string;
 }
 
-export interface ProtoconfigsGetRequest {
-    tokenA?: string;
-    tokenB?: string;
-}
-
 export interface SpltokenswapconfigsGetRequest {
     vault?: string;
 }
@@ -191,19 +186,11 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all proto configs with filters.
+     * Get all proto configs.
      * Get Proto Configs
      */
-    async protoconfigsGetRaw(requestParameters: ProtoconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
+    async protoconfigsGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
         const queryParameters: any = {};
-
-        if (requestParameters.tokenA !== undefined) {
-            queryParameters['tokenA'] = requestParameters.tokenA;
-        }
-
-        if (requestParameters.tokenB !== undefined) {
-            queryParameters['tokenB'] = requestParameters.tokenB;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -218,11 +205,11 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all proto configs with filters.
+     * Get all proto configs.
      * Get Proto Configs
      */
-    async protoconfigsGet(requestParameters: ProtoconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
-        const response = await this.protoconfigsGetRaw(requestParameters, initOverrides);
+    async protoconfigsGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
+        const response = await this.protoconfigsGetRaw(initOverrides);
         return await response.value();
     }
 
@@ -255,7 +242,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get token swap configs for triggerDCA.
+     * Get token swap configs for DripSPLTokenSwap.
      * Get Token Swaps Configs
      */
     async spltokenswapconfigsGetRaw(requestParameters: SpltokenswapconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<SplTokenSwapConfig>>> {
@@ -278,7 +265,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get token swap configs for triggerDCA.
+     * Get token swap configs for DripSPLTokenSwap.
      * Get Token Swaps Configs
      */
     async spltokenswapconfigsGet(requestParameters: SpltokenswapconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<SplTokenSwapConfig>> {

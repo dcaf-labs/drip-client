@@ -30,19 +30,31 @@ export interface ProtoConfig {
      * @type {string}
      * @memberof ProtoConfig
      */
+    admin: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProtoConfig
+     */
     granularity: string;
     /**
      * 
      * @type {number}
      * @memberof ProtoConfig
      */
-    triggerDcaSpread: number;
+    tokenADripTriggerSpread: number;
     /**
      * 
      * @type {number}
      * @memberof ProtoConfig
      */
-    baseWithdrawalSpread: number;
+    tokenBWithdrawalSpread: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProtoConfig
+     */
+    tokenBReferralSpread: number;
 }
 
 export function ProtoConfigFromJSON(json: any): ProtoConfig {
@@ -56,9 +68,11 @@ export function ProtoConfigFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'pubkey': json['pubkey'],
+        'admin': json['admin'],
         'granularity': json['granularity'],
-        'triggerDcaSpread': json['triggerDcaSpread'],
-        'baseWithdrawalSpread': json['baseWithdrawalSpread'],
+        'tokenADripTriggerSpread': json['tokenADripTriggerSpread'],
+        'tokenBWithdrawalSpread': json['tokenBWithdrawalSpread'],
+        'tokenBReferralSpread': json['tokenBReferralSpread'],
     };
 }
 
@@ -72,9 +86,11 @@ export function ProtoConfigToJSON(value?: ProtoConfig | null): any {
     return {
         
         'pubkey': value.pubkey,
+        'admin': value.admin,
         'granularity': value.granularity,
-        'triggerDcaSpread': value.triggerDcaSpread,
-        'baseWithdrawalSpread': value.baseWithdrawalSpread,
+        'tokenADripTriggerSpread': value.tokenADripTriggerSpread,
+        'tokenBWithdrawalSpread': value.tokenBWithdrawalSpread,
+        'tokenBReferralSpread': value.tokenBReferralSpread,
     };
 }
 

@@ -406,22 +406,7 @@ paths:
       summary: Get User Positions
   /protoconfigs:
     get:
-      description: Get all proto configs with filters.
-      parameters:
-      - explode: true
-        in: query
-        name: tokenA
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenB
-        required: false
-        schema:
-          type: string
-        style: form
+      description: Get all proto configs.
       responses:
         "200":
           content:
@@ -454,7 +439,7 @@ paths:
       summary: Swagger spec
   /spltokenswapconfigs:
     get:
-      description: Get token swap configs for triggerDCA.
+      description: Get token swap configs for DripSPLTokenSwap.
       parameters:
       - explode: true
         in: query
@@ -1134,28 +1119,38 @@ components:
       type: object
     protoConfig:
       example:
+        tokenBWithdrawalSpread: 50
         granularity: "60"
-        baseWithdrawalSpread: 50
-        triggerDcaSpread: 50
+        admin: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        tokenBReferralSpread: 50
+        tokenADripTriggerSpread: 50
         pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
       properties:
         pubkey:
           example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
           type: string
+        admin:
+          example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+          type: string
         granularity:
           example: "60"
           type: string
-        triggerDcaSpread:
+        tokenADripTriggerSpread:
           example: 50
           type: integer
-        baseWithdrawalSpread:
+        tokenBWithdrawalSpread:
+          example: 50
+          type: integer
+        tokenBReferralSpread:
           example: 50
           type: integer
       required:
-      - baseWithdrawalSpread
+      - admin
       - granularity
       - pubkey
-      - triggerDcaSpread
+      - tokenADripTriggerSpread
+      - tokenBReferralSpread
+      - tokenBWithdrawalSpread
       type: object
     dripCommon:
       properties:

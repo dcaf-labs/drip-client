@@ -18,21 +18,25 @@ import (
 // ProtoConfig struct for ProtoConfig
 type ProtoConfig struct {
 	Pubkey string `json:"pubkey"`
+	Admin string `json:"admin"`
 	Granularity string `json:"granularity"`
-	TriggerDcaSpread int32 `json:"triggerDcaSpread"`
-	BaseWithdrawalSpread int32 `json:"baseWithdrawalSpread"`
+	TokenADripTriggerSpread int32 `json:"tokenADripTriggerSpread"`
+	TokenBWithdrawalSpread int32 `json:"tokenBWithdrawalSpread"`
+	TokenBReferralSpread int32 `json:"tokenBReferralSpread"`
 }
 
 // NewProtoConfig instantiates a new ProtoConfig object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProtoConfig(pubkey string, granularity string, triggerDcaSpread int32, baseWithdrawalSpread int32) *ProtoConfig {
+func NewProtoConfig(pubkey string, admin string, granularity string, tokenADripTriggerSpread int32, tokenBWithdrawalSpread int32, tokenBReferralSpread int32) *ProtoConfig {
 	this := ProtoConfig{}
 	this.Pubkey = pubkey
+	this.Admin = admin
 	this.Granularity = granularity
-	this.TriggerDcaSpread = triggerDcaSpread
-	this.BaseWithdrawalSpread = baseWithdrawalSpread
+	this.TokenADripTriggerSpread = tokenADripTriggerSpread
+	this.TokenBWithdrawalSpread = tokenBWithdrawalSpread
+	this.TokenBReferralSpread = tokenBReferralSpread
 	return &this
 }
 
@@ -68,6 +72,30 @@ func (o *ProtoConfig) SetPubkey(v string) {
 	o.Pubkey = v
 }
 
+// GetAdmin returns the Admin field value
+func (o *ProtoConfig) GetAdmin() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Admin
+}
+
+// GetAdminOk returns a tuple with the Admin field value
+// and a boolean to check if the value has been set.
+func (o *ProtoConfig) GetAdminOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Admin, true
+}
+
+// SetAdmin sets field value
+func (o *ProtoConfig) SetAdmin(v string) {
+	o.Admin = v
+}
+
 // GetGranularity returns the Granularity field value
 func (o *ProtoConfig) GetGranularity() string {
 	if o == nil {
@@ -92,52 +120,76 @@ func (o *ProtoConfig) SetGranularity(v string) {
 	o.Granularity = v
 }
 
-// GetTriggerDcaSpread returns the TriggerDcaSpread field value
-func (o *ProtoConfig) GetTriggerDcaSpread() int32 {
+// GetTokenADripTriggerSpread returns the TokenADripTriggerSpread field value
+func (o *ProtoConfig) GetTokenADripTriggerSpread() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.TriggerDcaSpread
+	return o.TokenADripTriggerSpread
 }
 
-// GetTriggerDcaSpreadOk returns a tuple with the TriggerDcaSpread field value
+// GetTokenADripTriggerSpreadOk returns a tuple with the TokenADripTriggerSpread field value
 // and a boolean to check if the value has been set.
-func (o *ProtoConfig) GetTriggerDcaSpreadOk() (*int32, bool) {
+func (o *ProtoConfig) GetTokenADripTriggerSpreadOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TriggerDcaSpread, true
+	return &o.TokenADripTriggerSpread, true
 }
 
-// SetTriggerDcaSpread sets field value
-func (o *ProtoConfig) SetTriggerDcaSpread(v int32) {
-	o.TriggerDcaSpread = v
+// SetTokenADripTriggerSpread sets field value
+func (o *ProtoConfig) SetTokenADripTriggerSpread(v int32) {
+	o.TokenADripTriggerSpread = v
 }
 
-// GetBaseWithdrawalSpread returns the BaseWithdrawalSpread field value
-func (o *ProtoConfig) GetBaseWithdrawalSpread() int32 {
+// GetTokenBWithdrawalSpread returns the TokenBWithdrawalSpread field value
+func (o *ProtoConfig) GetTokenBWithdrawalSpread() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.BaseWithdrawalSpread
+	return o.TokenBWithdrawalSpread
 }
 
-// GetBaseWithdrawalSpreadOk returns a tuple with the BaseWithdrawalSpread field value
+// GetTokenBWithdrawalSpreadOk returns a tuple with the TokenBWithdrawalSpread field value
 // and a boolean to check if the value has been set.
-func (o *ProtoConfig) GetBaseWithdrawalSpreadOk() (*int32, bool) {
+func (o *ProtoConfig) GetTokenBWithdrawalSpreadOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BaseWithdrawalSpread, true
+	return &o.TokenBWithdrawalSpread, true
 }
 
-// SetBaseWithdrawalSpread sets field value
-func (o *ProtoConfig) SetBaseWithdrawalSpread(v int32) {
-	o.BaseWithdrawalSpread = v
+// SetTokenBWithdrawalSpread sets field value
+func (o *ProtoConfig) SetTokenBWithdrawalSpread(v int32) {
+	o.TokenBWithdrawalSpread = v
+}
+
+// GetTokenBReferralSpread returns the TokenBReferralSpread field value
+func (o *ProtoConfig) GetTokenBReferralSpread() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.TokenBReferralSpread
+}
+
+// GetTokenBReferralSpreadOk returns a tuple with the TokenBReferralSpread field value
+// and a boolean to check if the value has been set.
+func (o *ProtoConfig) GetTokenBReferralSpreadOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TokenBReferralSpread, true
+}
+
+// SetTokenBReferralSpread sets field value
+func (o *ProtoConfig) SetTokenBReferralSpread(v int32) {
+	o.TokenBReferralSpread = v
 }
 
 func (o ProtoConfig) MarshalJSON() ([]byte, error) {
@@ -146,13 +198,19 @@ func (o ProtoConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["pubkey"] = o.Pubkey
 	}
 	if true {
+		toSerialize["admin"] = o.Admin
+	}
+	if true {
 		toSerialize["granularity"] = o.Granularity
 	}
 	if true {
-		toSerialize["triggerDcaSpread"] = o.TriggerDcaSpread
+		toSerialize["tokenADripTriggerSpread"] = o.TokenADripTriggerSpread
 	}
 	if true {
-		toSerialize["baseWithdrawalSpread"] = o.BaseWithdrawalSpread
+		toSerialize["tokenBWithdrawalSpread"] = o.TokenBWithdrawalSpread
+	}
+	if true {
+		toSerialize["tokenBReferralSpread"] = o.TokenBReferralSpread
 	}
 	return json.Marshal(toSerialize)
 }

@@ -155,7 +155,7 @@ No authorization required
 
 ## ProtoconfigsGet
 
-> []ProtoConfig ProtoconfigsGet(ctx).TokenA(tokenA).TokenB(tokenB).Execute()
+> []ProtoConfig ProtoconfigsGet(ctx).Execute()
 
 Get Proto Configs
 
@@ -174,12 +174,10 @@ import (
 )
 
 func main() {
-    tokenA := "tokenA_example" // string |  (optional)
-    tokenB := "tokenB_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ProtoconfigsGet(context.Background()).TokenA(tokenA).TokenB(tokenB).Execute()
+    resp, r, err := apiClient.DefaultApi.ProtoconfigsGet(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ProtoconfigsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,17 +189,12 @@ func main() {
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiProtoconfigsGetRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tokenA** | **string** |  | 
- **tokenB** | **string** |  | 
 
 ### Return type
 
