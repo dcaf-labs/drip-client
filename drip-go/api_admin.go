@@ -50,8 +50,8 @@ type AdminApi interface {
 	V1AdminPositionsGet(ctx context.Context) ApiV1AdminPositionsGetRequest
 
 	// V1AdminPositionsGetExecute executes the request
-	//  @return []Position
-	V1AdminPositionsGetExecute(r ApiV1AdminPositionsGetRequest) ([]Position, *http.Response, error)
+	//  @return []ExpandedAdminPosition
+	V1AdminPositionsGetExecute(r ApiV1AdminPositionsGetRequest) ([]ExpandedAdminPosition, *http.Response, error)
 
 	/*
 	V1AdminSummaryActivewalletsGet Get All Active Wallet Addresses
@@ -246,6 +246,7 @@ type ApiV1AdminPositionsGetRequest struct {
 	ctx context.Context
 	ApiService AdminApi
 	tokenId *string
+	expand *[]string
 	enabled *bool
 	isClosed *bool
 	offset *int32
@@ -254,6 +255,11 @@ type ApiV1AdminPositionsGetRequest struct {
 
 func (r ApiV1AdminPositionsGetRequest) TokenId(tokenId string) ApiV1AdminPositionsGetRequest {
 	r.tokenId = &tokenId
+	return r
+}
+
+func (r ApiV1AdminPositionsGetRequest) Expand(expand []string) ApiV1AdminPositionsGetRequest {
+	r.expand = &expand
 	return r
 }
 
@@ -277,7 +283,7 @@ func (r ApiV1AdminPositionsGetRequest) Limit(limit int32) ApiV1AdminPositionsGet
 	return r
 }
 
-func (r ApiV1AdminPositionsGetRequest) Execute() ([]Position, *http.Response, error) {
+func (r ApiV1AdminPositionsGetRequest) Execute() ([]ExpandedAdminPosition, *http.Response, error) {
 	return r.ApiService.V1AdminPositionsGetExecute(r)
 }
 
@@ -297,13 +303,13 @@ func (a *AdminApiService) V1AdminPositionsGet(ctx context.Context) ApiV1AdminPos
 }
 
 // Execute executes the request
-//  @return []Position
-func (a *AdminApiService) V1AdminPositionsGetExecute(r ApiV1AdminPositionsGetRequest) ([]Position, *http.Response, error) {
+//  @return []ExpandedAdminPosition
+func (a *AdminApiService) V1AdminPositionsGetExecute(r ApiV1AdminPositionsGetRequest) ([]ExpandedAdminPosition, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Position
+		localVarReturnValue  []ExpandedAdminPosition
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminApiService.V1AdminPositionsGet")
@@ -320,6 +326,17 @@ func (a *AdminApiService) V1AdminPositionsGetExecute(r ApiV1AdminPositionsGetReq
 		return localVarReturnValue, nil, reportError("tokenId is required and must be specified")
 	}
 
+	if r.expand != nil {
+		t := *r.expand
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("expand", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("expand", parameterToString(t, "multi"))
+		}
+	}
 	if r.enabled != nil {
 		localVarQueryParams.Add("enabled", parameterToString(*r.enabled, ""))
 	}

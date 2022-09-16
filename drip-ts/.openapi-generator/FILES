@@ -5,6 +5,8 @@ index.ts
 models/ActiveWallet.ts
 models/DripCommon.ts
 models/ErrorResponse.ts
+models/ExpandedAdminPosition.ts
+models/ExpandedAdminPositionAllOf.ts
 models/ExpandedAdminVault.ts
 models/ExpandedAdminVaultAllOf.ts
 models/MintRequest.ts

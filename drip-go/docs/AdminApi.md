@@ -86,7 +86,7 @@ No authorization required
 
 ## V1AdminPositionsGet
 
-> []Position V1AdminPositionsGet(ctx).TokenId(tokenId).Enabled(enabled).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
+> []ExpandedAdminPosition V1AdminPositionsGet(ctx).TokenId(tokenId).Expand(expand).Enabled(enabled).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
 
 Get All Positions
 
@@ -106,6 +106,7 @@ import (
 
 func main() {
     tokenId := "tokenId_example" // string | 
+    expand := []string{"Expand_example"} // []string |  (optional)
     enabled := true // bool |  (optional)
     isClosed := true // bool |  (optional)
     offset := int32(56) // int32 |  (optional)
@@ -113,12 +114,12 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.V1AdminPositionsGet(context.Background()).TokenId(tokenId).Enabled(enabled).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
+    resp, r, err := apiClient.AdminApi.V1AdminPositionsGet(context.Background()).TokenId(tokenId).Expand(expand).Enabled(enabled).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.V1AdminPositionsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1AdminPositionsGet`: []Position
+    // response from `V1AdminPositionsGet`: []ExpandedAdminPosition
     fmt.Fprintf(os.Stdout, "Response from `AdminApi.V1AdminPositionsGet`: %v\n", resp)
 }
 ```
@@ -135,6 +136,7 @@ Other parameters are passed through a pointer to a apiV1AdminPositionsGetRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tokenId** | **string** |  | 
+ **expand** | **[]string** |  | 
  **enabled** | **bool** |  | 
  **isClosed** | **bool** |  | 
  **offset** | **int32** |  | 
@@ -142,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]Position**](Position.md)
+[**[]ExpandedAdminPosition**](ExpandedAdminPosition.md)
 
 ### Authorization
 

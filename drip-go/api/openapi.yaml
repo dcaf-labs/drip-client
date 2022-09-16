@@ -273,6 +273,21 @@ paths:
         style: simple
       - explode: true
         in: query
+        name: expand
+        required: false
+        schema:
+          items:
+            enum:
+            - all
+            - vault
+            - protoConfig
+            - tokenA
+            - tokenB
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
         name: enabled
         required: false
         schema:
@@ -825,6 +840,22 @@ components:
           type: string
         type: array
       style: form
+    expandAdminPositionsQueryParam:
+      explode: true
+      in: query
+      name: expand
+      required: false
+      schema:
+        items:
+          enum:
+          - all
+          - vault
+          - protoConfig
+          - tokenA
+          - tokenB
+          type: string
+        type: array
+      style: form
     googleTokenIdHeaderParam:
       explode: false
       in: header
@@ -934,7 +965,7 @@ components:
   schemas:
     listAdminPositions:
       items:
-        $ref: '#/components/schemas/position'
+        $ref: '#/components/schemas/expandedAdminPosition'
       type: array
     listActiveWallets:
       items:
@@ -1032,6 +1063,11 @@ components:
       - $ref: '#/components/schemas/vault'
       - $ref: '#/components/schemas/expandedAdminVault_allOf'
       description: Internal vault schema.
+    expandedAdminPosition:
+      allOf:
+      - $ref: '#/components/schemas/position'
+      - $ref: '#/components/schemas/expandedAdminPosition_allOf'
+      description: Get Position with Expanded Data
     position:
       example:
         depositedTokenAAmount: "10000"
@@ -1399,6 +1435,17 @@ components:
           $ref: '#/components/schemas/tokenAccountBalance'
         treasuryTokenBAccountValue:
           $ref: '#/components/schemas/tokenAccountBalance'
+      type: object
+    expandedAdminPosition_allOf:
+      properties:
+        vault:
+          $ref: '#/components/schemas/vault'
+        protoConfig:
+          $ref: '#/components/schemas/protoConfig'
+        tokenA:
+          $ref: '#/components/schemas/token'
+        tokenB:
+          $ref: '#/components/schemas/token'
       type: object
     tokenMetadata_collection:
       example:

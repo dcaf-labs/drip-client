@@ -21,12 +21,12 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    ExpandedAdminPosition,
+    ExpandedAdminPositionFromJSON,
+    ExpandedAdminPositionToJSON,
     ExpandedAdminVault,
     ExpandedAdminVaultFromJSON,
     ExpandedAdminVaultToJSON,
-    Position,
-    PositionFromJSON,
-    PositionToJSON,
     Vault,
     VaultFromJSON,
     VaultToJSON,
@@ -39,6 +39,7 @@ export interface AdminVaultPubkeyPathEnablePutRequest {
 
 export interface V1AdminPositionsGetRequest {
     tokenId: string;
+    expand?: Array<V1AdminPositionsGetExpandEnum>;
     enabled?: boolean;
     isClosed?: boolean;
     offset?: number;
@@ -117,12 +118,16 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all positions with pagination.
      * Get All Positions
      */
-    async v1AdminPositionsGetRaw(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Position>>> {
+    async v1AdminPositionsGetRaw(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ExpandedAdminPosition>>> {
         if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
             throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling v1AdminPositionsGet.');
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.expand) {
+            queryParameters['expand'] = requestParameters.expand;
+        }
 
         if (requestParameters.enabled !== undefined) {
             queryParameters['enabled'] = requestParameters.enabled;
@@ -153,14 +158,14 @@ export class AdminApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PositionFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpandedAdminPositionFromJSON));
     }
 
     /**
      * Get all positions with pagination.
      * Get All Positions
      */
-    async v1AdminPositionsGet(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Position>> {
+    async v1AdminPositionsGet(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ExpandedAdminPosition>> {
         const response = await this.v1AdminPositionsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -319,6 +324,17 @@ export class AdminApi extends runtime.BaseAPI {
 
 }
 
+/**
+ * @export
+ */
+export const V1AdminPositionsGetExpandEnum = {
+    All: 'all',
+    Vault: 'vault',
+    ProtoConfig: 'protoConfig',
+    TokenA: 'tokenA',
+    TokenB: 'tokenB'
+} as const;
+export type V1AdminPositionsGetExpandEnum = typeof V1AdminPositionsGetExpandEnum[keyof typeof V1AdminPositionsGetExpandEnum];
 /**
  * @export
  */

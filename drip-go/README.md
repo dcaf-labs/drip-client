@@ -106,6 +106,8 @@ Class | Method | HTTP request | Description
  - [ActiveWallet](docs/ActiveWallet.md)
  - [DripCommon](docs/DripCommon.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [ExpandedAdminPosition](docs/ExpandedAdminPosition.md)
+ - [ExpandedAdminPositionAllOf](docs/ExpandedAdminPositionAllOf.md)
  - [ExpandedAdminVault](docs/ExpandedAdminVault.md)
  - [ExpandedAdminVaultAllOf](docs/ExpandedAdminVaultAllOf.md)
  - [MintRequest](docs/MintRequest.md)
