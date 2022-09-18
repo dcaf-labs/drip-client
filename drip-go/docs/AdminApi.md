@@ -4,84 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AdminVaultPubkeyPathEnablePut**](AdminApi.md#AdminVaultPubkeyPathEnablePut) | **Put** /admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 [**V1AdminPositionsGet**](AdminApi.md#V1AdminPositionsGet) | **Get** /v1/admin/positions | Get All Positions
 [**V1AdminSummaryActivewalletsGet**](AdminApi.md#V1AdminSummaryActivewalletsGet) | **Get** /v1/admin/summary/activewallets | Get All Active Wallet Addresses
 [**V1AdminVaultPubkeyPathEnablePut**](AdminApi.md#V1AdminVaultPubkeyPathEnablePut) | **Put** /v1/admin/vault/{pubkeyPath}/enable | Toggle the &#39;enabled&#39; flag on a vault
 [**V1AdminVaultsGet**](AdminApi.md#V1AdminVaultsGet) | **Get** /v1/admin/vaults | Get All Vaults
 
-
-
-## AdminVaultPubkeyPathEnablePut
-
-> Vault AdminVaultPubkeyPathEnablePut(ctx, pubkeyPath).TokenId(tokenId).Execute()
-
-Toggle the 'enabled' flag on a vault
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    pubkeyPath := "pubkeyPath_example" // string | 
-    tokenId := "tokenId_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.AdminVaultPubkeyPathEnablePut(context.Background(), pubkeyPath).TokenId(tokenId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.AdminVaultPubkeyPathEnablePut``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AdminVaultPubkeyPathEnablePut`: Vault
-    fmt.Fprintf(os.Stdout, "Response from `AdminApi.AdminVaultPubkeyPathEnablePut`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pubkeyPath** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAdminVaultPubkeyPathEnablePutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **tokenId** | **string** |  | 
-
-### Return type
-
-[**Vault**](Vault.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## V1AdminPositionsGet

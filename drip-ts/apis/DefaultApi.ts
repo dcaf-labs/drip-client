@@ -48,9 +48,6 @@ import {
     TokenPair,
     TokenPairFromJSON,
     TokenPairToJSON,
-    TokenSwap,
-    TokenSwapFromJSON,
-    TokenSwapToJSON,
     Vault,
     VaultFromJSON,
     VaultToJSON,
@@ -63,18 +60,6 @@ export interface MintPostRequest {
     mintRequest: MintRequest;
 }
 
-export interface OrcawhirlpoolconfigsGetRequest {
-    vault?: string;
-}
-
-export interface SpltokenswapconfigsGetRequest {
-    vault?: string;
-}
-
-export interface SwapsGetRequest {
-    tokenPair?: string;
-}
-
 export interface TokenpairsGetRequest {
     tokenA?: string;
     tokenB?: string;
@@ -85,12 +70,20 @@ export interface TokensGetRequest {
     tokenB?: string;
 }
 
+export interface V1DripOrcawhirlpoolconfigsGetRequest {
+    vault?: string;
+}
+
 export interface V1DripPositionPubkeyPathMetadataGetRequest {
     pubkeyPath: string;
 }
 
 export interface V1DripPubkeyPathTokenmetadataGetRequest {
     pubkeyPath: string;
+}
+
+export interface V1DripSpltokenswapconfigsGetRequest {
+    vault?: string;
 }
 
 export interface V1PositionsGetRequest {
@@ -100,14 +93,14 @@ export interface V1PositionsGetRequest {
     limit?: number;
 }
 
-export interface VaultperiodsGetRequest {
+export interface V1VaultperiodsGetRequest {
     vault: string;
     vaultPeriod?: string;
     offset?: number;
     limit?: number;
 }
 
-export interface VaultsGetRequest {
+export interface V1VaultsGetRequest {
     tokenA?: string;
     tokenB?: string;
     protoConfig?: string;
@@ -154,66 +147,6 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get whirlpool configs for dripOrcaWhirlpool.
-     * Get Orca Whirlpool Swap Configs
-     */
-    async orcawhirlpoolconfigsGetRaw(requestParameters: OrcawhirlpoolconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<OrcaWhirlpoolConfig>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.vault !== undefined) {
-            queryParameters['vault'] = requestParameters.vault;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/orcawhirlpoolconfigs`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OrcaWhirlpoolConfigFromJSON));
-    }
-
-    /**
-     * Get whirlpool configs for dripOrcaWhirlpool.
-     * Get Orca Whirlpool Swap Configs
-     */
-    async orcawhirlpoolconfigsGet(requestParameters: OrcawhirlpoolconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<OrcaWhirlpoolConfig>> {
-        const response = await this.orcawhirlpoolconfigsGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get all proto configs.
-     * Get Proto Configs
-     */
-    async protoconfigsGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/protoconfigs`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProtoConfigFromJSON));
-    }
-
-    /**
-     * Get all proto configs.
-     * Get Proto Configs
-     */
-    async protoconfigsGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
-        const response = await this.protoconfigsGetRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Ping api.
      * Health Check
      */
@@ -242,38 +175,6 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get token swap configs for DripSPLTokenSwap.
-     * Get Token Swaps Configs
-     */
-    async spltokenswapconfigsGetRaw(requestParameters: SpltokenswapconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<SplTokenSwapConfig>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.vault !== undefined) {
-            queryParameters['vault'] = requestParameters.vault;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/spltokenswapconfigs`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SplTokenSwapConfigFromJSON));
-    }
-
-    /**
-     * Get token swap configs for DripSPLTokenSwap.
-     * Get Token Swaps Configs
-     */
-    async spltokenswapconfigsGet(requestParameters: SpltokenswapconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<SplTokenSwapConfig>> {
-        const response = await this.spltokenswapconfigsGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Swagger spec
      */
     async swaggerJsonGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<object>> {
@@ -296,38 +197,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async swaggerJsonGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<object> {
         const response = await this.swaggerJsonGetRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get token swaps with filters.
-     * Get Token Swaps
-     */
-    async swapsGetRaw(requestParameters: SwapsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<TokenSwap>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.tokenPair !== undefined) {
-            queryParameters['tokenPair'] = requestParameters.tokenPair;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/swaps`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TokenSwapFromJSON));
-    }
-
-    /**
-     * Get token swaps with filters.
-     * Get Token Swaps
-     */
-    async swapsGet(requestParameters: SwapsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<TokenSwap>> {
-        const response = await this.swapsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -404,6 +273,38 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get whirlpool configs for dripOrcaWhirlpool.
+     * Get Orca Whirlpool Swap Configs
+     */
+    async v1DripOrcawhirlpoolconfigsGetRaw(requestParameters: V1DripOrcawhirlpoolconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<OrcaWhirlpoolConfig>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.vault !== undefined) {
+            queryParameters['vault'] = requestParameters.vault;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/drip/orcawhirlpoolconfigs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OrcaWhirlpoolConfigFromJSON));
+    }
+
+    /**
+     * Get whirlpool configs for dripOrcaWhirlpool.
+     * Get Orca Whirlpool Swap Configs
+     */
+    async v1DripOrcawhirlpoolconfigsGet(requestParameters: V1DripOrcawhirlpoolconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<OrcaWhirlpoolConfig>> {
+        const response = await this.v1DripOrcawhirlpoolconfigsGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get Drip Position Metadata
      */
     async v1DripPositionPubkeyPathMetadataGetRaw(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
@@ -464,6 +365,38 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get token swap configs for DripSPLTokenSwap.
+     * Get Token Swaps Configs
+     */
+    async v1DripSpltokenswapconfigsGetRaw(requestParameters: V1DripSpltokenswapconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<SplTokenSwapConfig>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.vault !== undefined) {
+            queryParameters['vault'] = requestParameters.vault;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/drip/spltokenswapconfigs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SplTokenSwapConfigFromJSON));
+    }
+
+    /**
+     * Get token swap configs for DripSPLTokenSwap.
+     * Get Token Swaps Configs
+     */
+    async v1DripSpltokenswapconfigsGet(requestParameters: V1DripSpltokenswapconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<SplTokenSwapConfig>> {
+        const response = await this.v1DripSpltokenswapconfigsGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get all user positions.
      * Get User Positions
      */
@@ -512,12 +445,40 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get all proto configs.
+     * Get Proto Configs
+     */
+    async v1ProtoconfigsGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/protoconfigs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProtoConfigFromJSON));
+    }
+
+    /**
+     * Get all proto configs.
+     * Get Proto Configs
+     */
+    async v1ProtoconfigsGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
+        const response = await this.v1ProtoconfigsGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get vault periods with pagination and filters.
      * Get Vault Periods
      */
-    async vaultperiodsGetRaw(requestParameters: VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<VaultPeriod>>> {
+    async v1VaultperiodsGetRaw(requestParameters: V1VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<VaultPeriod>>> {
         if (requestParameters.vault === null || requestParameters.vault === undefined) {
-            throw new runtime.RequiredError('vault','Required parameter requestParameters.vault was null or undefined when calling vaultperiodsGet.');
+            throw new runtime.RequiredError('vault','Required parameter requestParameters.vault was null or undefined when calling v1VaultperiodsGet.');
         }
 
         const queryParameters: any = {};
@@ -541,7 +502,7 @@ export class DefaultApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/vaultperiods`,
+            path: `/v1/vaultperiods`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -554,8 +515,8 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get vault periods with pagination and filters.
      * Get Vault Periods
      */
-    async vaultperiodsGet(requestParameters: VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<VaultPeriod>> {
-        const response = await this.vaultperiodsGetRaw(requestParameters, initOverrides);
+    async v1VaultperiodsGet(requestParameters: V1VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<VaultPeriod>> {
+        const response = await this.v1VaultperiodsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -563,7 +524,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all vaults with filters.
      * Get Supported Vaults
      */
-    async vaultsGetRaw(requestParameters: VaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Vault>>> {
+    async v1VaultsGetRaw(requestParameters: V1VaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Vault>>> {
         const queryParameters: any = {};
 
         if (requestParameters.tokenA !== undefined) {
@@ -581,7 +542,7 @@ export class DefaultApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/vaults`,
+            path: `/v1/vaults`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -594,8 +555,8 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all vaults with filters.
      * Get Supported Vaults
      */
-    async vaultsGet(requestParameters: VaultsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Vault>> {
-        const response = await this.vaultsGetRaw(requestParameters, initOverrides);
+    async v1VaultsGet(requestParameters: V1VaultsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Vault>> {
+        const response = await this.v1VaultsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -5,19 +5,18 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**MintPost**](DefaultApi.md#MintPost) | **Post** /mint | Mint tokens (DEVNET ONLY)
-[**OrcawhirlpoolconfigsGet**](DefaultApi.md#OrcawhirlpoolconfigsGet) | **Get** /orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
-[**ProtoconfigsGet**](DefaultApi.md#ProtoconfigsGet) | **Get** /protoconfigs | Get Proto Configs
 [**RootGet**](DefaultApi.md#RootGet) | **Get** / | Health Check
-[**SpltokenswapconfigsGet**](DefaultApi.md#SpltokenswapconfigsGet) | **Get** /spltokenswapconfigs | Get Token Swaps Configs
 [**SwaggerJsonGet**](DefaultApi.md#SwaggerJsonGet) | **Get** /swagger.json | Swagger spec
-[**SwapsGet**](DefaultApi.md#SwapsGet) | **Get** /swaps | Get Token Swaps
 [**TokenpairsGet**](DefaultApi.md#TokenpairsGet) | **Get** /tokenpairs | Get Token Pairs
 [**TokensGet**](DefaultApi.md#TokensGet) | **Get** /tokens | Get Tokens
+[**V1DripOrcawhirlpoolconfigsGet**](DefaultApi.md#V1DripOrcawhirlpoolconfigsGet) | **Get** /v1/drip/orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
 [**V1DripPositionPubkeyPathMetadataGet**](DefaultApi.md#V1DripPositionPubkeyPathMetadataGet) | **Get** /v1/drip/position/{pubkeyPath}/metadata | Get Drip Position Metadata
 [**V1DripPubkeyPathTokenmetadataGet**](DefaultApi.md#V1DripPubkeyPathTokenmetadataGet) | **Get** /v1/drip/{pubkeyPath}/tokenmetadata | Get TokenMetadata for Devnet Mints.
+[**V1DripSpltokenswapconfigsGet**](DefaultApi.md#V1DripSpltokenswapconfigsGet) | **Get** /v1/drip/spltokenswapconfigs | Get Token Swaps Configs
 [**V1PositionsGet**](DefaultApi.md#V1PositionsGet) | **Get** /v1/positions | Get User Positions
-[**VaultperiodsGet**](DefaultApi.md#VaultperiodsGet) | **Get** /vaultperiods | Get Vault Periods
-[**VaultsGet**](DefaultApi.md#VaultsGet) | **Get** /vaults | Get Supported Vaults
+[**V1ProtoconfigsGet**](DefaultApi.md#V1ProtoconfigsGet) | **Get** /v1/protoconfigs | Get Proto Configs
+[**V1VaultperiodsGet**](DefaultApi.md#V1VaultperiodsGet) | **Get** /v1/vaultperiods | Get Vault Periods
+[**V1VaultsGet**](DefaultApi.md#V1VaultsGet) | **Get** /v1/vaults | Get Supported Vaults
 
 
 
@@ -87,133 +86,6 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## OrcawhirlpoolconfigsGet
-
-> []OrcaWhirlpoolConfig OrcawhirlpoolconfigsGet(ctx).Vault(vault).Execute()
-
-Get Orca Whirlpool Swap Configs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    vault := "vault_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.OrcawhirlpoolconfigsGet(context.Background()).Vault(vault).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.OrcawhirlpoolconfigsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrcawhirlpoolconfigsGet`: []OrcaWhirlpoolConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.OrcawhirlpoolconfigsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrcawhirlpoolconfigsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **vault** | **string** |  | 
-
-### Return type
-
-[**[]OrcaWhirlpoolConfig**](OrcaWhirlpoolConfig.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ProtoconfigsGet
-
-> []ProtoConfig ProtoconfigsGet(ctx).Execute()
-
-Get Proto Configs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.ProtoconfigsGet(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ProtoconfigsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ProtoconfigsGet`: []ProtoConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ProtoconfigsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiProtoconfigsGetRequest struct via the builder pattern
-
-
-### Return type
-
-[**[]ProtoConfig**](ProtoConfig.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## RootGet
 
 > PingResponse RootGet(ctx).Execute()
@@ -275,72 +147,6 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## SpltokenswapconfigsGet
-
-> []SplTokenSwapConfig SpltokenswapconfigsGet(ctx).Vault(vault).Execute()
-
-Get Token Swaps Configs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    vault := "vault_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SpltokenswapconfigsGet(context.Background()).Vault(vault).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SpltokenswapconfigsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SpltokenswapconfigsGet`: []SplTokenSwapConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SpltokenswapconfigsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSpltokenswapconfigsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **vault** | **string** |  | 
-
-### Return type
-
-[**[]SplTokenSwapConfig**](SplTokenSwapConfig.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## SwaggerJsonGet
 
 > map[string]interface{} SwaggerJsonGet(ctx).Execute()
@@ -385,72 +191,6 @@ Other parameters are passed through a pointer to a apiSwaggerJsonGetRequest stru
 ### Return type
 
 **map[string]interface{}**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SwapsGet
-
-> []TokenSwap SwapsGet(ctx).TokenPair(tokenPair).Execute()
-
-Get Token Swaps
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    tokenPair := "tokenPair_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.SwapsGet(context.Background()).TokenPair(tokenPair).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SwapsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SwapsGet`: []TokenSwap
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SwapsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSwapsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tokenPair** | **string** |  | 
-
-### Return type
-
-[**[]TokenSwap**](TokenSwap.md)
 
 ### Authorization
 
@@ -602,6 +342,72 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## V1DripOrcawhirlpoolconfigsGet
+
+> []OrcaWhirlpoolConfig V1DripOrcawhirlpoolconfigsGet(ctx).Vault(vault).Execute()
+
+Get Orca Whirlpool Swap Configs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    vault := "vault_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1DripOrcawhirlpoolconfigsGet(context.Background()).Vault(vault).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1DripOrcawhirlpoolconfigsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1DripOrcawhirlpoolconfigsGet`: []OrcaWhirlpoolConfig
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1DripOrcawhirlpoolconfigsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1DripOrcawhirlpoolconfigsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault** | **string** |  | 
+
+### Return type
+
+[**[]OrcaWhirlpoolConfig**](OrcaWhirlpoolConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## V1DripPositionPubkeyPathMetadataGet
 
 > TokenMetadata V1DripPositionPubkeyPathMetadataGet(ctx, pubkeyPath).Execute()
@@ -738,6 +544,72 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## V1DripSpltokenswapconfigsGet
+
+> []SplTokenSwapConfig V1DripSpltokenswapconfigsGet(ctx).Vault(vault).Execute()
+
+Get Token Swaps Configs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    vault := "vault_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1DripSpltokenswapconfigsGet(context.Background()).Vault(vault).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1DripSpltokenswapconfigsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1DripSpltokenswapconfigsGet`: []SplTokenSwapConfig
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1DripSpltokenswapconfigsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1DripSpltokenswapconfigsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **vault** | **string** |  | 
+
+### Return type
+
+[**[]SplTokenSwapConfig**](SplTokenSwapConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## V1PositionsGet
 
 > []Position V1PositionsGet(ctx).Wallet(wallet).IsClosed(isClosed).Offset(offset).Limit(limit).Execute()
@@ -810,9 +682,70 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## VaultperiodsGet
+## V1ProtoconfigsGet
 
-> []VaultPeriod VaultperiodsGet(ctx).Vault(vault).VaultPeriod(vaultPeriod).Offset(offset).Limit(limit).Execute()
+> []ProtoConfig V1ProtoconfigsGet(ctx).Execute()
+
+Get Proto Configs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1ProtoconfigsGet(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1ProtoconfigsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1ProtoconfigsGet`: []ProtoConfig
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1ProtoconfigsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1ProtoconfigsGetRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]ProtoConfig**](ProtoConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1VaultperiodsGet
+
+> []VaultPeriod V1VaultperiodsGet(ctx).Vault(vault).VaultPeriod(vaultPeriod).Offset(offset).Limit(limit).Execute()
 
 Get Vault Periods
 
@@ -838,13 +771,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.VaultperiodsGet(context.Background()).Vault(vault).VaultPeriod(vaultPeriod).Offset(offset).Limit(limit).Execute()
+    resp, r, err := apiClient.DefaultApi.V1VaultperiodsGet(context.Background()).Vault(vault).VaultPeriod(vaultPeriod).Offset(offset).Limit(limit).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.VaultperiodsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1VaultperiodsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `VaultperiodsGet`: []VaultPeriod
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.VaultperiodsGet`: %v\n", resp)
+    // response from `V1VaultperiodsGet`: []VaultPeriod
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1VaultperiodsGet`: %v\n", resp)
 }
 ```
 
@@ -854,7 +787,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiVaultperiodsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1VaultperiodsGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -882,9 +815,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## VaultsGet
+## V1VaultsGet
 
-> []Vault VaultsGet(ctx).TokenA(tokenA).TokenB(tokenB).ProtoConfig(protoConfig).Execute()
+> []Vault V1VaultsGet(ctx).TokenA(tokenA).TokenB(tokenB).ProtoConfig(protoConfig).Execute()
 
 Get Supported Vaults
 
@@ -909,13 +842,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.VaultsGet(context.Background()).TokenA(tokenA).TokenB(tokenB).ProtoConfig(protoConfig).Execute()
+    resp, r, err := apiClient.DefaultApi.V1VaultsGet(context.Background()).TokenA(tokenA).TokenB(tokenB).ProtoConfig(protoConfig).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.VaultsGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1VaultsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `VaultsGet`: []Vault
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.VaultsGet`: %v\n", resp)
+    // response from `V1VaultsGet`: []Vault
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1VaultsGet`: %v\n", resp)
 }
 ```
 
@@ -925,7 +858,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiVaultsGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1VaultsGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

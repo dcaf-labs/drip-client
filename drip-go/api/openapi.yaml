@@ -22,30 +22,33 @@ paths:
                 $ref: '#/components/schemas/pingResponse'
           description: OK
       summary: Health Check
-  /admin/vault/{pubkeyPath}/enable:
-    put:
-      description: Enable/disable the specified vault
-      parameters:
-      - explode: false
-        in: path
-        name: pubkeyPath
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: false
-        in: header
-        name: token-id
-        required: true
-        schema:
-          type: string
-        style: simple
+  /swagger.json:
+    get:
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/vault'
+                type: object
+          description: OK
+      summary: Swagger spec
+  /mint:
+    post:
+      description: "mint test tokens to a desired associated token account, or passed\
+        \ in token account"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mintRequest'
+        description: Pet to add to the store
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mintResponse'
           description: OK
         "400":
           content:
@@ -53,21 +56,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Unauthorized
         "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Toggle the 'enabled' flag on a vault
-      tags:
-      - admin
+      summary: Mint tokens (DEVNET ONLY)
   /v1/admin/vault/{pubkeyPath}/enable:
     put:
       description: Enable/disable the specified vault
@@ -336,23 +331,15 @@ paths:
       summary: Get All Positions
       tags:
       - admin
-  /mint:
-    post:
-      description: "mint test tokens to a desired associated token account, or passed\
-        \ in token account"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/mintRequest'
-        description: Pet to add to the store
-        required: true
+  /v1/protoconfigs:
+    get:
+      description: Get all proto configs.
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/mintResponse'
+                $ref: '#/components/schemas/listProtoConfigs'
           description: OK
         "400":
           content:
@@ -366,7 +353,53 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Mint tokens (DEVNET ONLY)
+      summary: Get Proto Configs
+  /v1/vaults:
+    get:
+      description: Get all vaults with filters.
+      parameters:
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Vault proto config public key.
+        explode: true
+        in: query
+        name: protoConfig
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/listVaults'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get Supported Vaults
   /v1/positions:
     get:
       description: Get all user positions.
@@ -419,15 +452,44 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get User Positions
-  /protoconfigs:
+  /v1/vaultperiods:
     get:
-      description: Get all proto configs.
+      description: Get vault periods with pagination and filters.
+      parameters:
+      - explode: true
+        in: query
+        name: vault
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: vaultPeriod
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/listProtoConfigs'
+                $ref: '#/components/schemas/listVaultPeriods'
           description: OK
         "400":
           content:
@@ -441,18 +503,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Get Proto Configs
-  /swagger.json:
-    get:
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: OK
-      summary: Swagger spec
-  /spltokenswapconfigs:
+      summary: Get Vault Periods
+  /v1/drip/spltokenswapconfigs:
     get:
       description: Get token swap configs for DripSPLTokenSwap.
       parameters:
@@ -483,7 +535,7 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get Token Swaps Configs
-  /orcawhirlpoolconfigs:
+  /v1/drip/orcawhirlpoolconfigs:
     get:
       description: Get whirlpool configs for dripOrcaWhirlpool.
       parameters:
@@ -514,24 +566,22 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get Orca Whirlpool Swap Configs
-  /swaps:
+  /v1/drip/position/{pubkeyPath}/metadata:
     get:
-      description: Get token swaps with filters.
       parameters:
-      - explode: true
-        in: query
-        name: tokenPair
-        required: false
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
         schema:
-          description: Token pair identifier.
           type: string
-        style: form
+        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/listTokenSwaps'
+                $ref: '#/components/schemas/tokenMetadata'
           description: OK
         "400":
           content:
@@ -545,7 +595,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Get Token Swaps
+      summary: Get Drip Position Metadata
+  /v1/drip/{pubkeyPath}/tokenmetadata:
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenMetadata'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get TokenMetadata for Devnet Mints.
   /tokenpairs:
     get:
       description: Get token pairs with filters.
@@ -622,164 +702,6 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get Tokens
-  /vaultperiods:
-    get:
-      description: Get vault periods with pagination and filters.
-      parameters:
-      - explode: true
-        in: query
-        name: vault
-        required: true
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: vaultPeriod
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/listVaultPeriods'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Internal Server Error
-      summary: Get Vault Periods
-  /vaults:
-    get:
-      description: Get all vaults with filters.
-      parameters:
-      - explode: true
-        in: query
-        name: tokenA
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenB
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Vault proto config public key.
-        explode: true
-        in: query
-        name: protoConfig
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/listVaults'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Internal Server Error
-      summary: Get Supported Vaults
-  /v1/drip/position/{pubkeyPath}/metadata:
-    get:
-      parameters:
-      - explode: false
-        in: path
-        name: pubkeyPath
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tokenMetadata'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Internal Server Error
-      summary: Get Drip Position Metadata
-  /v1/drip/{pubkeyPath}/tokenmetadata:
-    get:
-      parameters:
-      - explode: false
-        in: path
-        name: pubkeyPath
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tokenMetadata'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Internal Server Error
-      summary: Get TokenMetadata for Devnet Mints.
 components:
   parameters:
     enabledQueryParam:
@@ -1271,14 +1193,6 @@ components:
       - tokenB
       type: object
     tokenSwap:
-      example:
-        mint: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
-        feeAccount: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
-        tokenAAccount: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
-        tokenBAccount: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
-        authority: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
-        pair: "123"
-        pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
       properties:
         pubkey:
           example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L

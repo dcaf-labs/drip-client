@@ -32,11 +32,6 @@ import {
     VaultToJSON,
 } from '../models';
 
-export interface AdminVaultPubkeyPathEnablePutRequest {
-    pubkeyPath: string;
-    tokenId: string;
-}
-
 export interface V1AdminPositionsGetRequest {
     tokenId: string;
     expand?: Array<V1AdminPositionsGetExpandEnum>;
@@ -73,46 +68,6 @@ export interface V1AdminVaultsGetRequest {
  * 
  */
 export class AdminApi extends runtime.BaseAPI {
-
-    /**
-     * Enable/disable the specified vault
-     * Toggle the \'enabled\' flag on a vault
-     */
-    async adminVaultPubkeyPathEnablePutRaw(requestParameters: AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Vault>> {
-        if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
-            throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling adminVaultPubkeyPathEnablePut.');
-        }
-
-        if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
-            throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling adminVaultPubkeyPathEnablePut.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.tokenId !== undefined && requestParameters.tokenId !== null) {
-            headerParameters['token-id'] = String(requestParameters.tokenId);
-        }
-
-        const response = await this.request({
-            path: `/admin/vault/{pubkeyPath}/enable`.replace(`{${"pubkeyPath"}}`, encodeURIComponent(String(requestParameters.pubkeyPath))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => VaultFromJSON(jsonValue));
-    }
-
-    /**
-     * Enable/disable the specified vault
-     * Toggle the \'enabled\' flag on a vault
-     */
-    async adminVaultPubkeyPathEnablePut(requestParameters: AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Vault> {
-        const response = await this.adminVaultPubkeyPathEnablePutRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 
     /**
      * Get all positions with pagination.
