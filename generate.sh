@@ -1,4 +1,4 @@
-cd ../drip-backend && git stash && git checkout main && cd ../drip-client
+cd ../drip-backend && git stash && git checkout main && git pull && cd ../drip-client
 git stash
 git checkout main
 git pull
