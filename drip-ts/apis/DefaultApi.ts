@@ -83,6 +83,11 @@ export interface V1PositionsGetRequest {
     limit?: number;
 }
 
+export interface V1ProtoconfigsGetRequest {
+    tokenA?: string;
+    tokenB?: string;
+}
+
 export interface V1VaultTokenpairsGetRequest {
     tokenA?: string;
     tokenB?: string;
@@ -373,11 +378,19 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all proto configs.
+     * Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned. 
      * Get Proto Configs
      */
-    async v1ProtoconfigsGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
+    async v1ProtoconfigsGetRaw(requestParameters: V1ProtoconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
         const queryParameters: any = {};
+
+        if (requestParameters.tokenA !== undefined) {
+            queryParameters['tokenA'] = requestParameters.tokenA;
+        }
+
+        if (requestParameters.tokenB !== undefined) {
+            queryParameters['tokenB'] = requestParameters.tokenB;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -392,11 +405,11 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all proto configs.
+     * Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned. 
      * Get Proto Configs
      */
-    async v1ProtoconfigsGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
-        const response = await this.v1ProtoconfigsGetRaw(initOverrides);
+    async v1ProtoconfigsGet(requestParameters: V1ProtoconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
+        const response = await this.v1ProtoconfigsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

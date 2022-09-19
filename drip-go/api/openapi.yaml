@@ -333,7 +333,23 @@ paths:
       - admin
   /v1/protoconfigs:
     get:
-      description: Get all proto configs.
+      description: "Get all supported proto configs.  If token filters are supplied,\
+        \ then the proto configs for vaults with those tokens will be returned.\n"
+      parameters:
+      - explode: true
+        in: query
+        name: tokenA
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tokenB
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:

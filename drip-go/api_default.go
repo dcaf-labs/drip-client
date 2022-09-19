@@ -134,7 +134,8 @@ type DefaultApi interface {
 	/*
 	V1ProtoconfigsGet Get Proto Configs
 
-	Get all proto configs.
+	Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned.
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiV1ProtoconfigsGetRequest
@@ -1183,6 +1184,18 @@ func (a *DefaultApiService) V1PositionsGetExecute(r ApiV1PositionsGetRequest) ([
 type ApiV1ProtoconfigsGetRequest struct {
 	ctx context.Context
 	ApiService DefaultApi
+	tokenA *string
+	tokenB *string
+}
+
+func (r ApiV1ProtoconfigsGetRequest) TokenA(tokenA string) ApiV1ProtoconfigsGetRequest {
+	r.tokenA = &tokenA
+	return r
+}
+
+func (r ApiV1ProtoconfigsGetRequest) TokenB(tokenB string) ApiV1ProtoconfigsGetRequest {
+	r.tokenB = &tokenB
+	return r
 }
 
 func (r ApiV1ProtoconfigsGetRequest) Execute() ([]ProtoConfig, *http.Response, error) {
@@ -1192,7 +1205,8 @@ func (r ApiV1ProtoconfigsGetRequest) Execute() ([]ProtoConfig, *http.Response, e
 /*
 V1ProtoconfigsGet Get Proto Configs
 
-Get all proto configs.
+Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiV1ProtoconfigsGetRequest
@@ -1225,6 +1239,12 @@ func (a *DefaultApiService) V1ProtoconfigsGetExecute(r ApiV1ProtoconfigsGetReque
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.tokenA != nil {
+		localVarQueryParams.Add("tokenA", parameterToString(*r.tokenA, ""))
+	}
+	if r.tokenB != nil {
+		localVarQueryParams.Add("tokenB", parameterToString(*r.tokenB, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
