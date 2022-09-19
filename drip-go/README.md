@@ -87,14 +87,14 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**MintPost**](docs/DefaultApi.md#mintpost) | **Post** /mint | Mint tokens (DEVNET ONLY)
 *DefaultApi* | [**RootGet**](docs/DefaultApi.md#rootget) | **Get** / | Health Check
 *DefaultApi* | [**SwaggerJsonGet**](docs/DefaultApi.md#swaggerjsonget) | **Get** /swagger.json | Swagger spec
-*DefaultApi* | [**TokenpairsGet**](docs/DefaultApi.md#tokenpairsget) | **Get** /tokenpairs | Get Token Pairs
-*DefaultApi* | [**TokensGet**](docs/DefaultApi.md#tokensget) | **Get** /tokens | Get Tokens
 *DefaultApi* | [**V1DripOrcawhirlpoolconfigsGet**](docs/DefaultApi.md#v1driporcawhirlpoolconfigsget) | **Get** /v1/drip/orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
 *DefaultApi* | [**V1DripPositionPubkeyPathMetadataGet**](docs/DefaultApi.md#v1drippositionpubkeypathmetadataget) | **Get** /v1/drip/position/{pubkeyPath}/metadata | Get Drip Position Metadata
 *DefaultApi* | [**V1DripPubkeyPathTokenmetadataGet**](docs/DefaultApi.md#v1drippubkeypathtokenmetadataget) | **Get** /v1/drip/{pubkeyPath}/tokenmetadata | Get TokenMetadata for Devnet Mints.
 *DefaultApi* | [**V1DripSpltokenswapconfigsGet**](docs/DefaultApi.md#v1dripspltokenswapconfigsget) | **Get** /v1/drip/spltokenswapconfigs | Get Token Swaps Configs
 *DefaultApi* | [**V1PositionsGet**](docs/DefaultApi.md#v1positionsget) | **Get** /v1/positions | Get User Positions
 *DefaultApi* | [**V1ProtoconfigsGet**](docs/DefaultApi.md#v1protoconfigsget) | **Get** /v1/protoconfigs | Get Proto Configs
+*DefaultApi* | [**V1VaultTokenpairsGet**](docs/DefaultApi.md#v1vaulttokenpairsget) | **Get** /v1/vault/tokenpairs | Get all Supported Token Pairs
+*DefaultApi* | [**V1VaultTokensGet**](docs/DefaultApi.md#v1vaulttokensget) | **Get** /v1/vault/tokens | Get all Supported Tokens
 *DefaultApi* | [**V1VaultperiodsGet**](docs/DefaultApi.md#v1vaultperiodsget) | **Get** /v1/vaultperiods | Get Vault Periods
 *DefaultApi* | [**V1VaultsGet**](docs/DefaultApi.md#v1vaultsget) | **Get** /v1/vaults | Get Supported Vaults
 

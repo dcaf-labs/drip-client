@@ -60,16 +60,6 @@ export interface MintPostRequest {
     mintRequest: MintRequest;
 }
 
-export interface TokenpairsGetRequest {
-    tokenA?: string;
-    tokenB?: string;
-}
-
-export interface TokensGetRequest {
-    tokenA?: string;
-    tokenB?: string;
-}
-
 export interface V1DripOrcawhirlpoolconfigsGetRequest {
     vault?: string;
 }
@@ -91,6 +81,16 @@ export interface V1PositionsGetRequest {
     isClosed?: boolean;
     offset?: number;
     limit?: number;
+}
+
+export interface V1VaultTokenpairsGetRequest {
+    tokenA?: string;
+    tokenB?: string;
+}
+
+export interface V1VaultTokensGetRequest {
+    tokenA?: string;
+    tokenB?: string;
 }
 
 export interface V1VaultperiodsGetRequest {
@@ -197,78 +197,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async swaggerJsonGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<object> {
         const response = await this.swaggerJsonGetRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get token pairs with filters.
-     * Get Token Pairs
-     */
-    async tokenpairsGetRaw(requestParameters: TokenpairsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<TokenPair>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.tokenA !== undefined) {
-            queryParameters['tokenA'] = requestParameters.tokenA;
-        }
-
-        if (requestParameters.tokenB !== undefined) {
-            queryParameters['tokenB'] = requestParameters.tokenB;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/tokenpairs`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TokenPairFromJSON));
-    }
-
-    /**
-     * Get token pairs with filters.
-     * Get Token Pairs
-     */
-    async tokenpairsGet(requestParameters: TokenpairsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<TokenPair>> {
-        const response = await this.tokenpairsGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get tokens with filters.
-     * Get Tokens
-     */
-    async tokensGetRaw(requestParameters: TokensGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.tokenA !== undefined) {
-            queryParameters['tokenA'] = requestParameters.tokenA;
-        }
-
-        if (requestParameters.tokenB !== undefined) {
-            queryParameters['tokenB'] = requestParameters.tokenB;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/tokens`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TokenFromJSON));
-    }
-
-    /**
-     * Get tokens with filters.
-     * Get Tokens
-     */
-    async tokensGet(requestParameters: TokensGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {
-        const response = await this.tokensGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -469,6 +397,78 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async v1ProtoconfigsGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
         const response = await this.v1ProtoconfigsGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get supported token pairs with filters.
+     * Get all Supported Token Pairs
+     */
+    async v1VaultTokenpairsGetRaw(requestParameters: V1VaultTokenpairsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<TokenPair>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.tokenA !== undefined) {
+            queryParameters['tokenA'] = requestParameters.tokenA;
+        }
+
+        if (requestParameters.tokenB !== undefined) {
+            queryParameters['tokenB'] = requestParameters.tokenB;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/vault/tokenpairs`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TokenPairFromJSON));
+    }
+
+    /**
+     * Get supported token pairs with filters.
+     * Get all Supported Token Pairs
+     */
+    async v1VaultTokenpairsGet(requestParameters: V1VaultTokenpairsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<TokenPair>> {
+        const response = await this.v1VaultTokenpairsGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get supported tokens with filters.
+     * Get all Supported Tokens
+     */
+    async v1VaultTokensGetRaw(requestParameters: V1VaultTokensGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.tokenA !== undefined) {
+            queryParameters['tokenA'] = requestParameters.tokenA;
+        }
+
+        if (requestParameters.tokenB !== undefined) {
+            queryParameters['tokenB'] = requestParameters.tokenB;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/vault/tokens`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TokenFromJSON));
+    }
+
+    /**
+     * Get supported tokens with filters.
+     * Get all Supported Tokens
+     */
+    async v1VaultTokensGet(requestParameters: V1VaultTokensGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {
+        const response = await this.v1VaultTokensGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

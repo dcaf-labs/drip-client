@@ -626,9 +626,9 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get TokenMetadata for Devnet Mints.
-  /tokenpairs:
+  /v1/vault/tokenpairs:
     get:
-      description: Get token pairs with filters.
+      description: Get supported token pairs with filters.
       parameters:
       - explode: true
         in: query
@@ -663,10 +663,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Get Token Pairs
-  /tokens:
+      summary: Get all Supported Token Pairs
+  /v1/vault/tokens:
     get:
-      description: Get tokens with filters.
+      description: Get supported tokens with filters.
       parameters:
       - explode: true
         in: query
@@ -701,7 +701,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
-      summary: Get Tokens
+      summary: Get all Supported Tokens
 components:
   parameters:
     enabledQueryParam:
