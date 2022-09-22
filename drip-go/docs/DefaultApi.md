@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**V1DripSpltokenswapconfigsGet**](DefaultApi.md#V1DripSpltokenswapconfigsGet) | **Get** /v1/drip/spltokenswapconfigs | Get Token Swaps Configs
 [**V1PositionsGet**](DefaultApi.md#V1PositionsGet) | **Get** /v1/positions | Get User Positions
 [**V1ProtoconfigsGet**](DefaultApi.md#V1ProtoconfigsGet) | **Get** /v1/protoconfigs | Get Proto Configs
+[**V1TokenPubkeyPathGet**](DefaultApi.md#V1TokenPubkeyPathGet) | **Get** /v1/token/{pubkeyPath} | Get a Token
 [**V1VaultTokenpairsGet**](DefaultApi.md#V1VaultTokenpairsGet) | **Get** /v1/vault/tokenpairs | Get all Supported Token Pairs
 [**V1VaultTokensGet**](DefaultApi.md#V1VaultTokensGet) | **Get** /v1/vault/tokens | Get all Supported Tokens
 [**V1VaultperiodsGet**](DefaultApi.md#V1VaultperiodsGet) | **Get** /v1/vaultperiods | Get Vault Periods
@@ -599,6 +600,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]ProtoConfig**](ProtoConfig.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1TokenPubkeyPathGet
+
+> Token V1TokenPubkeyPathGet(ctx, pubkeyPath).Execute()
+
+Get a Token
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pubkeyPath := "pubkeyPath_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1TokenPubkeyPathGet(context.Background(), pubkeyPath).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1TokenPubkeyPathGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1TokenPubkeyPathGet`: Token
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1TokenPubkeyPathGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pubkeyPath** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1TokenPubkeyPathGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**Token**](Token.md)
 
 ### Authorization
 

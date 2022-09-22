@@ -27,16 +27,22 @@ export interface Token {
     pubkey: string;
     /**
      * 
+     * @type {number}
+     * @memberof Token
+     */
+    decimals: number;
+    /**
+     * 
      * @type {string}
      * @memberof Token
      */
     symbol?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Token
      */
-    decimals: number;
+    iconUrl?: string;
 }
 
 export function TokenFromJSON(json: any): Token {
@@ -50,8 +56,9 @@ export function TokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tok
     return {
         
         'pubkey': json['pubkey'],
-        'symbol': !exists(json, 'symbol') ? undefined : json['symbol'],
         'decimals': json['decimals'],
+        'symbol': !exists(json, 'symbol') ? undefined : json['symbol'],
+        'iconUrl': !exists(json, 'iconUrl') ? undefined : json['iconUrl'],
     };
 }
 
@@ -65,8 +72,9 @@ export function TokenToJSON(value?: Token | null): any {
     return {
         
         'pubkey': value.pubkey,
-        'symbol': value.symbol,
         'decimals': value.decimals,
+        'symbol': value.symbol,
+        'iconUrl': value.iconUrl,
     };
 }
 

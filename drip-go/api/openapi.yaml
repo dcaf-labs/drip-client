@@ -682,7 +682,8 @@ paths:
       summary: Get all Supported Token Pairs
   /v1/vault/tokens:
     get:
-      description: Get supported tokens with filters.
+      description: "Get supported tokens with filters. If no params are passed, by\
+        \ default all supported tokenAs will be returned.\n"
       parameters:
       - explode: true
         in: query
@@ -718,6 +719,37 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get all Supported Tokens
+  /v1/token/{pubkeyPath}:
+    get:
+      description: Get token mint info by pubkey.
+      parameters:
+      - explode: false
+        in: path
+        name: pubkeyPath
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get a Token
 components:
   parameters:
     enabledQueryParam:
@@ -1245,20 +1277,22 @@ components:
       example:
         symbol: SOL
         decimals: 10
+        iconUrl: iconUrl
         pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
       properties:
         pubkey:
           example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
           type: string
-        symbol:
-          example: SOL
-          type: string
         decimals:
           example: 10
           type: integer
+        symbol:
+          example: SOL
+          type: string
+        iconUrl:
+          type: string
       required:
       - decimals
-      - iconUrl
       - pubkey
       type: object
     vault:

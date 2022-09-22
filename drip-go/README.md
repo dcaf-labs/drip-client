@@ -93,6 +93,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**V1DripSpltokenswapconfigsGet**](docs/DefaultApi.md#v1dripspltokenswapconfigsget) | **Get** /v1/drip/spltokenswapconfigs | Get Token Swaps Configs
 *DefaultApi* | [**V1PositionsGet**](docs/DefaultApi.md#v1positionsget) | **Get** /v1/positions | Get User Positions
 *DefaultApi* | [**V1ProtoconfigsGet**](docs/DefaultApi.md#v1protoconfigsget) | **Get** /v1/protoconfigs | Get Proto Configs
+*DefaultApi* | [**V1TokenPubkeyPathGet**](docs/DefaultApi.md#v1tokenpubkeypathget) | **Get** /v1/token/{pubkeyPath} | Get a Token
 *DefaultApi* | [**V1VaultTokenpairsGet**](docs/DefaultApi.md#v1vaulttokenpairsget) | **Get** /v1/vault/tokenpairs | Get all Supported Token Pairs
 *DefaultApi* | [**V1VaultTokensGet**](docs/DefaultApi.md#v1vaulttokensget) | **Get** /v1/vault/tokens | Get all Supported Tokens
 *DefaultApi* | [**V1VaultperiodsGet**](docs/DefaultApi.md#v1vaultperiodsget) | **Get** /v1/vaultperiods | Get Vault Periods

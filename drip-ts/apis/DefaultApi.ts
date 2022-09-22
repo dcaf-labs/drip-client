@@ -88,6 +88,10 @@ export interface V1ProtoconfigsGetRequest {
     tokenB?: string;
 }
 
+export interface V1TokenPubkeyPathGetRequest {
+    pubkeyPath: string;
+}
+
 export interface V1VaultTokenpairsGetRequest {
     tokenA?: string;
     tokenB?: string;
@@ -414,6 +418,38 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get token mint info by pubkey.
+     * Get a Token
+     */
+    async v1TokenPubkeyPathGetRaw(requestParameters: V1TokenPubkeyPathGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Token>> {
+        if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
+            throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1TokenPubkeyPathGet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/token/{pubkeyPath}`.replace(`{${"pubkeyPath"}}`, encodeURIComponent(String(requestParameters.pubkeyPath))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokenFromJSON(jsonValue));
+    }
+
+    /**
+     * Get token mint info by pubkey.
+     * Get a Token
+     */
+    async v1TokenPubkeyPathGet(requestParameters: V1TokenPubkeyPathGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Token> {
+        const response = await this.v1TokenPubkeyPathGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get supported token pairs with filters.
      * Get all Supported Token Pairs
      */
@@ -450,7 +486,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get supported tokens with filters.
+     * Get supported tokens with filters. If no params are passed, by default all supported tokenAs will be returned. 
      * Get all Supported Tokens
      */
     async v1VaultTokensGetRaw(requestParameters: V1VaultTokensGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
@@ -477,7 +513,7 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get supported tokens with filters.
+     * Get supported tokens with filters. If no params are passed, by default all supported tokenAs will be returned. 
      * Get all Supported Tokens
      */
     async v1VaultTokensGet(requestParameters: V1VaultTokensGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {

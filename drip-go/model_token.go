@@ -18,8 +18,9 @@ import (
 // Token struct for Token
 type Token struct {
 	Pubkey string `json:"pubkey"`
-	Symbol *string `json:"symbol,omitempty"`
 	Decimals int32 `json:"decimals"`
+	Symbol *string `json:"symbol,omitempty"`
+	IconUrl *string `json:"iconUrl,omitempty"`
 }
 
 // NewToken instantiates a new Token object
@@ -65,6 +66,30 @@ func (o *Token) SetPubkey(v string) {
 	o.Pubkey = v
 }
 
+// GetDecimals returns the Decimals field value
+func (o *Token) GetDecimals() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Decimals
+}
+
+// GetDecimalsOk returns a tuple with the Decimals field value
+// and a boolean to check if the value has been set.
+func (o *Token) GetDecimalsOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Decimals, true
+}
+
+// SetDecimals sets field value
+func (o *Token) SetDecimals(v int32) {
+	o.Decimals = v
+}
+
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
 func (o *Token) GetSymbol() string {
 	if o == nil || o.Symbol == nil {
@@ -97,28 +122,36 @@ func (o *Token) SetSymbol(v string) {
 	o.Symbol = &v
 }
 
-// GetDecimals returns the Decimals field value
-func (o *Token) GetDecimals() int32 {
-	if o == nil {
-		var ret int32
+// GetIconUrl returns the IconUrl field value if set, zero value otherwise.
+func (o *Token) GetIconUrl() string {
+	if o == nil || o.IconUrl == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Decimals
+	return *o.IconUrl
 }
 
-// GetDecimalsOk returns a tuple with the Decimals field value
+// GetIconUrlOk returns a tuple with the IconUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Token) GetDecimalsOk() (*int32, bool) {
-	if o == nil {
+func (o *Token) GetIconUrlOk() (*string, bool) {
+	if o == nil || o.IconUrl == nil {
 		return nil, false
 	}
-	return &o.Decimals, true
+	return o.IconUrl, true
 }
 
-// SetDecimals sets field value
-func (o *Token) SetDecimals(v int32) {
-	o.Decimals = v
+// HasIconUrl returns a boolean if a field has been set.
+func (o *Token) HasIconUrl() bool {
+	if o != nil && o.IconUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIconUrl gets a reference to the given string and assigns it to the IconUrl field.
+func (o *Token) SetIconUrl(v string) {
+	o.IconUrl = &v
 }
 
 func (o Token) MarshalJSON() ([]byte, error) {
@@ -126,11 +159,14 @@ func (o Token) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["pubkey"] = o.Pubkey
 	}
+	if true {
+		toSerialize["decimals"] = o.Decimals
+	}
 	if o.Symbol != nil {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if true {
-		toSerialize["decimals"] = o.Decimals
+	if o.IconUrl != nil {
+		toSerialize["iconUrl"] = o.IconUrl
 	}
 	return json.Marshal(toSerialize)
 }

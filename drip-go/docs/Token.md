@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Pubkey** | **string** |  | 
-**Symbol** | Pointer to **string** |  | [optional] 
 **Decimals** | **int32** |  | 
+**Symbol** | Pointer to **string** |  | [optional] 
+**IconUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -47,6 +48,26 @@ and a boolean to check if the value has been set.
 SetPubkey sets Pubkey field to given value.
 
 
+### GetDecimals
+
+`func (o *Token) GetDecimals() int32`
+
+GetDecimals returns the Decimals field if non-nil, zero value otherwise.
+
+### GetDecimalsOk
+
+`func (o *Token) GetDecimalsOk() (*int32, bool)`
+
+GetDecimalsOk returns a tuple with the Decimals field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDecimals
+
+`func (o *Token) SetDecimals(v int32)`
+
+SetDecimals sets Decimals field to given value.
+
+
 ### GetSymbol
 
 `func (o *Token) GetSymbol() string`
@@ -72,25 +93,30 @@ SetSymbol sets Symbol field to given value.
 
 HasSymbol returns a boolean if a field has been set.
 
-### GetDecimals
+### GetIconUrl
 
-`func (o *Token) GetDecimals() int32`
+`func (o *Token) GetIconUrl() string`
 
-GetDecimals returns the Decimals field if non-nil, zero value otherwise.
+GetIconUrl returns the IconUrl field if non-nil, zero value otherwise.
 
-### GetDecimalsOk
+### GetIconUrlOk
 
-`func (o *Token) GetDecimalsOk() (*int32, bool)`
+`func (o *Token) GetIconUrlOk() (*string, bool)`
 
-GetDecimalsOk returns a tuple with the Decimals field if it's non-nil, zero value otherwise
+GetIconUrlOk returns a tuple with the IconUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDecimals
+### SetIconUrl
 
-`func (o *Token) SetDecimals(v int32)`
+`func (o *Token) SetIconUrl(v string)`
 
-SetDecimals sets Decimals field to given value.
+SetIconUrl sets IconUrl field to given value.
 
+### HasIconUrl
+
+`func (o *Token) HasIconUrl() bool`
+
+HasIconUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
