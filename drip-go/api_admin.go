@@ -568,6 +568,7 @@ type ApiV1AdminVaultsGetRequest struct {
 	ApiService AdminApi
 	tokenId *string
 	expand *[]string
+	vaultProtoConfig *string
 	vault *string
 	tokenA *string
 	tokenB *string
@@ -583,6 +584,11 @@ func (r ApiV1AdminVaultsGetRequest) TokenId(tokenId string) ApiV1AdminVaultsGetR
 
 func (r ApiV1AdminVaultsGetRequest) Expand(expand []string) ApiV1AdminVaultsGetRequest {
 	r.expand = &expand
+	return r
+}
+
+func (r ApiV1AdminVaultsGetRequest) VaultProtoConfig(vaultProtoConfig string) ApiV1AdminVaultsGetRequest {
+	r.vaultProtoConfig = &vaultProtoConfig
 	return r
 }
 
@@ -669,6 +675,9 @@ func (a *AdminApiService) V1AdminVaultsGetExecute(r ApiV1AdminVaultsGetRequest) 
 		} else {
 			localVarQueryParams.Add("expand", parameterToString(t, "multi"))
 		}
+	}
+	if r.vaultProtoConfig != nil {
+		localVarQueryParams.Add("vaultProtoConfig", parameterToString(*r.vaultProtoConfig, ""))
 	}
 	if r.vault != nil {
 		localVarQueryParams.Add("vault", parameterToString(*r.vault, ""))

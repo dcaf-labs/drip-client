@@ -56,6 +56,7 @@ export interface V1AdminVaultPubkeyPathEnablePutRequest {
 export interface V1AdminVaultsGetRequest {
     tokenId: string;
     expand?: Array<V1AdminVaultsGetExpandEnum>;
+    vaultProtoConfig?: string;
     vault?: string;
     tokenA?: string;
     tokenB?: string;
@@ -226,6 +227,10 @@ export class AdminApi extends runtime.BaseAPI {
 
         if (requestParameters.expand) {
             queryParameters['expand'] = requestParameters.expand;
+        }
+
+        if (requestParameters.vaultProtoConfig !== undefined) {
+            queryParameters['vaultProtoConfig'] = requestParameters.vaultProtoConfig;
         }
 
         if (requestParameters.vault !== undefined) {

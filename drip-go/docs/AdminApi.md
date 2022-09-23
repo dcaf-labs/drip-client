@@ -233,7 +233,7 @@ No authorization required
 
 ## V1AdminVaultsGet
 
-> []ExpandedAdminVault V1AdminVaultsGet(ctx).TokenId(tokenId).Expand(expand).Vault(vault).TokenA(tokenA).TokenB(tokenB).Enabled(enabled).Offset(offset).Limit(limit).Execute()
+> []ExpandedAdminVault V1AdminVaultsGet(ctx).TokenId(tokenId).Expand(expand).VaultProtoConfig(vaultProtoConfig).Vault(vault).TokenA(tokenA).TokenB(tokenB).Enabled(enabled).Offset(offset).Limit(limit).Execute()
 
 Get All Vaults
 
@@ -254,6 +254,7 @@ import (
 func main() {
     tokenId := "tokenId_example" // string | 
     expand := []string{"Expand_example"} // []string |  (optional)
+    vaultProtoConfig := "vaultProtoConfig_example" // string |  (optional)
     vault := "vault_example" // string |  (optional)
     tokenA := "tokenA_example" // string |  (optional)
     tokenB := "tokenB_example" // string |  (optional)
@@ -263,7 +264,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminApi.V1AdminVaultsGet(context.Background()).TokenId(tokenId).Expand(expand).Vault(vault).TokenA(tokenA).TokenB(tokenB).Enabled(enabled).Offset(offset).Limit(limit).Execute()
+    resp, r, err := apiClient.AdminApi.V1AdminVaultsGet(context.Background()).TokenId(tokenId).Expand(expand).VaultProtoConfig(vaultProtoConfig).Vault(vault).TokenA(tokenA).TokenB(tokenB).Enabled(enabled).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminApi.V1AdminVaultsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,6 +287,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tokenId** | **string** |  | 
  **expand** | **[]string** |  | 
+ **vaultProtoConfig** | **string** |  | 
  **vault** | **string** |  | 
  **tokenA** | **string** |  | 
  **tokenB** | **string** |  | 

@@ -139,6 +139,13 @@ paths:
         style: form
       - explode: true
         in: query
+        name: vaultProtoConfig
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
         name: vault
         required: false
         schema:
@@ -760,30 +767,6 @@ components:
       schema:
         type: boolean
       style: form
-    likeTokenAQueryParam:
-      explode: true
-      in: query
-      name: tokenA
-      required: false
-      schema:
-        type: string
-      style: form
-    likeTokenBQueryParam:
-      explode: true
-      in: query
-      name: tokenB
-      required: false
-      schema:
-        type: string
-      style: form
-    likeVaultQueryParam:
-      explode: true
-      in: query
-      name: vault
-      required: false
-      schema:
-        type: string
-      style: form
     isClosedQueryParam:
       explode: true
       in: query
@@ -920,6 +903,14 @@ components:
       explode: true
       in: query
       name: vault
+      required: false
+      schema:
+        type: string
+      style: form
+    vaultProtoConfigQueryParam:
+      explode: true
+      in: query
+      name: vaultProtoConfig
       required: false
       schema:
         type: string
