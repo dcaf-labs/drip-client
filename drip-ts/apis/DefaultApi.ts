@@ -450,6 +450,34 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get all tokens.
+     * Get all Tokens (A and B).
+     */
+    async v1TokensGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/tokens`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TokenFromJSON));
+    }
+
+    /**
+     * Get all tokens.
+     * Get all Tokens (A and B).
+     */
+    async v1TokensGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {
+        const response = await this.v1TokensGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get supported token pairs with filters.
      * Get all Supported Token Pairs
      */

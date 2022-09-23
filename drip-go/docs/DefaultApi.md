@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**V1PositionsGet**](DefaultApi.md#V1PositionsGet) | **Get** /v1/positions | Get User Positions
 [**V1ProtoconfigsGet**](DefaultApi.md#V1ProtoconfigsGet) | **Get** /v1/protoconfigs | Get Proto Configs
 [**V1TokenPubkeyPathGet**](DefaultApi.md#V1TokenPubkeyPathGet) | **Get** /v1/token/{pubkeyPath} | Get a Token
+[**V1TokensGet**](DefaultApi.md#V1TokensGet) | **Get** /v1/tokens | Get all Tokens (A and B).
 [**V1VaultTokenpairsGet**](DefaultApi.md#V1VaultTokenpairsGet) | **Get** /v1/vault/tokenpairs | Get all Supported Token Pairs
 [**V1VaultTokensGet**](DefaultApi.md#V1VaultTokensGet) | **Get** /v1/vault/tokens | Get all Supported Tokens
 [**V1VaultperiodsGet**](DefaultApi.md#V1VaultperiodsGet) | **Get** /v1/vaultperiods | Get Vault Periods
@@ -670,6 +671,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Token**](Token.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1TokensGet
+
+> []Token V1TokensGet(ctx).Execute()
+
+Get all Tokens (A and B).
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1TokensGet(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1TokensGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1TokensGet`: []Token
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1TokensGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1TokensGetRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]Token**](Token.md)
 
 ### Authorization
 
