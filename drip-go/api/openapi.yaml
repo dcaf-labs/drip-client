@@ -649,44 +649,6 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get TokenMetadata for Devnet Mints.
-  /v1/vault/tokenpairs:
-    get:
-      description: Get supported token pairs with filters.
-      parameters:
-      - explode: true
-        in: query
-        name: tokenA
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: tokenB
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/listTokenPairs'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-          description: Internal Server Error
-      summary: Get all Supported Token Pairs
   /v1/vault/tokens:
     get:
       description: "Get supported tokens with filters. If no params are passed, by\
@@ -1235,10 +1197,6 @@ components:
       - state
       type: object
     tokenPair:
-      example:
-        tokenA: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
-        tokenB: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
-        id: 96b8b0ed-79a9-4972-bf5e-4ac8ab9e7fda
       properties:
         id:
           example: 96b8b0ed-79a9-4972-bf5e-4ac8ab9e7fda

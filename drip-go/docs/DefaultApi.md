@@ -15,7 +15,6 @@ Method | HTTP request | Description
 [**V1ProtoconfigsGet**](DefaultApi.md#V1ProtoconfigsGet) | **Get** /v1/protoconfigs | Get Proto Configs
 [**V1TokenPubkeyPathGet**](DefaultApi.md#V1TokenPubkeyPathGet) | **Get** /v1/token/{pubkeyPath} | Get a Token
 [**V1TokensGet**](DefaultApi.md#V1TokensGet) | **Get** /v1/tokens | Get all Tokens (A and B).
-[**V1VaultTokenpairsGet**](DefaultApi.md#V1VaultTokenpairsGet) | **Get** /v1/vault/tokenpairs | Get all Supported Token Pairs
 [**V1VaultTokensGet**](DefaultApi.md#V1VaultTokensGet) | **Get** /v1/vault/tokens | Get all Supported Tokens
 [**V1VaultperiodsGet**](DefaultApi.md#V1VaultperiodsGet) | **Get** /v1/vaultperiods | Get Vault Periods
 [**V1VaultsGet**](DefaultApi.md#V1VaultsGet) | **Get** /v1/vaults | Get Supported Vaults
@@ -732,74 +731,6 @@ Other parameters are passed through a pointer to a apiV1TokensGetRequest struct 
 ### Return type
 
 [**[]Token**](Token.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## V1VaultTokenpairsGet
-
-> []TokenPair V1VaultTokenpairsGet(ctx).TokenA(tokenA).TokenB(tokenB).Execute()
-
-Get all Supported Token Pairs
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    tokenA := "tokenA_example" // string |  (optional)
-    tokenB := "tokenB_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.V1VaultTokenpairsGet(context.Background()).TokenA(tokenA).TokenB(tokenB).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1VaultTokenpairsGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `V1VaultTokenpairsGet`: []TokenPair
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1VaultTokenpairsGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiV1VaultTokenpairsGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tokenA** | **string** |  | 
- **tokenB** | **string** |  | 
-
-### Return type
-
-[**[]TokenPair**](TokenPair.md)
 
 ### Authorization
 
