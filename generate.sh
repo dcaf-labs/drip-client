@@ -9,7 +9,7 @@ openapi-generator generate -i ../drip-backend/docs/swagger.yaml -g go -o drip-go
 git restore drip-go/go.mod
 git restore drip-go/go.sum
 
-cd ../drip-cloud-functions && git stash && git checkout main && git pull && cd ./functions && npm run build
+cd ../drip-cloud-functions && git stash && git checkout main && git pull && cd ./functions && npm run build && cd ../../drip-client
 
 openapi-generator generate -i ../drip-cloud-functions/functions/swagger.yaml -g go -o drip-extension-go --additional-properties=generateInterfaces=true --additional-properties=isGoSubmodule=true --additional-properties=packageName=dripextension
 git restore drip-extension-go/go.mod
