@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1OrcawhirlpoolQuote**](DefaultApi.md#V1OrcawhirlpoolQuote) | **Post** /v1/orcawhirlpool/quote | Get whirlpool swap quote.
+[**V1OrcawhirlpoolQuote**](DefaultApi.md#V1OrcawhirlpoolQuote) | **Post** /getOrcaWhirlpoolQuote | Get whirlpool swap quote.
 
 
 

@@ -9,7 +9,7 @@ info:
 servers:
 - url: /
 paths:
-  /v1/orcawhirlpool/quote:
+  /getOrcaWhirlpoolQuote:
     post:
       operationId: v1.orcawhirlpool.quote
       requestBody:

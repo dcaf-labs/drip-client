@@ -81,7 +81,7 @@ func (a *DefaultApiService) V1OrcawhirlpoolQuoteExecute(r ApiV1OrcawhirlpoolQuot
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/orcawhirlpool/quote"
+	localVarPath := localBasePath + "/getOrcaWhirlpoolQuote"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

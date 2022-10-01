@@ -78,7 +78,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**V1OrcawhirlpoolQuote**](docs/DefaultApi.md#v1orcawhirlpoolquote) | **Post** /v1/orcawhirlpool/quote | Get whirlpool swap quote.
+*DefaultApi* | [**V1OrcawhirlpoolQuote**](docs/DefaultApi.md#v1orcawhirlpoolquote) | **Post** /getOrcaWhirlpoolQuote | Get whirlpool swap quote.
 
 
 ## Documentation For Models
