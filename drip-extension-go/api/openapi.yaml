@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: team@dcaf.so
+    name: Dcaf Labs
+  description: Drip auxilary backend.
+  title: Drip Cloud Functions
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /v1/orcawhirlpool/quote:
+    post:
+      operationId: v1.orcawhirlpool.quote
+      requestBody:
+        $ref: '#/components/requestBodies/orcaWhirlpoolSwapQuoteBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1_orcawhirlpool_quote_200_response'
+          description: orca swap quote response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: api error
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: api error
+      summary: Get whirlpool swap quote.
+components:
+  parameters:
+    dummy:
+      explode: true
+      in: query
+      name: dummy
+      required: false
+      schema:
+        type: string
+      style: form
+  requestBodies:
+    orcaWhirlpoolSwapQuoteBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/v1_orcawhirlpool_quote_request'
+      required: true
+  responses:
+    errorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: api error
+    orcaWhirlpoolSwapQuoteResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/v1_orcawhirlpool_quote_200_response'
+      description: orca swap quote response
+  schemas:
+    error:
+      type: string
+    orcaWhirlpoolSwapInput:
+      properties:
+        amount:
+          type: string
+        otherAmountThreshold:
+          type: string
+        sqrtPriceLimit:
+          type: string
+        amountSpecifiedIsInput:
+          type: boolean
+        aToB:
+          type: boolean
+        tickArray0:
+          type: string
+        tickArray1:
+          type: string
+        tickArray2:
+          type: string
+      required:
+      - aToB
+      - amount
+      - amountSpecifiedIsInput
+      - otherAmountThreshold
+      - sqrtPriceLimit
+      - tickArray0
+      - tickArray1
+      - tickArray2
+      type: object
+    v1_orcawhirlpool_quote_request:
+      properties:
+        connectionUrl:
+          type: string
+        whirlpool:
+          type: string
+        inputTokenMint:
+          type: string
+        inputAmount:
+          type: string
+      required:
+      - connectionUrl
+      - inputAmount
+      - inputTokenMint
+      - whirlpool
+      type: object
+    v1_orcawhirlpool_quote_200_response:
+      allOf:
+      - $ref: '#/components/schemas/orcaWhirlpoolSwapInput'
+      type: object
