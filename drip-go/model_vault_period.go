@@ -22,6 +22,7 @@ type VaultPeriod struct {
 	PeriodId string `json:"periodId"`
 	Twap string `json:"twap"`
 	Dar string `json:"dar"`
+	PriceBOverA *string `json:"priceBOverA,omitempty"`
 }
 
 // NewVaultPeriod instantiates a new VaultPeriod object
@@ -166,6 +167,38 @@ func (o *VaultPeriod) SetDar(v string) {
 	o.Dar = v
 }
 
+// GetPriceBOverA returns the PriceBOverA field value if set, zero value otherwise.
+func (o *VaultPeriod) GetPriceBOverA() string {
+	if o == nil || o.PriceBOverA == nil {
+		var ret string
+		return ret
+	}
+	return *o.PriceBOverA
+}
+
+// GetPriceBOverAOk returns a tuple with the PriceBOverA field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaultPeriod) GetPriceBOverAOk() (*string, bool) {
+	if o == nil || o.PriceBOverA == nil {
+		return nil, false
+	}
+	return o.PriceBOverA, true
+}
+
+// HasPriceBOverA returns a boolean if a field has been set.
+func (o *VaultPeriod) HasPriceBOverA() bool {
+	if o != nil && o.PriceBOverA != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceBOverA gets a reference to the given string and assigns it to the PriceBOverA field.
+func (o *VaultPeriod) SetPriceBOverA(v string) {
+	o.PriceBOverA = &v
+}
+
 func (o VaultPeriod) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -182,6 +215,9 @@ func (o VaultPeriod) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["dar"] = o.Dar
+	}
+	if o.PriceBOverA != nil {
+		toSerialize["priceBOverA"] = o.PriceBOverA
 	}
 	return json.Marshal(toSerialize)
 }

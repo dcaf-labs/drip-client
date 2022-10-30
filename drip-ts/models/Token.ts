@@ -43,6 +43,23 @@ export interface Token {
      * @memberof Token
      */
     iconUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Token
+     */
+    coinGeckoId?: string;
+}
+
+/**
+ * Check if a given object implements the Token interface.
+ */
+export function instanceOfToken(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "pubkey" in value;
+    isInstance = isInstance && "decimals" in value;
+
+    return isInstance;
 }
 
 export function TokenFromJSON(json: any): Token {
@@ -59,6 +76,7 @@ export function TokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tok
         'decimals': json['decimals'],
         'symbol': !exists(json, 'symbol') ? undefined : json['symbol'],
         'iconUrl': !exists(json, 'iconUrl') ? undefined : json['iconUrl'],
+        'coinGeckoId': !exists(json, 'coinGeckoId') ? undefined : json['coinGeckoId'],
     };
 }
 
@@ -75,6 +93,7 @@ export function TokenToJSON(value?: Token | null): any {
         'decimals': value.decimals,
         'symbol': value.symbol,
         'iconUrl': value.iconUrl,
+        'coinGeckoId': value.coinGeckoId,
     };
 }
 

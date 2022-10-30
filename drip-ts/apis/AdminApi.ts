@@ -14,20 +14,22 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  ActiveWallet,
+  ErrorResponse,
+  ExpandedAdminPosition,
+  ExpandedAdminVault,
+  Vault,
+} from '../models';
 import {
-    ActiveWallet,
     ActiveWalletFromJSON,
     ActiveWalletToJSON,
-    ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    ExpandedAdminPosition,
     ExpandedAdminPositionFromJSON,
     ExpandedAdminPositionToJSON,
-    ExpandedAdminVault,
     ExpandedAdminVaultFromJSON,
     ExpandedAdminVaultToJSON,
-    Vault,
     VaultFromJSON,
     VaultToJSON,
 } from '../models';
@@ -74,7 +76,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all positions with pagination.
      * Get All Positions
      */
-    async v1AdminPositionsGetRaw(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ExpandedAdminPosition>>> {
+    async v1AdminPositionsGetRaw(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExpandedAdminPosition>>> {
         if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
             throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling v1AdminPositionsGet.');
         }
@@ -121,7 +123,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all positions with pagination.
      * Get All Positions
      */
-    async v1AdminPositionsGet(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ExpandedAdminPosition>> {
+    async v1AdminPositionsGet(requestParameters: V1AdminPositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExpandedAdminPosition>> {
         const response = await this.v1AdminPositionsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -130,7 +132,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all wallet addresses with open positions.
      * Get All Active Wallet Addresses
      */
-    async v1AdminSummaryActivewalletsGetRaw(requestParameters: V1AdminSummaryActivewalletsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ActiveWallet>>> {
+    async v1AdminSummaryActivewalletsGetRaw(requestParameters: V1AdminSummaryActivewalletsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ActiveWallet>>> {
         if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
             throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling v1AdminSummaryActivewalletsGet.');
         }
@@ -169,7 +171,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all wallet addresses with open positions.
      * Get All Active Wallet Addresses
      */
-    async v1AdminSummaryActivewalletsGet(requestParameters: V1AdminSummaryActivewalletsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ActiveWallet>> {
+    async v1AdminSummaryActivewalletsGet(requestParameters: V1AdminSummaryActivewalletsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ActiveWallet>> {
         const response = await this.v1AdminSummaryActivewalletsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -178,7 +180,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Enable/disable the specified vault
      * Toggle the \'enabled\' flag on a vault
      */
-    async v1AdminVaultPubkeyPathEnablePutRaw(requestParameters: V1AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Vault>> {
+    async v1AdminVaultPubkeyPathEnablePutRaw(requestParameters: V1AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Vault>> {
         if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
             throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1AdminVaultPubkeyPathEnablePut.');
         }
@@ -209,7 +211,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Enable/disable the specified vault
      * Toggle the \'enabled\' flag on a vault
      */
-    async v1AdminVaultPubkeyPathEnablePut(requestParameters: V1AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Vault> {
+    async v1AdminVaultPubkeyPathEnablePut(requestParameters: V1AdminVaultPubkeyPathEnablePutRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Vault> {
         const response = await this.v1AdminVaultPubkeyPathEnablePutRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -218,7 +220,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all vaults with filters and expanded properties.
      * Get All Vaults
      */
-    async v1AdminVaultsGetRaw(requestParameters: V1AdminVaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ExpandedAdminVault>>> {
+    async v1AdminVaultsGetRaw(requestParameters: V1AdminVaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ExpandedAdminVault>>> {
         if (requestParameters.tokenId === null || requestParameters.tokenId === undefined) {
             throw new runtime.RequiredError('tokenId','Required parameter requestParameters.tokenId was null or undefined when calling v1AdminVaultsGet.');
         }
@@ -277,7 +279,7 @@ export class AdminApi extends runtime.BaseAPI {
      * Get all vaults with filters and expanded properties.
      * Get All Vaults
      */
-    async v1AdminVaultsGet(requestParameters: V1AdminVaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ExpandedAdminVault>> {
+    async v1AdminVaultsGet(requestParameters: V1AdminVaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ExpandedAdminVault>> {
         const response = await this.v1AdminVaultsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }

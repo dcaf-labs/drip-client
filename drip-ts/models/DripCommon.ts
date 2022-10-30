@@ -57,6 +57,21 @@ export interface DripCommon {
     tokenBMint: string;
 }
 
+/**
+ * Check if a given object implements the DripCommon interface.
+ */
+export function instanceOfDripCommon(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "vault" in value;
+    isInstance = isInstance && "vaultProtoConfig" in value;
+    isInstance = isInstance && "vaultTokenAAccount" in value;
+    isInstance = isInstance && "vaultTokenBAccount" in value;
+    isInstance = isInstance && "tokenAMint" in value;
+    isInstance = isInstance && "tokenBMint" in value;
+
+    return isInstance;
+}
+
 export function DripCommonFromJSON(json: any): DripCommon {
     return DripCommonFromJSONTyped(json, false);
 }

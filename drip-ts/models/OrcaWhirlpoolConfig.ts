@@ -13,19 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    DripCommon,
-    DripCommonFromJSON,
-    DripCommonFromJSONTyped,
-    DripCommonToJSON,
-} from './DripCommon';
-import {
-    OrcaWhirlpoolConfigAllOf,
-    OrcaWhirlpoolConfigAllOfFromJSON,
-    OrcaWhirlpoolConfigAllOfFromJSONTyped,
-    OrcaWhirlpoolConfigAllOfToJSON,
-} from './OrcaWhirlpoolConfigAllOf';
-
 /**
  * 
  * @export
@@ -92,6 +79,25 @@ export interface OrcaWhirlpoolConfig {
      * @memberof OrcaWhirlpoolConfig
      */
     oracle: string;
+}
+
+/**
+ * Check if a given object implements the OrcaWhirlpoolConfig interface.
+ */
+export function instanceOfOrcaWhirlpoolConfig(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "vault" in value;
+    isInstance = isInstance && "vaultProtoConfig" in value;
+    isInstance = isInstance && "vaultTokenAAccount" in value;
+    isInstance = isInstance && "vaultTokenBAccount" in value;
+    isInstance = isInstance && "tokenAMint" in value;
+    isInstance = isInstance && "tokenBMint" in value;
+    isInstance = isInstance && "whirlpool" in value;
+    isInstance = isInstance && "tokenVaultA" in value;
+    isInstance = isInstance && "tokenVaultB" in value;
+    isInstance = isInstance && "oracle" in value;
+
+    return isInstance;
 }
 
 export function OrcaWhirlpoolConfigFromJSON(json: any): OrcaWhirlpoolConfig {

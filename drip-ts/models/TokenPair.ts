@@ -39,6 +39,18 @@ export interface TokenPair {
     tokenB: string;
 }
 
+/**
+ * Check if a given object implements the TokenPair interface.
+ */
+export function instanceOfTokenPair(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "tokenA" in value;
+    isInstance = isInstance && "tokenB" in value;
+
+    return isInstance;
+}
+
 export function TokenPairFromJSON(json: any): TokenPair {
     return TokenPairFromJSONTyped(json, false);
 }

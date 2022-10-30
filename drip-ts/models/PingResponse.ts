@@ -27,6 +27,16 @@ export interface PingResponse {
     message: string;
 }
 
+/**
+ * Check if a given object implements the PingResponse interface.
+ */
+export function instanceOfPingResponse(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "message" in value;
+
+    return isInstance;
+}
+
 export function PingResponseFromJSON(json: any): PingResponse {
     return PingResponseFromJSONTyped(json, false);
 }

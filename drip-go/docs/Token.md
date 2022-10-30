@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Decimals** | **int32** |  | 
 **Symbol** | Pointer to **string** |  | [optional] 
 **IconUrl** | Pointer to **string** |  | [optional] 
+**CoinGeckoId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -117,6 +118,31 @@ SetIconUrl sets IconUrl field to given value.
 `func (o *Token) HasIconUrl() bool`
 
 HasIconUrl returns a boolean if a field has been set.
+
+### GetCoinGeckoId
+
+`func (o *Token) GetCoinGeckoId() string`
+
+GetCoinGeckoId returns the CoinGeckoId field if non-nil, zero value otherwise.
+
+### GetCoinGeckoIdOk
+
+`func (o *Token) GetCoinGeckoIdOk() (*string, bool)`
+
+GetCoinGeckoIdOk returns a tuple with the CoinGeckoId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoinGeckoId
+
+`func (o *Token) SetCoinGeckoId(v string)`
+
+SetCoinGeckoId sets CoinGeckoId field to given value.
+
+### HasCoinGeckoId
+
+`func (o *Token) HasCoinGeckoId() bool`
+
+HasCoinGeckoId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -340,8 +340,8 @@ paths:
       - admin
   /v1/protoconfigs:
     get:
-      description: "Get all supported proto configs.  If token filters are supplied,\
-        \ then the proto configs for vaults with those tokens will be returned.\n"
+      description: |
+        Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned.
       parameters:
       - explode: true
         in: query
@@ -529,7 +529,7 @@ paths:
       summary: Get Vault Periods
   /v1/drip/spltokenswapconfigs:
     get:
-      description: Get token swap configs for DripSPLTokenSwap.
+      description: Get token swap config for DripSPLTokenSwap.
       parameters:
       - explode: true
         in: query
@@ -560,7 +560,7 @@ paths:
       summary: Get Token Swaps Configs
   /v1/drip/orcawhirlpoolconfigs:
     get:
-      description: Get whirlpool configs for dripOrcaWhirlpool.
+      description: Get whirlpool config for dripOrcaWhirlpool.
       parameters:
       - explode: true
         in: query
@@ -651,8 +651,8 @@ paths:
       summary: Get TokenMetadata for Devnet Mints.
   /v1/vault/tokens:
     get:
-      description: "Get supported tokens with filters. If no params are passed, by\
-        \ default all supported tokenAs will be returned.\n"
+      description: |
+        Get supported tokens with filters. If no params are passed, by default all supported tokenAs will be returned.
       parameters:
       - explode: true
         in: query
@@ -1172,7 +1172,7 @@ components:
       - $ref: '#/components/schemas/dripCommon'
       - $ref: '#/components/schemas/orcaWhirlpoolConfig_allOf'
       type: object
-    tokenAccountBalance:
+    tokenAccount:
       properties:
         pubkey:
           example: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
@@ -1248,6 +1248,7 @@ components:
     token:
       example:
         symbol: SOL
+        coinGeckoId: wrapped-solana
         decimals: 10
         iconUrl: iconUrl
         pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
@@ -1262,6 +1263,9 @@ components:
           example: SOL
           type: string
         iconUrl:
+          type: string
+        coinGeckoId:
+          example: wrapped-solana
           type: string
       required:
       - decimals
@@ -1332,6 +1336,7 @@ components:
         periodId: "123"
         twap: "123"
         dar: "123"
+        priceBOverA: "1.5"
         vault: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
         pubkey: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
       properties:
@@ -1350,6 +1355,9 @@ components:
         dar:
           example: "123"
           type: string
+        priceBOverA:
+          example: "1.5"
+          type: string
       required:
       - dar
       - periodId
@@ -1366,12 +1374,13 @@ components:
         tokenBMintValue:
           $ref: '#/components/schemas/token'
         tokenAAccountValue:
-          $ref: '#/components/schemas/tokenAccountBalance'
+          $ref: '#/components/schemas/tokenAccount'
         tokenBAccountValue:
-          $ref: '#/components/schemas/tokenAccountBalance'
+          $ref: '#/components/schemas/tokenAccount'
         treasuryTokenBAccountValue:
-          $ref: '#/components/schemas/tokenAccountBalance'
+          $ref: '#/components/schemas/tokenAccount'
       type: object
+      example: null
     expandedAdminPosition_allOf:
       properties:
         vault:
@@ -1383,6 +1392,7 @@ components:
         tokenB:
           $ref: '#/components/schemas/token'
       type: object
+      example: null
     tokenMetadata_collection:
       example:
         name: name
@@ -1424,6 +1434,7 @@ components:
       - swapTokenBAccount
       - swapTokenMint
       type: object
+      example: null
     orcaWhirlpoolConfig_allOf:
       properties:
         whirlpool:
@@ -1444,3 +1455,4 @@ components:
       - tokenVaultB
       - whirlpool
       type: object
+      example: null

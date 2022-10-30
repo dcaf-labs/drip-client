@@ -49,6 +49,26 @@ export interface VaultPeriod {
      * @memberof VaultPeriod
      */
     dar: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof VaultPeriod
+     */
+    priceBOverA?: string;
+}
+
+/**
+ * Check if a given object implements the VaultPeriod interface.
+ */
+export function instanceOfVaultPeriod(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "pubkey" in value;
+    isInstance = isInstance && "vault" in value;
+    isInstance = isInstance && "periodId" in value;
+    isInstance = isInstance && "twap" in value;
+    isInstance = isInstance && "dar" in value;
+
+    return isInstance;
 }
 
 export function VaultPeriodFromJSON(json: any): VaultPeriod {
@@ -66,6 +86,7 @@ export function VaultPeriodFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'periodId': json['periodId'],
         'twap': json['twap'],
         'dar': json['dar'],
+        'priceBOverA': !exists(json, 'priceBOverA') ? undefined : json['priceBOverA'],
     };
 }
 
@@ -83,6 +104,7 @@ export function VaultPeriodToJSON(value?: VaultPeriod | null): any {
         'periodId': value.periodId,
         'twap': value.twap,
         'dar': value.dar,
+        'priceBOverA': value.priceBOverA,
     };
 }
 

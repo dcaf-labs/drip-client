@@ -13,19 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import {
-    DripCommon,
-    DripCommonFromJSON,
-    DripCommonFromJSONTyped,
-    DripCommonToJSON,
-} from './DripCommon';
-import {
-    SplTokenSwapConfigAllOf,
-    SplTokenSwapConfigAllOfFromJSON,
-    SplTokenSwapConfigAllOfFromJSONTyped,
-    SplTokenSwapConfigAllOfToJSON,
-} from './SplTokenSwapConfigAllOf';
-
 /**
  * 
  * @export
@@ -104,6 +91,27 @@ export interface SplTokenSwapConfig {
      * @memberof SplTokenSwapConfig
      */
     swap: string;
+}
+
+/**
+ * Check if a given object implements the SplTokenSwapConfig interface.
+ */
+export function instanceOfSplTokenSwapConfig(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "vault" in value;
+    isInstance = isInstance && "vaultProtoConfig" in value;
+    isInstance = isInstance && "vaultTokenAAccount" in value;
+    isInstance = isInstance && "vaultTokenBAccount" in value;
+    isInstance = isInstance && "tokenAMint" in value;
+    isInstance = isInstance && "tokenBMint" in value;
+    isInstance = isInstance && "swapTokenMint" in value;
+    isInstance = isInstance && "swapTokenAAccount" in value;
+    isInstance = isInstance && "swapTokenBAccount" in value;
+    isInstance = isInstance && "swapFeeAccount" in value;
+    isInstance = isInstance && "swapAuthority" in value;
+    isInstance = isInstance && "swap" in value;
+
+    return isInstance;
 }
 
 export function SplTokenSwapConfigFromJSON(json: any): SplTokenSwapConfig {

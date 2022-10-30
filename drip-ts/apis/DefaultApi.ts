@@ -14,41 +14,43 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  ErrorResponse,
+  MintRequest,
+  MintResponse,
+  OrcaWhirlpoolConfig,
+  PingResponse,
+  Position,
+  ProtoConfig,
+  SplTokenSwapConfig,
+  Token,
+  TokenMetadata,
+  Vault,
+  VaultPeriod,
+} from '../models';
 import {
-    ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    MintRequest,
     MintRequestFromJSON,
     MintRequestToJSON,
-    MintResponse,
     MintResponseFromJSON,
     MintResponseToJSON,
-    OrcaWhirlpoolConfig,
     OrcaWhirlpoolConfigFromJSON,
     OrcaWhirlpoolConfigToJSON,
-    PingResponse,
     PingResponseFromJSON,
     PingResponseToJSON,
-    Position,
     PositionFromJSON,
     PositionToJSON,
-    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigToJSON,
-    SplTokenSwapConfig,
     SplTokenSwapConfigFromJSON,
     SplTokenSwapConfigToJSON,
-    Token,
     TokenFromJSON,
     TokenToJSON,
-    TokenMetadata,
     TokenMetadataFromJSON,
     TokenMetadataToJSON,
-    Vault,
     VaultFromJSON,
     VaultToJSON,
-    VaultPeriod,
     VaultPeriodFromJSON,
     VaultPeriodToJSON,
 } from '../models';
@@ -116,7 +118,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * mint test tokens to a desired associated token account, or passed in token account
      * Mint tokens (DEVNET ONLY)
      */
-    async mintPostRaw(requestParameters: MintPostRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<MintResponse>> {
+    async mintPostRaw(requestParameters: MintPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MintResponse>> {
         if (requestParameters.mintRequest === null || requestParameters.mintRequest === undefined) {
             throw new runtime.RequiredError('mintRequest','Required parameter requestParameters.mintRequest was null or undefined when calling mintPost.');
         }
@@ -142,7 +144,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * mint test tokens to a desired associated token account, or passed in token account
      * Mint tokens (DEVNET ONLY)
      */
-    async mintPost(requestParameters: MintPostRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<MintResponse> {
+    async mintPost(requestParameters: MintPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MintResponse> {
         const response = await this.mintPostRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -151,7 +153,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Ping api.
      * Health Check
      */
-    async rootGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<PingResponse>> {
+    async rootGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PingResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -170,7 +172,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Ping api.
      * Health Check
      */
-    async rootGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<PingResponse> {
+    async rootGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PingResponse> {
         const response = await this.rootGetRaw(initOverrides);
         return await response.value();
     }
@@ -178,7 +180,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Swagger spec
      */
-    async swaggerJsonGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<object>> {
+    async swaggerJsonGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -196,16 +198,16 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Swagger spec
      */
-    async swaggerJsonGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<object> {
+    async swaggerJsonGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.swaggerJsonGetRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Get whirlpool configs for dripOrcaWhirlpool.
+     * Get whirlpool config for dripOrcaWhirlpool.
      * Get Orca Whirlpool Swap Configs
      */
-    async v1DripOrcawhirlpoolconfigsGetRaw(requestParameters: V1DripOrcawhirlpoolconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<OrcaWhirlpoolConfig>>> {
+    async v1DripOrcawhirlpoolconfigsGetRaw(requestParameters: V1DripOrcawhirlpoolconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrcaWhirlpoolConfig>>> {
         const queryParameters: any = {};
 
         if (requestParameters.vault !== undefined) {
@@ -225,10 +227,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get whirlpool configs for dripOrcaWhirlpool.
+     * Get whirlpool config for dripOrcaWhirlpool.
      * Get Orca Whirlpool Swap Configs
      */
-    async v1DripOrcawhirlpoolconfigsGet(requestParameters: V1DripOrcawhirlpoolconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<OrcaWhirlpoolConfig>> {
+    async v1DripOrcawhirlpoolconfigsGet(requestParameters: V1DripOrcawhirlpoolconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrcaWhirlpoolConfig>> {
         const response = await this.v1DripOrcawhirlpoolconfigsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -236,7 +238,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Get Drip Position Metadata
      */
-    async v1DripPositionPubkeyPathMetadataGetRaw(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
+    async v1DripPositionPubkeyPathMetadataGetRaw(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
         if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
             throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1DripPositionPubkeyPathMetadataGet.');
         }
@@ -258,7 +260,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Get Drip Position Metadata
      */
-    async v1DripPositionPubkeyPathMetadataGet(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<TokenMetadata> {
+    async v1DripPositionPubkeyPathMetadataGet(requestParameters: V1DripPositionPubkeyPathMetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TokenMetadata> {
         const response = await this.v1DripPositionPubkeyPathMetadataGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -266,7 +268,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Get TokenMetadata for Devnet Mints.
      */
-    async v1DripPubkeyPathTokenmetadataGetRaw(requestParameters: V1DripPubkeyPathTokenmetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
+    async v1DripPubkeyPathTokenmetadataGetRaw(requestParameters: V1DripPubkeyPathTokenmetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TokenMetadata>> {
         if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
             throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1DripPubkeyPathTokenmetadataGet.');
         }
@@ -288,16 +290,16 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Get TokenMetadata for Devnet Mints.
      */
-    async v1DripPubkeyPathTokenmetadataGet(requestParameters: V1DripPubkeyPathTokenmetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<TokenMetadata> {
+    async v1DripPubkeyPathTokenmetadataGet(requestParameters: V1DripPubkeyPathTokenmetadataGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TokenMetadata> {
         const response = await this.v1DripPubkeyPathTokenmetadataGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Get token swap configs for DripSPLTokenSwap.
+     * Get token swap config for DripSPLTokenSwap.
      * Get Token Swaps Configs
      */
-    async v1DripSpltokenswapconfigsGetRaw(requestParameters: V1DripSpltokenswapconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<SplTokenSwapConfig>>> {
+    async v1DripSpltokenswapconfigsGetRaw(requestParameters: V1DripSpltokenswapconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<SplTokenSwapConfig>>> {
         const queryParameters: any = {};
 
         if (requestParameters.vault !== undefined) {
@@ -317,10 +319,10 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get token swap configs for DripSPLTokenSwap.
+     * Get token swap config for DripSPLTokenSwap.
      * Get Token Swaps Configs
      */
-    async v1DripSpltokenswapconfigsGet(requestParameters: V1DripSpltokenswapconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<SplTokenSwapConfig>> {
+    async v1DripSpltokenswapconfigsGet(requestParameters: V1DripSpltokenswapconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<SplTokenSwapConfig>> {
         const response = await this.v1DripSpltokenswapconfigsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -329,7 +331,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all user positions.
      * Get User Positions
      */
-    async v1PositionsGetRaw(requestParameters: V1PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Position>>> {
+    async v1PositionsGetRaw(requestParameters: V1PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Position>>> {
         if (requestParameters.wallet === null || requestParameters.wallet === undefined) {
             throw new runtime.RequiredError('wallet','Required parameter requestParameters.wallet was null or undefined when calling v1PositionsGet.');
         }
@@ -368,7 +370,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all user positions.
      * Get User Positions
      */
-    async v1PositionsGet(requestParameters: V1PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Position>> {
+    async v1PositionsGet(requestParameters: V1PositionsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Position>> {
         const response = await this.v1PositionsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -377,7 +379,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned. 
      * Get Proto Configs
      */
-    async v1ProtoconfigsGetRaw(requestParameters: V1ProtoconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
+    async v1ProtoconfigsGetRaw(requestParameters: V1ProtoconfigsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProtoConfig>>> {
         const queryParameters: any = {};
 
         if (requestParameters.tokenA !== undefined) {
@@ -404,7 +406,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all supported proto configs.  If token filters are supplied, then the proto configs for vaults with those tokens will be returned. 
      * Get Proto Configs
      */
-    async v1ProtoconfigsGet(requestParameters: V1ProtoconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<ProtoConfig>> {
+    async v1ProtoconfigsGet(requestParameters: V1ProtoconfigsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProtoConfig>> {
         const response = await this.v1ProtoconfigsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -413,7 +415,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get token mint info by pubkey.
      * Get a Token
      */
-    async v1TokenPubkeyPathGetRaw(requestParameters: V1TokenPubkeyPathGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Token>> {
+    async v1TokenPubkeyPathGetRaw(requestParameters: V1TokenPubkeyPathGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Token>> {
         if (requestParameters.pubkeyPath === null || requestParameters.pubkeyPath === undefined) {
             throw new runtime.RequiredError('pubkeyPath','Required parameter requestParameters.pubkeyPath was null or undefined when calling v1TokenPubkeyPathGet.');
         }
@@ -436,7 +438,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get token mint info by pubkey.
      * Get a Token
      */
-    async v1TokenPubkeyPathGet(requestParameters: V1TokenPubkeyPathGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Token> {
+    async v1TokenPubkeyPathGet(requestParameters: V1TokenPubkeyPathGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Token> {
         const response = await this.v1TokenPubkeyPathGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -445,7 +447,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all tokens.
      * Get all Tokens (A and B).
      */
-    async v1TokensGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
+    async v1TokensGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -464,7 +466,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all tokens.
      * Get all Tokens (A and B).
      */
-    async v1TokensGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {
+    async v1TokensGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Token>> {
         const response = await this.v1TokensGetRaw(initOverrides);
         return await response.value();
     }
@@ -473,7 +475,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get supported tokens with filters. If no params are passed, by default all supported tokenAs will be returned. 
      * Get all Supported Tokens
      */
-    async v1VaultTokensGetRaw(requestParameters: V1VaultTokensGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
+    async v1VaultTokensGetRaw(requestParameters: V1VaultTokensGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Token>>> {
         const queryParameters: any = {};
 
         if (requestParameters.tokenA !== undefined) {
@@ -500,7 +502,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get supported tokens with filters. If no params are passed, by default all supported tokenAs will be returned. 
      * Get all Supported Tokens
      */
-    async v1VaultTokensGet(requestParameters: V1VaultTokensGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Token>> {
+    async v1VaultTokensGet(requestParameters: V1VaultTokensGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Token>> {
         const response = await this.v1VaultTokensGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -509,7 +511,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get vault periods with pagination and filters.
      * Get Vault Periods
      */
-    async v1VaultperiodsGetRaw(requestParameters: V1VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<VaultPeriod>>> {
+    async v1VaultperiodsGetRaw(requestParameters: V1VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VaultPeriod>>> {
         if (requestParameters.vault === null || requestParameters.vault === undefined) {
             throw new runtime.RequiredError('vault','Required parameter requestParameters.vault was null or undefined when calling v1VaultperiodsGet.');
         }
@@ -548,7 +550,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get vault periods with pagination and filters.
      * Get Vault Periods
      */
-    async v1VaultperiodsGet(requestParameters: V1VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<VaultPeriod>> {
+    async v1VaultperiodsGet(requestParameters: V1VaultperiodsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VaultPeriod>> {
         const response = await this.v1VaultperiodsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -557,7 +559,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all vaults with filters.
      * Get Supported Vaults
      */
-    async v1VaultsGetRaw(requestParameters: V1VaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<Array<Vault>>> {
+    async v1VaultsGetRaw(requestParameters: V1VaultsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Vault>>> {
         const queryParameters: any = {};
 
         if (requestParameters.tokenA !== undefined) {
@@ -588,7 +590,7 @@ export class DefaultApi extends runtime.BaseAPI {
      * Get all vaults with filters.
      * Get Supported Vaults
      */
-    async v1VaultsGet(requestParameters: V1VaultsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<Array<Vault>> {
+    async v1VaultsGet(requestParameters: V1VaultsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Vault>> {
         const response = await this.v1VaultsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }

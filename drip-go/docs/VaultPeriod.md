@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **PeriodId** | **string** |  | 
 **Twap** | **string** |  | 
 **Dar** | **string** |  | 
+**PriceBOverA** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -128,6 +129,31 @@ and a boolean to check if the value has been set.
 
 SetDar sets Dar field to given value.
 
+
+### GetPriceBOverA
+
+`func (o *VaultPeriod) GetPriceBOverA() string`
+
+GetPriceBOverA returns the PriceBOverA field if non-nil, zero value otherwise.
+
+### GetPriceBOverAOk
+
+`func (o *VaultPeriod) GetPriceBOverAOk() (*string, bool)`
+
+GetPriceBOverAOk returns a tuple with the PriceBOverA field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceBOverA
+
+`func (o *VaultPeriod) SetPriceBOverA(v string)`
+
+SetPriceBOverA sets PriceBOverA field to given value.
+
+### HasPriceBOverA
+
+`func (o *VaultPeriod) HasPriceBOverA() bool`
+
+HasPriceBOverA returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

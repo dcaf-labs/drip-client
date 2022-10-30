@@ -66,7 +66,7 @@ type DefaultApi interface {
 	/*
 	V1DripOrcawhirlpoolconfigsGet Get Orca Whirlpool Swap Configs
 
-	Get whirlpool configs for dripOrcaWhirlpool.
+	Get whirlpool config for dripOrcaWhirlpool.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiV1DripOrcawhirlpoolconfigsGetRequest
@@ -106,7 +106,7 @@ type DefaultApi interface {
 	/*
 	V1DripSpltokenswapconfigsGet Get Token Swaps Configs
 
-	Get token swap configs for DripSPLTokenSwap.
+	Get token swap config for DripSPLTokenSwap.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiV1DripSpltokenswapconfigsGetRequest
@@ -566,7 +566,7 @@ func (r ApiV1DripOrcawhirlpoolconfigsGetRequest) Execute() ([]OrcaWhirlpoolConfi
 /*
 V1DripOrcawhirlpoolconfigsGet Get Orca Whirlpool Swap Configs
 
-Get whirlpool configs for dripOrcaWhirlpool.
+Get whirlpool config for dripOrcaWhirlpool.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiV1DripOrcawhirlpoolconfigsGetRequest
@@ -933,7 +933,7 @@ func (r ApiV1DripSpltokenswapconfigsGetRequest) Execute() ([]SplTokenSwapConfig,
 /*
 V1DripSpltokenswapconfigsGet Get Token Swaps Configs
 
-Get token swap configs for DripSPLTokenSwap.
+Get token swap config for DripSPLTokenSwap.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiV1DripSpltokenswapconfigsGetRequest

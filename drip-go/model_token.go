@@ -21,6 +21,7 @@ type Token struct {
 	Decimals int32 `json:"decimals"`
 	Symbol *string `json:"symbol,omitempty"`
 	IconUrl *string `json:"iconUrl,omitempty"`
+	CoinGeckoId *string `json:"coinGeckoId,omitempty"`
 }
 
 // NewToken instantiates a new Token object
@@ -154,6 +155,38 @@ func (o *Token) SetIconUrl(v string) {
 	o.IconUrl = &v
 }
 
+// GetCoinGeckoId returns the CoinGeckoId field value if set, zero value otherwise.
+func (o *Token) GetCoinGeckoId() string {
+	if o == nil || o.CoinGeckoId == nil {
+		var ret string
+		return ret
+	}
+	return *o.CoinGeckoId
+}
+
+// GetCoinGeckoIdOk returns a tuple with the CoinGeckoId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Token) GetCoinGeckoIdOk() (*string, bool) {
+	if o == nil || o.CoinGeckoId == nil {
+		return nil, false
+	}
+	return o.CoinGeckoId, true
+}
+
+// HasCoinGeckoId returns a boolean if a field has been set.
+func (o *Token) HasCoinGeckoId() bool {
+	if o != nil && o.CoinGeckoId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCoinGeckoId gets a reference to the given string and assigns it to the CoinGeckoId field.
+func (o *Token) SetCoinGeckoId(v string) {
+	o.CoinGeckoId = &v
+}
+
 func (o Token) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -167,6 +200,9 @@ func (o Token) MarshalJSON() ([]byte, error) {
 	}
 	if o.IconUrl != nil {
 		toSerialize["iconUrl"] = o.IconUrl
+	}
+	if o.CoinGeckoId != nil {
+		toSerialize["coinGeckoId"] = o.CoinGeckoId
 	}
 	return json.Marshal(toSerialize)
 }

@@ -87,6 +87,26 @@ export interface Vault {
     enabled: boolean;
 }
 
+/**
+ * Check if a given object implements the Vault interface.
+ */
+export function instanceOfVault(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "pubkey" in value;
+    isInstance = isInstance && "protoConfig" in value;
+    isInstance = isInstance && "tokenAAccount" in value;
+    isInstance = isInstance && "tokenBAccount" in value;
+    isInstance = isInstance && "treasuryTokenBAccount" in value;
+    isInstance = isInstance && "tokenAMint" in value;
+    isInstance = isInstance && "tokenBMint" in value;
+    isInstance = isInstance && "lastDcaPeriod" in value;
+    isInstance = isInstance && "dripAmount" in value;
+    isInstance = isInstance && "dcaActivationTimestamp" in value;
+    isInstance = isInstance && "enabled" in value;
+
+    return isInstance;
+}
+
 export function VaultFromJSON(json: any): Vault {
     return VaultFromJSONTyped(json, false);
 }

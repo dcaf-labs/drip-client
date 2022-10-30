@@ -57,6 +57,21 @@ export interface SplTokenSwapConfigAllOf {
     swap: string;
 }
 
+/**
+ * Check if a given object implements the SplTokenSwapConfigAllOf interface.
+ */
+export function instanceOfSplTokenSwapConfigAllOf(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "swapTokenMint" in value;
+    isInstance = isInstance && "swapTokenAAccount" in value;
+    isInstance = isInstance && "swapTokenBAccount" in value;
+    isInstance = isInstance && "swapFeeAccount" in value;
+    isInstance = isInstance && "swapAuthority" in value;
+    isInstance = isInstance && "swap" in value;
+
+    return isInstance;
+}
+
 export function SplTokenSwapConfigAllOfFromJSON(json: any): SplTokenSwapConfigAllOf {
     return SplTokenSwapConfigAllOfFromJSONTyped(json, false);
 }

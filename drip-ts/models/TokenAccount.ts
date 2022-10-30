@@ -16,58 +16,74 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface MintRequest
+ * @interface TokenAccount
  */
-export interface MintRequest {
+export interface TokenAccount {
     /**
      * 
      * @type {string}
-     * @memberof MintRequest
+     * @memberof TokenAccount
+     */
+    pubkey: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenAccount
      */
     mint: string;
     /**
      * 
      * @type {string}
-     * @memberof MintRequest
+     * @memberof TokenAccount
      */
-    wallet: string;
+    owner: string;
     /**
      * 
      * @type {string}
-     * @memberof MintRequest
+     * @memberof TokenAccount
      */
     amount: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenAccount
+     */
+    state: string;
 }
 
 /**
- * Check if a given object implements the MintRequest interface.
+ * Check if a given object implements the TokenAccount interface.
  */
-export function instanceOfMintRequest(value: object): boolean {
+export function instanceOfTokenAccount(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "pubkey" in value;
     isInstance = isInstance && "mint" in value;
-    isInstance = isInstance && "wallet" in value;
+    isInstance = isInstance && "owner" in value;
     isInstance = isInstance && "amount" in value;
+    isInstance = isInstance && "state" in value;
 
     return isInstance;
 }
 
-export function MintRequestFromJSON(json: any): MintRequest {
-    return MintRequestFromJSONTyped(json, false);
+export function TokenAccountFromJSON(json: any): TokenAccount {
+    return TokenAccountFromJSONTyped(json, false);
 }
 
-export function MintRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): MintRequest {
+export function TokenAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokenAccount {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
+        'pubkey': json['pubkey'],
         'mint': json['mint'],
-        'wallet': json['wallet'],
+        'owner': json['owner'],
         'amount': json['amount'],
+        'state': json['state'],
     };
 }
 
-export function MintRequestToJSON(value?: MintRequest | null): any {
+export function TokenAccountToJSON(value?: TokenAccount | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -76,9 +92,11 @@ export function MintRequestToJSON(value?: MintRequest | null): any {
     }
     return {
         
+        'pubkey': value.pubkey,
         'mint': value.mint,
-        'wallet': value.wallet,
+        'owner': value.owner,
         'amount': value.amount,
+        'state': value.state,
     };
 }
 

@@ -13,24 +13,24 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ProtoConfig } from './ProtoConfig';
 import {
-    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigFromJSONTyped,
     ProtoConfigToJSON,
 } from './ProtoConfig';
+import type { Token } from './Token';
 import {
-    Token,
     TokenFromJSON,
     TokenFromJSONTyped,
     TokenToJSON,
 } from './Token';
+import type { TokenAccount } from './TokenAccount';
 import {
-    TokenAccountBalance,
-    TokenAccountBalanceFromJSON,
-    TokenAccountBalanceFromJSONTyped,
-    TokenAccountBalanceToJSON,
-} from './TokenAccountBalance';
+    TokenAccountFromJSON,
+    TokenAccountFromJSONTyped,
+    TokenAccountToJSON,
+} from './TokenAccount';
 
 /**
  * 
@@ -58,22 +58,31 @@ export interface ExpandedAdminVaultAllOf {
     tokenBMintValue?: Token;
     /**
      * 
-     * @type {TokenAccountBalance}
+     * @type {TokenAccount}
      * @memberof ExpandedAdminVaultAllOf
      */
-    tokenAAccountValue?: TokenAccountBalance;
+    tokenAAccountValue?: TokenAccount;
     /**
      * 
-     * @type {TokenAccountBalance}
+     * @type {TokenAccount}
      * @memberof ExpandedAdminVaultAllOf
      */
-    tokenBAccountValue?: TokenAccountBalance;
+    tokenBAccountValue?: TokenAccount;
     /**
      * 
-     * @type {TokenAccountBalance}
+     * @type {TokenAccount}
      * @memberof ExpandedAdminVaultAllOf
      */
-    treasuryTokenBAccountValue?: TokenAccountBalance;
+    treasuryTokenBAccountValue?: TokenAccount;
+}
+
+/**
+ * Check if a given object implements the ExpandedAdminVaultAllOf interface.
+ */
+export function instanceOfExpandedAdminVaultAllOf(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
 }
 
 export function ExpandedAdminVaultAllOfFromJSON(json: any): ExpandedAdminVaultAllOf {
@@ -89,9 +98,9 @@ export function ExpandedAdminVaultAllOfFromJSONTyped(json: any, ignoreDiscrimina
         'protoConfigValue': !exists(json, 'protoConfigValue') ? undefined : ProtoConfigFromJSON(json['protoConfigValue']),
         'tokenAMintValue': !exists(json, 'tokenAMintValue') ? undefined : TokenFromJSON(json['tokenAMintValue']),
         'tokenBMintValue': !exists(json, 'tokenBMintValue') ? undefined : TokenFromJSON(json['tokenBMintValue']),
-        'tokenAAccountValue': !exists(json, 'tokenAAccountValue') ? undefined : TokenAccountBalanceFromJSON(json['tokenAAccountValue']),
-        'tokenBAccountValue': !exists(json, 'tokenBAccountValue') ? undefined : TokenAccountBalanceFromJSON(json['tokenBAccountValue']),
-        'treasuryTokenBAccountValue': !exists(json, 'treasuryTokenBAccountValue') ? undefined : TokenAccountBalanceFromJSON(json['treasuryTokenBAccountValue']),
+        'tokenAAccountValue': !exists(json, 'tokenAAccountValue') ? undefined : TokenAccountFromJSON(json['tokenAAccountValue']),
+        'tokenBAccountValue': !exists(json, 'tokenBAccountValue') ? undefined : TokenAccountFromJSON(json['tokenBAccountValue']),
+        'treasuryTokenBAccountValue': !exists(json, 'treasuryTokenBAccountValue') ? undefined : TokenAccountFromJSON(json['treasuryTokenBAccountValue']),
     };
 }
 
@@ -107,9 +116,9 @@ export function ExpandedAdminVaultAllOfToJSON(value?: ExpandedAdminVaultAllOf | 
         'protoConfigValue': ProtoConfigToJSON(value.protoConfigValue),
         'tokenAMintValue': TokenToJSON(value.tokenAMintValue),
         'tokenBMintValue': TokenToJSON(value.tokenBMintValue),
-        'tokenAAccountValue': TokenAccountBalanceToJSON(value.tokenAAccountValue),
-        'tokenBAccountValue': TokenAccountBalanceToJSON(value.tokenBAccountValue),
-        'treasuryTokenBAccountValue': TokenAccountBalanceToJSON(value.treasuryTokenBAccountValue),
+        'tokenAAccountValue': TokenAccountToJSON(value.tokenAAccountValue),
+        'tokenBAccountValue': TokenAccountToJSON(value.tokenBAccountValue),
+        'treasuryTokenBAccountValue': TokenAccountToJSON(value.treasuryTokenBAccountValue),
     };
 }
 

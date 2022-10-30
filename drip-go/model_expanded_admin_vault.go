@@ -32,9 +32,9 @@ type ExpandedAdminVault struct {
 	ProtoConfigValue *ProtoConfig `json:"protoConfigValue,omitempty"`
 	TokenAMintValue *Token `json:"tokenAMintValue,omitempty"`
 	TokenBMintValue *Token `json:"tokenBMintValue,omitempty"`
-	TokenAAccountValue *TokenAccountBalance `json:"tokenAAccountValue,omitempty"`
-	TokenBAccountValue *TokenAccountBalance `json:"tokenBAccountValue,omitempty"`
-	TreasuryTokenBAccountValue *TokenAccountBalance `json:"treasuryTokenBAccountValue,omitempty"`
+	TokenAAccountValue *TokenAccount `json:"tokenAAccountValue,omitempty"`
+	TokenBAccountValue *TokenAccount `json:"tokenBAccountValue,omitempty"`
+	TreasuryTokenBAccountValue *TokenAccount `json:"treasuryTokenBAccountValue,omitempty"`
 }
 
 // NewExpandedAdminVault instantiates a new ExpandedAdminVault object
@@ -426,9 +426,9 @@ func (o *ExpandedAdminVault) SetTokenBMintValue(v Token) {
 }
 
 // GetTokenAAccountValue returns the TokenAAccountValue field value if set, zero value otherwise.
-func (o *ExpandedAdminVault) GetTokenAAccountValue() TokenAccountBalance {
+func (o *ExpandedAdminVault) GetTokenAAccountValue() TokenAccount {
 	if o == nil || o.TokenAAccountValue == nil {
-		var ret TokenAccountBalance
+		var ret TokenAccount
 		return ret
 	}
 	return *o.TokenAAccountValue
@@ -436,7 +436,7 @@ func (o *ExpandedAdminVault) GetTokenAAccountValue() TokenAccountBalance {
 
 // GetTokenAAccountValueOk returns a tuple with the TokenAAccountValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpandedAdminVault) GetTokenAAccountValueOk() (*TokenAccountBalance, bool) {
+func (o *ExpandedAdminVault) GetTokenAAccountValueOk() (*TokenAccount, bool) {
 	if o == nil || o.TokenAAccountValue == nil {
 		return nil, false
 	}
@@ -452,15 +452,15 @@ func (o *ExpandedAdminVault) HasTokenAAccountValue() bool {
 	return false
 }
 
-// SetTokenAAccountValue gets a reference to the given TokenAccountBalance and assigns it to the TokenAAccountValue field.
-func (o *ExpandedAdminVault) SetTokenAAccountValue(v TokenAccountBalance) {
+// SetTokenAAccountValue gets a reference to the given TokenAccount and assigns it to the TokenAAccountValue field.
+func (o *ExpandedAdminVault) SetTokenAAccountValue(v TokenAccount) {
 	o.TokenAAccountValue = &v
 }
 
 // GetTokenBAccountValue returns the TokenBAccountValue field value if set, zero value otherwise.
-func (o *ExpandedAdminVault) GetTokenBAccountValue() TokenAccountBalance {
+func (o *ExpandedAdminVault) GetTokenBAccountValue() TokenAccount {
 	if o == nil || o.TokenBAccountValue == nil {
-		var ret TokenAccountBalance
+		var ret TokenAccount
 		return ret
 	}
 	return *o.TokenBAccountValue
@@ -468,7 +468,7 @@ func (o *ExpandedAdminVault) GetTokenBAccountValue() TokenAccountBalance {
 
 // GetTokenBAccountValueOk returns a tuple with the TokenBAccountValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpandedAdminVault) GetTokenBAccountValueOk() (*TokenAccountBalance, bool) {
+func (o *ExpandedAdminVault) GetTokenBAccountValueOk() (*TokenAccount, bool) {
 	if o == nil || o.TokenBAccountValue == nil {
 		return nil, false
 	}
@@ -484,15 +484,15 @@ func (o *ExpandedAdminVault) HasTokenBAccountValue() bool {
 	return false
 }
 
-// SetTokenBAccountValue gets a reference to the given TokenAccountBalance and assigns it to the TokenBAccountValue field.
-func (o *ExpandedAdminVault) SetTokenBAccountValue(v TokenAccountBalance) {
+// SetTokenBAccountValue gets a reference to the given TokenAccount and assigns it to the TokenBAccountValue field.
+func (o *ExpandedAdminVault) SetTokenBAccountValue(v TokenAccount) {
 	o.TokenBAccountValue = &v
 }
 
 // GetTreasuryTokenBAccountValue returns the TreasuryTokenBAccountValue field value if set, zero value otherwise.
-func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValue() TokenAccountBalance {
+func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValue() TokenAccount {
 	if o == nil || o.TreasuryTokenBAccountValue == nil {
-		var ret TokenAccountBalance
+		var ret TokenAccount
 		return ret
 	}
 	return *o.TreasuryTokenBAccountValue
@@ -500,7 +500,7 @@ func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValue() TokenAccountBalance
 
 // GetTreasuryTokenBAccountValueOk returns a tuple with the TreasuryTokenBAccountValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValueOk() (*TokenAccountBalance, bool) {
+func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValueOk() (*TokenAccount, bool) {
 	if o == nil || o.TreasuryTokenBAccountValue == nil {
 		return nil, false
 	}
@@ -516,8 +516,8 @@ func (o *ExpandedAdminVault) HasTreasuryTokenBAccountValue() bool {
 	return false
 }
 
-// SetTreasuryTokenBAccountValue gets a reference to the given TokenAccountBalance and assigns it to the TreasuryTokenBAccountValue field.
-func (o *ExpandedAdminVault) SetTreasuryTokenBAccountValue(v TokenAccountBalance) {
+// SetTreasuryTokenBAccountValue gets a reference to the given TokenAccount and assigns it to the TreasuryTokenBAccountValue field.
+func (o *ExpandedAdminVault) SetTreasuryTokenBAccountValue(v TokenAccount) {
 	o.TreasuryTokenBAccountValue = &v
 }
 

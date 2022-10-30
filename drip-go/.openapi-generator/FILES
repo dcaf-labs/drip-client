@@ -25,7 +25,7 @@ docs/ProtoConfig.md
 docs/SplTokenSwapConfig.md
 docs/SplTokenSwapConfigAllOf.md
 docs/Token.md
-docs/TokenAccountBalance.md
+docs/TokenAccount.md
 docs/TokenMetadata.md
 docs/TokenMetadataCollection.md
 docs/TokenPair.md
@@ -52,7 +52,7 @@ model_proto_config.go
 model_spl_token_swap_config.go
 model_spl_token_swap_config_all_of.go
 model_token.go
-model_token_account_balance.go
+model_token_account.go
 model_token_metadata.go
 model_token_metadata_collection.go
 model_token_pair.go

@@ -57,6 +57,21 @@ export interface ProtoConfig {
     tokenBReferralSpread: number;
 }
 
+/**
+ * Check if a given object implements the ProtoConfig interface.
+ */
+export function instanceOfProtoConfig(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "pubkey" in value;
+    isInstance = isInstance && "admin" in value;
+    isInstance = isInstance && "granularity" in value;
+    isInstance = isInstance && "tokenADripTriggerSpread" in value;
+    isInstance = isInstance && "tokenBWithdrawalSpread" in value;
+    isInstance = isInstance && "tokenBReferralSpread" in value;
+
+    return isInstance;
+}
+
 export function ProtoConfigFromJSON(json: any): ProtoConfig {
     return ProtoConfigFromJSONTyped(json, false);
 }

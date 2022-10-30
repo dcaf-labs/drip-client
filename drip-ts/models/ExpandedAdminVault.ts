@@ -13,36 +13,24 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ProtoConfig } from './ProtoConfig';
 import {
-    ExpandedAdminVaultAllOf,
-    ExpandedAdminVaultAllOfFromJSON,
-    ExpandedAdminVaultAllOfFromJSONTyped,
-    ExpandedAdminVaultAllOfToJSON,
-} from './ExpandedAdminVaultAllOf';
-import {
-    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigFromJSONTyped,
     ProtoConfigToJSON,
 } from './ProtoConfig';
+import type { Token } from './Token';
 import {
-    Token,
     TokenFromJSON,
     TokenFromJSONTyped,
     TokenToJSON,
 } from './Token';
+import type { TokenAccount } from './TokenAccount';
 import {
-    TokenAccountBalance,
-    TokenAccountBalanceFromJSON,
-    TokenAccountBalanceFromJSONTyped,
-    TokenAccountBalanceToJSON,
-} from './TokenAccountBalance';
-import {
-    Vault,
-    VaultFromJSON,
-    VaultFromJSONTyped,
-    VaultToJSON,
-} from './Vault';
+    TokenAccountFromJSON,
+    TokenAccountFromJSONTyped,
+    TokenAccountToJSON,
+} from './TokenAccount';
 
 /**
  * Internal vault schema.
@@ -136,22 +124,42 @@ export interface ExpandedAdminVault {
     tokenBMintValue?: Token;
     /**
      * 
-     * @type {TokenAccountBalance}
+     * @type {TokenAccount}
      * @memberof ExpandedAdminVault
      */
-    tokenAAccountValue?: TokenAccountBalance;
+    tokenAAccountValue?: TokenAccount;
     /**
      * 
-     * @type {TokenAccountBalance}
+     * @type {TokenAccount}
      * @memberof ExpandedAdminVault
      */
-    tokenBAccountValue?: TokenAccountBalance;
+    tokenBAccountValue?: TokenAccount;
     /**
      * 
-     * @type {TokenAccountBalance}
+     * @type {TokenAccount}
      * @memberof ExpandedAdminVault
      */
-    treasuryTokenBAccountValue?: TokenAccountBalance;
+    treasuryTokenBAccountValue?: TokenAccount;
+}
+
+/**
+ * Check if a given object implements the ExpandedAdminVault interface.
+ */
+export function instanceOfExpandedAdminVault(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "pubkey" in value;
+    isInstance = isInstance && "protoConfig" in value;
+    isInstance = isInstance && "tokenAAccount" in value;
+    isInstance = isInstance && "tokenBAccount" in value;
+    isInstance = isInstance && "treasuryTokenBAccount" in value;
+    isInstance = isInstance && "tokenAMint" in value;
+    isInstance = isInstance && "tokenBMint" in value;
+    isInstance = isInstance && "lastDcaPeriod" in value;
+    isInstance = isInstance && "dripAmount" in value;
+    isInstance = isInstance && "dcaActivationTimestamp" in value;
+    isInstance = isInstance && "enabled" in value;
+
+    return isInstance;
 }
 
 export function ExpandedAdminVaultFromJSON(json: any): ExpandedAdminVault {
@@ -178,9 +186,9 @@ export function ExpandedAdminVaultFromJSONTyped(json: any, ignoreDiscriminator: 
         'protoConfigValue': !exists(json, 'protoConfigValue') ? undefined : ProtoConfigFromJSON(json['protoConfigValue']),
         'tokenAMintValue': !exists(json, 'tokenAMintValue') ? undefined : TokenFromJSON(json['tokenAMintValue']),
         'tokenBMintValue': !exists(json, 'tokenBMintValue') ? undefined : TokenFromJSON(json['tokenBMintValue']),
-        'tokenAAccountValue': !exists(json, 'tokenAAccountValue') ? undefined : TokenAccountBalanceFromJSON(json['tokenAAccountValue']),
-        'tokenBAccountValue': !exists(json, 'tokenBAccountValue') ? undefined : TokenAccountBalanceFromJSON(json['tokenBAccountValue']),
-        'treasuryTokenBAccountValue': !exists(json, 'treasuryTokenBAccountValue') ? undefined : TokenAccountBalanceFromJSON(json['treasuryTokenBAccountValue']),
+        'tokenAAccountValue': !exists(json, 'tokenAAccountValue') ? undefined : TokenAccountFromJSON(json['tokenAAccountValue']),
+        'tokenBAccountValue': !exists(json, 'tokenBAccountValue') ? undefined : TokenAccountFromJSON(json['tokenBAccountValue']),
+        'treasuryTokenBAccountValue': !exists(json, 'treasuryTokenBAccountValue') ? undefined : TokenAccountFromJSON(json['treasuryTokenBAccountValue']),
     };
 }
 
@@ -207,9 +215,9 @@ export function ExpandedAdminVaultToJSON(value?: ExpandedAdminVault | null): any
         'protoConfigValue': ProtoConfigToJSON(value.protoConfigValue),
         'tokenAMintValue': TokenToJSON(value.tokenAMintValue),
         'tokenBMintValue': TokenToJSON(value.tokenBMintValue),
-        'tokenAAccountValue': TokenAccountBalanceToJSON(value.tokenAAccountValue),
-        'tokenBAccountValue': TokenAccountBalanceToJSON(value.tokenBAccountValue),
-        'treasuryTokenBAccountValue': TokenAccountBalanceToJSON(value.treasuryTokenBAccountValue),
+        'tokenAAccountValue': TokenAccountToJSON(value.tokenAAccountValue),
+        'tokenBAccountValue': TokenAccountToJSON(value.tokenBAccountValue),
+        'treasuryTokenBAccountValue': TokenAccountToJSON(value.treasuryTokenBAccountValue),
     };
 }
 

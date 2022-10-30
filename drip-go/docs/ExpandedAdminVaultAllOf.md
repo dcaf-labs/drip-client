@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **ProtoConfigValue** | Pointer to [**ProtoConfig**](ProtoConfig.md) |  | [optional] 
 **TokenAMintValue** | Pointer to [**Token**](Token.md) |  | [optional] 
 **TokenBMintValue** | Pointer to [**Token**](Token.md) |  | [optional] 
-**TokenAAccountValue** | Pointer to [**TokenAccountBalance**](TokenAccountBalance.md) |  | [optional] 
-**TokenBAccountValue** | Pointer to [**TokenAccountBalance**](TokenAccountBalance.md) |  | [optional] 
-**TreasuryTokenBAccountValue** | Pointer to [**TokenAccountBalance**](TokenAccountBalance.md) |  | [optional] 
+**TokenAAccountValue** | Pointer to [**TokenAccount**](TokenAccount.md) |  | [optional] 
+**TokenBAccountValue** | Pointer to [**TokenAccount**](TokenAccount.md) |  | [optional] 
+**TreasuryTokenBAccountValue** | Pointer to [**TokenAccount**](TokenAccount.md) |  | [optional] 
 
 ## Methods
 
@@ -107,20 +107,20 @@ HasTokenBMintValue returns a boolean if a field has been set.
 
 ### GetTokenAAccountValue
 
-`func (o *ExpandedAdminVaultAllOf) GetTokenAAccountValue() TokenAccountBalance`
+`func (o *ExpandedAdminVaultAllOf) GetTokenAAccountValue() TokenAccount`
 
 GetTokenAAccountValue returns the TokenAAccountValue field if non-nil, zero value otherwise.
 
 ### GetTokenAAccountValueOk
 
-`func (o *ExpandedAdminVaultAllOf) GetTokenAAccountValueOk() (*TokenAccountBalance, bool)`
+`func (o *ExpandedAdminVaultAllOf) GetTokenAAccountValueOk() (*TokenAccount, bool)`
 
 GetTokenAAccountValueOk returns a tuple with the TokenAAccountValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTokenAAccountValue
 
-`func (o *ExpandedAdminVaultAllOf) SetTokenAAccountValue(v TokenAccountBalance)`
+`func (o *ExpandedAdminVaultAllOf) SetTokenAAccountValue(v TokenAccount)`
 
 SetTokenAAccountValue sets TokenAAccountValue field to given value.
 
@@ -132,20 +132,20 @@ HasTokenAAccountValue returns a boolean if a field has been set.
 
 ### GetTokenBAccountValue
 
-`func (o *ExpandedAdminVaultAllOf) GetTokenBAccountValue() TokenAccountBalance`
+`func (o *ExpandedAdminVaultAllOf) GetTokenBAccountValue() TokenAccount`
 
 GetTokenBAccountValue returns the TokenBAccountValue field if non-nil, zero value otherwise.
 
 ### GetTokenBAccountValueOk
 
-`func (o *ExpandedAdminVaultAllOf) GetTokenBAccountValueOk() (*TokenAccountBalance, bool)`
+`func (o *ExpandedAdminVaultAllOf) GetTokenBAccountValueOk() (*TokenAccount, bool)`
 
 GetTokenBAccountValueOk returns a tuple with the TokenBAccountValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTokenBAccountValue
 
-`func (o *ExpandedAdminVaultAllOf) SetTokenBAccountValue(v TokenAccountBalance)`
+`func (o *ExpandedAdminVaultAllOf) SetTokenBAccountValue(v TokenAccount)`
 
 SetTokenBAccountValue sets TokenBAccountValue field to given value.
 
@@ -157,20 +157,20 @@ HasTokenBAccountValue returns a boolean if a field has been set.
 
 ### GetTreasuryTokenBAccountValue
 
-`func (o *ExpandedAdminVaultAllOf) GetTreasuryTokenBAccountValue() TokenAccountBalance`
+`func (o *ExpandedAdminVaultAllOf) GetTreasuryTokenBAccountValue() TokenAccount`
 
 GetTreasuryTokenBAccountValue returns the TreasuryTokenBAccountValue field if non-nil, zero value otherwise.
 
 ### GetTreasuryTokenBAccountValueOk
 
-`func (o *ExpandedAdminVaultAllOf) GetTreasuryTokenBAccountValueOk() (*TokenAccountBalance, bool)`
+`func (o *ExpandedAdminVaultAllOf) GetTreasuryTokenBAccountValueOk() (*TokenAccount, bool)`
 
 GetTreasuryTokenBAccountValueOk returns a tuple with the TreasuryTokenBAccountValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTreasuryTokenBAccountValue
 
-`func (o *ExpandedAdminVaultAllOf) SetTreasuryTokenBAccountValue(v TokenAccountBalance)`
+`func (o *ExpandedAdminVaultAllOf) SetTreasuryTokenBAccountValue(v TokenAccount)`
 
 SetTreasuryTokenBAccountValue sets TreasuryTokenBAccountValue field to given value.
 
