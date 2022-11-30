@@ -62,7 +62,7 @@ func (o *TokenMetadata) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadata) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -86,7 +86,7 @@ func (o *TokenMetadata) GetSymbol() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadata) GetSymbolOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Symbol, true
 }
@@ -110,7 +110,7 @@ func (o *TokenMetadata) GetDescription() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadata) GetDescriptionOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Description, true
 }
@@ -134,7 +134,7 @@ func (o *TokenMetadata) GetImage() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadata) GetImageOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Image, true
 }
@@ -158,7 +158,7 @@ func (o *TokenMetadata) GetExternalUrl() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadata) GetExternalUrlOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ExternalUrl, true
 }
@@ -182,7 +182,7 @@ func (o *TokenMetadata) GetCollection() TokenMetadataCollection {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadata) GetCollectionOk() (*TokenMetadataCollection, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Collection, true
 }

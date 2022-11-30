@@ -52,7 +52,7 @@ func (o *PingResponse) GetMessage() string {
 // and a boolean to check if the value has been set.
 func (o *PingResponse) GetMessageOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Message, true
 }

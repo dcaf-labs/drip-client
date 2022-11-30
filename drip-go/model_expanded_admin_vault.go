@@ -79,7 +79,7 @@ func (o *ExpandedAdminVault) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -103,7 +103,7 @@ func (o *ExpandedAdminVault) GetProtoConfig() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetProtoConfigOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ProtoConfig, true
 }
@@ -127,7 +127,7 @@ func (o *ExpandedAdminVault) GetTokenAAccount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenAAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAAccount, true
 }
@@ -151,7 +151,7 @@ func (o *ExpandedAdminVault) GetTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBAccount, true
 }
@@ -175,7 +175,7 @@ func (o *ExpandedAdminVault) GetTreasuryTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTreasuryTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TreasuryTokenBAccount, true
 }
@@ -199,7 +199,7 @@ func (o *ExpandedAdminVault) GetTokenAMint() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenAMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAMint, true
 }
@@ -223,7 +223,7 @@ func (o *ExpandedAdminVault) GetTokenBMint() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenBMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBMint, true
 }
@@ -247,7 +247,7 @@ func (o *ExpandedAdminVault) GetLastDcaPeriod() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetLastDcaPeriodOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.LastDcaPeriod, true
 }
@@ -271,7 +271,7 @@ func (o *ExpandedAdminVault) GetDripAmount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetDripAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DripAmount, true
 }
@@ -295,7 +295,7 @@ func (o *ExpandedAdminVault) GetDcaActivationTimestamp() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetDcaActivationTimestampOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DcaActivationTimestamp, true
 }
@@ -319,7 +319,7 @@ func (o *ExpandedAdminVault) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Enabled, true
 }
@@ -331,7 +331,7 @@ func (o *ExpandedAdminVault) SetEnabled(v bool) {
 
 // GetProtoConfigValue returns the ProtoConfigValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetProtoConfigValue() ProtoConfig {
-	if o == nil || o.ProtoConfigValue == nil {
+	if o == nil || isNil(o.ProtoConfigValue) {
 		var ret ProtoConfig
 		return ret
 	}
@@ -341,15 +341,15 @@ func (o *ExpandedAdminVault) GetProtoConfigValue() ProtoConfig {
 // GetProtoConfigValueOk returns a tuple with the ProtoConfigValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetProtoConfigValueOk() (*ProtoConfig, bool) {
-	if o == nil || o.ProtoConfigValue == nil {
-		return nil, false
+	if o == nil || isNil(o.ProtoConfigValue) {
+    return nil, false
 	}
 	return o.ProtoConfigValue, true
 }
 
 // HasProtoConfigValue returns a boolean if a field has been set.
 func (o *ExpandedAdminVault) HasProtoConfigValue() bool {
-	if o != nil && o.ProtoConfigValue != nil {
+	if o != nil && !isNil(o.ProtoConfigValue) {
 		return true
 	}
 
@@ -363,7 +363,7 @@ func (o *ExpandedAdminVault) SetProtoConfigValue(v ProtoConfig) {
 
 // GetTokenAMintValue returns the TokenAMintValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetTokenAMintValue() Token {
-	if o == nil || o.TokenAMintValue == nil {
+	if o == nil || isNil(o.TokenAMintValue) {
 		var ret Token
 		return ret
 	}
@@ -373,15 +373,15 @@ func (o *ExpandedAdminVault) GetTokenAMintValue() Token {
 // GetTokenAMintValueOk returns a tuple with the TokenAMintValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenAMintValueOk() (*Token, bool) {
-	if o == nil || o.TokenAMintValue == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenAMintValue) {
+    return nil, false
 	}
 	return o.TokenAMintValue, true
 }
 
 // HasTokenAMintValue returns a boolean if a field has been set.
 func (o *ExpandedAdminVault) HasTokenAMintValue() bool {
-	if o != nil && o.TokenAMintValue != nil {
+	if o != nil && !isNil(o.TokenAMintValue) {
 		return true
 	}
 
@@ -395,7 +395,7 @@ func (o *ExpandedAdminVault) SetTokenAMintValue(v Token) {
 
 // GetTokenBMintValue returns the TokenBMintValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetTokenBMintValue() Token {
-	if o == nil || o.TokenBMintValue == nil {
+	if o == nil || isNil(o.TokenBMintValue) {
 		var ret Token
 		return ret
 	}
@@ -405,15 +405,15 @@ func (o *ExpandedAdminVault) GetTokenBMintValue() Token {
 // GetTokenBMintValueOk returns a tuple with the TokenBMintValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenBMintValueOk() (*Token, bool) {
-	if o == nil || o.TokenBMintValue == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenBMintValue) {
+    return nil, false
 	}
 	return o.TokenBMintValue, true
 }
 
 // HasTokenBMintValue returns a boolean if a field has been set.
 func (o *ExpandedAdminVault) HasTokenBMintValue() bool {
-	if o != nil && o.TokenBMintValue != nil {
+	if o != nil && !isNil(o.TokenBMintValue) {
 		return true
 	}
 
@@ -427,7 +427,7 @@ func (o *ExpandedAdminVault) SetTokenBMintValue(v Token) {
 
 // GetTokenAAccountValue returns the TokenAAccountValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetTokenAAccountValue() TokenAccount {
-	if o == nil || o.TokenAAccountValue == nil {
+	if o == nil || isNil(o.TokenAAccountValue) {
 		var ret TokenAccount
 		return ret
 	}
@@ -437,15 +437,15 @@ func (o *ExpandedAdminVault) GetTokenAAccountValue() TokenAccount {
 // GetTokenAAccountValueOk returns a tuple with the TokenAAccountValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenAAccountValueOk() (*TokenAccount, bool) {
-	if o == nil || o.TokenAAccountValue == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenAAccountValue) {
+    return nil, false
 	}
 	return o.TokenAAccountValue, true
 }
 
 // HasTokenAAccountValue returns a boolean if a field has been set.
 func (o *ExpandedAdminVault) HasTokenAAccountValue() bool {
-	if o != nil && o.TokenAAccountValue != nil {
+	if o != nil && !isNil(o.TokenAAccountValue) {
 		return true
 	}
 
@@ -459,7 +459,7 @@ func (o *ExpandedAdminVault) SetTokenAAccountValue(v TokenAccount) {
 
 // GetTokenBAccountValue returns the TokenBAccountValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetTokenBAccountValue() TokenAccount {
-	if o == nil || o.TokenBAccountValue == nil {
+	if o == nil || isNil(o.TokenBAccountValue) {
 		var ret TokenAccount
 		return ret
 	}
@@ -469,15 +469,15 @@ func (o *ExpandedAdminVault) GetTokenBAccountValue() TokenAccount {
 // GetTokenBAccountValueOk returns a tuple with the TokenBAccountValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTokenBAccountValueOk() (*TokenAccount, bool) {
-	if o == nil || o.TokenBAccountValue == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenBAccountValue) {
+    return nil, false
 	}
 	return o.TokenBAccountValue, true
 }
 
 // HasTokenBAccountValue returns a boolean if a field has been set.
 func (o *ExpandedAdminVault) HasTokenBAccountValue() bool {
-	if o != nil && o.TokenBAccountValue != nil {
+	if o != nil && !isNil(o.TokenBAccountValue) {
 		return true
 	}
 
@@ -491,7 +491,7 @@ func (o *ExpandedAdminVault) SetTokenBAccountValue(v TokenAccount) {
 
 // GetTreasuryTokenBAccountValue returns the TreasuryTokenBAccountValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValue() TokenAccount {
-	if o == nil || o.TreasuryTokenBAccountValue == nil {
+	if o == nil || isNil(o.TreasuryTokenBAccountValue) {
 		var ret TokenAccount
 		return ret
 	}
@@ -501,15 +501,15 @@ func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValue() TokenAccount {
 // GetTreasuryTokenBAccountValueOk returns a tuple with the TreasuryTokenBAccountValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminVault) GetTreasuryTokenBAccountValueOk() (*TokenAccount, bool) {
-	if o == nil || o.TreasuryTokenBAccountValue == nil {
-		return nil, false
+	if o == nil || isNil(o.TreasuryTokenBAccountValue) {
+    return nil, false
 	}
 	return o.TreasuryTokenBAccountValue, true
 }
 
 // HasTreasuryTokenBAccountValue returns a boolean if a field has been set.
 func (o *ExpandedAdminVault) HasTreasuryTokenBAccountValue() bool {
-	if o != nil && o.TreasuryTokenBAccountValue != nil {
+	if o != nil && !isNil(o.TreasuryTokenBAccountValue) {
 		return true
 	}
 
@@ -556,22 +556,22 @@ func (o ExpandedAdminVault) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if o.ProtoConfigValue != nil {
+	if !isNil(o.ProtoConfigValue) {
 		toSerialize["protoConfigValue"] = o.ProtoConfigValue
 	}
-	if o.TokenAMintValue != nil {
+	if !isNil(o.TokenAMintValue) {
 		toSerialize["tokenAMintValue"] = o.TokenAMintValue
 	}
-	if o.TokenBMintValue != nil {
+	if !isNil(o.TokenBMintValue) {
 		toSerialize["tokenBMintValue"] = o.TokenBMintValue
 	}
-	if o.TokenAAccountValue != nil {
+	if !isNil(o.TokenAAccountValue) {
 		toSerialize["tokenAAccountValue"] = o.TokenAAccountValue
 	}
-	if o.TokenBAccountValue != nil {
+	if !isNil(o.TokenBAccountValue) {
 		toSerialize["tokenBAccountValue"] = o.TokenBAccountValue
 	}
-	if o.TreasuryTokenBAccountValue != nil {
+	if !isNil(o.TreasuryTokenBAccountValue) {
 		toSerialize["treasuryTokenBAccountValue"] = o.TreasuryTokenBAccountValue
 	}
 	return json.Marshal(toSerialize)

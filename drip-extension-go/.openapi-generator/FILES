@@ -16,4 +16,5 @@ model_orca_whirlpool_swap_input.go
 model_v1_orcawhirlpool_quote_200_response.go
 model_v1_orcawhirlpool_quote_request.go
 response.go
+test/api_default_test.go
 utils.go

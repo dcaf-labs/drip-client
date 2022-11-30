@@ -62,7 +62,7 @@ func (o *SplTokenSwapConfigAllOf) GetSwapTokenMint() string {
 // and a boolean to check if the value has been set.
 func (o *SplTokenSwapConfigAllOf) GetSwapTokenMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SwapTokenMint, true
 }
@@ -86,7 +86,7 @@ func (o *SplTokenSwapConfigAllOf) GetSwapTokenAAccount() string {
 // and a boolean to check if the value has been set.
 func (o *SplTokenSwapConfigAllOf) GetSwapTokenAAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SwapTokenAAccount, true
 }
@@ -110,7 +110,7 @@ func (o *SplTokenSwapConfigAllOf) GetSwapTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *SplTokenSwapConfigAllOf) GetSwapTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SwapTokenBAccount, true
 }
@@ -134,7 +134,7 @@ func (o *SplTokenSwapConfigAllOf) GetSwapFeeAccount() string {
 // and a boolean to check if the value has been set.
 func (o *SplTokenSwapConfigAllOf) GetSwapFeeAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SwapFeeAccount, true
 }
@@ -158,7 +158,7 @@ func (o *SplTokenSwapConfigAllOf) GetSwapAuthority() string {
 // and a boolean to check if the value has been set.
 func (o *SplTokenSwapConfigAllOf) GetSwapAuthorityOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SwapAuthority, true
 }
@@ -182,7 +182,7 @@ func (o *SplTokenSwapConfigAllOf) GetSwap() string {
 // and a boolean to check if the value has been set.
 func (o *SplTokenSwapConfigAllOf) GetSwapOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Swap, true
 }

@@ -52,7 +52,7 @@ func (o *ErrorResponse) GetError() string {
 // and a boolean to check if the value has been set.
 func (o *ErrorResponse) GetErrorOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Error, true
 }

@@ -742,6 +742,29 @@ paths:
                 $ref: '#/components/schemas/errorResponse'
           description: Internal Server Error
       summary: Get all Tokens (A and B).
+  /v1/analytics/tvl:
+    get:
+      description: Get TVL across all Drip Vaults.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/currentTVLResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Internal Server Error
+      summary: Get current TVL across all vaults.
 components:
   parameters:
     enabledQueryParam:
@@ -985,6 +1008,15 @@ components:
           type: string
       required:
       - message
+    currentTVLResponse:
+      example:
+        totalUsdValue: totalUsdValue
+      properties:
+        totalUsdValue:
+          description: A float 64 string for the current tvl in USD.
+          type: string
+      required:
+      - totalUsdValue
     activeWallet:
       example:
         owner: owner

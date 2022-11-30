@@ -62,7 +62,7 @@ func (o *DripCommon) GetVault() string {
 // and a boolean to check if the value has been set.
 func (o *DripCommon) GetVaultOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Vault, true
 }
@@ -86,7 +86,7 @@ func (o *DripCommon) GetVaultProtoConfig() string {
 // and a boolean to check if the value has been set.
 func (o *DripCommon) GetVaultProtoConfigOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.VaultProtoConfig, true
 }
@@ -110,7 +110,7 @@ func (o *DripCommon) GetVaultTokenAAccount() string {
 // and a boolean to check if the value has been set.
 func (o *DripCommon) GetVaultTokenAAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.VaultTokenAAccount, true
 }
@@ -134,7 +134,7 @@ func (o *DripCommon) GetVaultTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *DripCommon) GetVaultTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.VaultTokenBAccount, true
 }
@@ -158,7 +158,7 @@ func (o *DripCommon) GetTokenAMint() string {
 // and a boolean to check if the value has been set.
 func (o *DripCommon) GetTokenAMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAMint, true
 }
@@ -182,7 +182,7 @@ func (o *DripCommon) GetTokenBMint() string {
 // and a boolean to check if the value has been set.
 func (o *DripCommon) GetTokenBMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBMint, true
 }

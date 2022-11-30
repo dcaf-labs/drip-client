@@ -60,7 +60,7 @@ func (o *TokenAccount) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *TokenAccount) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -84,7 +84,7 @@ func (o *TokenAccount) GetMint() string {
 // and a boolean to check if the value has been set.
 func (o *TokenAccount) GetMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Mint, true
 }
@@ -108,7 +108,7 @@ func (o *TokenAccount) GetOwner() string {
 // and a boolean to check if the value has been set.
 func (o *TokenAccount) GetOwnerOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Owner, true
 }
@@ -132,7 +132,7 @@ func (o *TokenAccount) GetAmount() string {
 // and a boolean to check if the value has been set.
 func (o *TokenAccount) GetAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Amount, true
 }
@@ -156,7 +156,7 @@ func (o *TokenAccount) GetState() string {
 // and a boolean to check if the value has been set.
 func (o *TokenAccount) GetStateOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.State, true
 }

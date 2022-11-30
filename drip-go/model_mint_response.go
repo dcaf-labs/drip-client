@@ -52,7 +52,7 @@ func (o *MintResponse) GetTxHash() string {
 // and a boolean to check if the value has been set.
 func (o *MintResponse) GetTxHashOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TxHash, true
 }

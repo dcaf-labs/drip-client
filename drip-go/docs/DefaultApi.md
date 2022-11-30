@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**MintPost**](DefaultApi.md#MintPost) | **Post** /mint | Mint tokens (DEVNET ONLY)
 [**RootGet**](DefaultApi.md#RootGet) | **Get** / | Health Check
 [**SwaggerJsonGet**](DefaultApi.md#SwaggerJsonGet) | **Get** /swagger.json | Swagger spec
+[**V1AnalyticsTvlGet**](DefaultApi.md#V1AnalyticsTvlGet) | **Get** /v1/analytics/tvl | Get current TVL across all vaults.
 [**V1DripOrcawhirlpoolconfigsGet**](DefaultApi.md#V1DripOrcawhirlpoolconfigsGet) | **Get** /v1/drip/orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
 [**V1DripPositionPubkeyPathMetadataGet**](DefaultApi.md#V1DripPositionPubkeyPathMetadataGet) | **Get** /v1/drip/position/{pubkeyPath}/metadata | Get Drip Position Metadata
 [**V1DripPubkeyPathTokenmetadataGet**](DefaultApi.md#V1DripPubkeyPathTokenmetadataGet) | **Get** /v1/drip/{pubkeyPath}/tokenmetadata | Get TokenMetadata for Devnet Mints.
@@ -192,6 +193,67 @@ Other parameters are passed through a pointer to a apiSwaggerJsonGetRequest stru
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1AnalyticsTvlGet
+
+> CurrentTVLResponse V1AnalyticsTvlGet(ctx).Execute()
+
+Get current TVL across all vaults.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.V1AnalyticsTvlGet(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.V1AnalyticsTvlGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1AnalyticsTvlGet`: CurrentTVLResponse
+    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.V1AnalyticsTvlGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1AnalyticsTvlGetRequest struct via the builder pattern
+
+
+### Return type
+
+[**CurrentTVLResponse**](CurrentTVLResponse.md)
 
 ### Authorization
 

@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**MintPost**](docs/DefaultApi.md#mintpost) | **Post** /mint | Mint tokens (DEVNET ONLY)
 *DefaultApi* | [**RootGet**](docs/DefaultApi.md#rootget) | **Get** / | Health Check
 *DefaultApi* | [**SwaggerJsonGet**](docs/DefaultApi.md#swaggerjsonget) | **Get** /swagger.json | Swagger spec
+*DefaultApi* | [**V1AnalyticsTvlGet**](docs/DefaultApi.md#v1analyticstvlget) | **Get** /v1/analytics/tvl | Get current TVL across all vaults.
 *DefaultApi* | [**V1DripOrcawhirlpoolconfigsGet**](docs/DefaultApi.md#v1driporcawhirlpoolconfigsget) | **Get** /v1/drip/orcawhirlpoolconfigs | Get Orca Whirlpool Swap Configs
 *DefaultApi* | [**V1DripPositionPubkeyPathMetadataGet**](docs/DefaultApi.md#v1drippositionpubkeypathmetadataget) | **Get** /v1/drip/position/{pubkeyPath}/metadata | Get Drip Position Metadata
 *DefaultApi* | [**V1DripPubkeyPathTokenmetadataGet**](docs/DefaultApi.md#v1drippubkeypathtokenmetadataget) | **Get** /v1/drip/{pubkeyPath}/tokenmetadata | Get TokenMetadata for Devnet Mints.
@@ -103,6 +104,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [ActiveWallet](docs/ActiveWallet.md)
+ - [CurrentTVLResponse](docs/CurrentTVLResponse.md)
  - [DripCommon](docs/DripCommon.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [ExpandedAdminPosition](docs/ExpandedAdminPosition.md)

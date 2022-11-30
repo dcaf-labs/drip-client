@@ -61,7 +61,7 @@ func (o *VaultPeriod) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *VaultPeriod) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -85,7 +85,7 @@ func (o *VaultPeriod) GetVault() string {
 // and a boolean to check if the value has been set.
 func (o *VaultPeriod) GetVaultOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Vault, true
 }
@@ -109,7 +109,7 @@ func (o *VaultPeriod) GetPeriodId() string {
 // and a boolean to check if the value has been set.
 func (o *VaultPeriod) GetPeriodIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.PeriodId, true
 }
@@ -133,7 +133,7 @@ func (o *VaultPeriod) GetTwap() string {
 // and a boolean to check if the value has been set.
 func (o *VaultPeriod) GetTwapOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Twap, true
 }
@@ -157,7 +157,7 @@ func (o *VaultPeriod) GetDar() string {
 // and a boolean to check if the value has been set.
 func (o *VaultPeriod) GetDarOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Dar, true
 }
@@ -169,7 +169,7 @@ func (o *VaultPeriod) SetDar(v string) {
 
 // GetPriceBOverA returns the PriceBOverA field value if set, zero value otherwise.
 func (o *VaultPeriod) GetPriceBOverA() string {
-	if o == nil || o.PriceBOverA == nil {
+	if o == nil || isNil(o.PriceBOverA) {
 		var ret string
 		return ret
 	}
@@ -179,15 +179,15 @@ func (o *VaultPeriod) GetPriceBOverA() string {
 // GetPriceBOverAOk returns a tuple with the PriceBOverA field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *VaultPeriod) GetPriceBOverAOk() (*string, bool) {
-	if o == nil || o.PriceBOverA == nil {
-		return nil, false
+	if o == nil || isNil(o.PriceBOverA) {
+    return nil, false
 	}
 	return o.PriceBOverA, true
 }
 
 // HasPriceBOverA returns a boolean if a field has been set.
 func (o *VaultPeriod) HasPriceBOverA() bool {
-	if o != nil && o.PriceBOverA != nil {
+	if o != nil && !isNil(o.PriceBOverA) {
 		return true
 	}
 
@@ -216,7 +216,7 @@ func (o VaultPeriod) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["dar"] = o.Dar
 	}
-	if o.PriceBOverA != nil {
+	if !isNil(o.PriceBOverA) {
 		toSerialize["priceBOverA"] = o.PriceBOverA
 	}
 	return json.Marshal(toSerialize)

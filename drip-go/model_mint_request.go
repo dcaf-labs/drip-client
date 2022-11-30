@@ -56,7 +56,7 @@ func (o *MintRequest) GetMint() string {
 // and a boolean to check if the value has been set.
 func (o *MintRequest) GetMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Mint, true
 }
@@ -80,7 +80,7 @@ func (o *MintRequest) GetWallet() string {
 // and a boolean to check if the value has been set.
 func (o *MintRequest) GetWalletOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Wallet, true
 }
@@ -104,7 +104,7 @@ func (o *MintRequest) GetAmount() string {
 // and a boolean to check if the value has been set.
 func (o *MintRequest) GetAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Amount, true
 }

@@ -70,7 +70,7 @@ func (o *OrcaWhirlpoolConfig) GetVault() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetVaultOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Vault, true
 }
@@ -94,7 +94,7 @@ func (o *OrcaWhirlpoolConfig) GetVaultProtoConfig() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetVaultProtoConfigOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.VaultProtoConfig, true
 }
@@ -118,7 +118,7 @@ func (o *OrcaWhirlpoolConfig) GetVaultTokenAAccount() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetVaultTokenAAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.VaultTokenAAccount, true
 }
@@ -142,7 +142,7 @@ func (o *OrcaWhirlpoolConfig) GetVaultTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetVaultTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.VaultTokenBAccount, true
 }
@@ -166,7 +166,7 @@ func (o *OrcaWhirlpoolConfig) GetTokenAMint() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetTokenAMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAMint, true
 }
@@ -190,7 +190,7 @@ func (o *OrcaWhirlpoolConfig) GetTokenBMint() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetTokenBMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBMint, true
 }
@@ -214,7 +214,7 @@ func (o *OrcaWhirlpoolConfig) GetWhirlpool() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetWhirlpoolOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Whirlpool, true
 }
@@ -238,7 +238,7 @@ func (o *OrcaWhirlpoolConfig) GetTokenVaultA() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetTokenVaultAOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenVaultA, true
 }
@@ -262,7 +262,7 @@ func (o *OrcaWhirlpoolConfig) GetTokenVaultB() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetTokenVaultBOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenVaultB, true
 }
@@ -286,7 +286,7 @@ func (o *OrcaWhirlpoolConfig) GetOracle() string {
 // and a boolean to check if the value has been set.
 func (o *OrcaWhirlpoolConfig) GetOracleOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Oracle, true
 }

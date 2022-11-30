@@ -70,7 +70,7 @@ func (o *Position) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -94,7 +94,7 @@ func (o *Position) GetVault() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetVaultOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Vault, true
 }
@@ -118,7 +118,7 @@ func (o *Position) GetAuthority() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetAuthorityOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Authority, true
 }
@@ -142,7 +142,7 @@ func (o *Position) GetDepositedTokenAAmount() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetDepositedTokenAAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DepositedTokenAAmount, true
 }
@@ -166,7 +166,7 @@ func (o *Position) GetWithdrawnTokenBAmount() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetWithdrawnTokenBAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.WithdrawnTokenBAmount, true
 }
@@ -190,7 +190,7 @@ func (o *Position) GetDepositTimestamp() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetDepositTimestampOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DepositTimestamp, true
 }
@@ -214,7 +214,7 @@ func (o *Position) GetDcaPeriodIdBeforeDeposit() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetDcaPeriodIdBeforeDepositOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DcaPeriodIdBeforeDeposit, true
 }
@@ -238,7 +238,7 @@ func (o *Position) GetNumberOfSwaps() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetNumberOfSwapsOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.NumberOfSwaps, true
 }
@@ -262,7 +262,7 @@ func (o *Position) GetPeriodicDripAmount() string {
 // and a boolean to check if the value has been set.
 func (o *Position) GetPeriodicDripAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.PeriodicDripAmount, true
 }
@@ -286,7 +286,7 @@ func (o *Position) GetIsClosed() bool {
 // and a boolean to check if the value has been set.
 func (o *Position) GetIsClosedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.IsClosed, true
 }

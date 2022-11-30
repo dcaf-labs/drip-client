@@ -66,7 +66,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetAmount() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Amount, true
 }
@@ -90,7 +90,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetOtherAmountThreshold() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetOtherAmountThresholdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.OtherAmountThreshold, true
 }
@@ -114,7 +114,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetSqrtPriceLimit() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetSqrtPriceLimitOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.SqrtPriceLimit, true
 }
@@ -138,7 +138,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetAmountSpecifiedIsInput() bool {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetAmountSpecifiedIsInputOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.AmountSpecifiedIsInput, true
 }
@@ -162,7 +162,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetAToB() bool {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetAToBOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.AToB, true
 }
@@ -186,7 +186,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetTickArray0() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetTickArray0Ok() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TickArray0, true
 }
@@ -210,7 +210,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetTickArray1() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetTickArray1Ok() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TickArray1, true
 }
@@ -234,7 +234,7 @@ func (o *V1OrcawhirlpoolQuote200Response) GetTickArray2() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuote200Response) GetTickArray2Ok() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TickArray2, true
 }

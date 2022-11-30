@@ -54,7 +54,7 @@ func (o *ActiveWallet) GetOwner() string {
 // and a boolean to check if the value has been set.
 func (o *ActiveWallet) GetOwnerOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Owner, true
 }
@@ -78,7 +78,7 @@ func (o *ActiveWallet) GetPositionCount() int32 {
 // and a boolean to check if the value has been set.
 func (o *ActiveWallet) GetPositionCountOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.PositionCount, true
 }

@@ -42,7 +42,7 @@ func NewExpandedAdminPositionAllOfWithDefaults() *ExpandedAdminPositionAllOf {
 
 // GetVault returns the Vault field value if set, zero value otherwise.
 func (o *ExpandedAdminPositionAllOf) GetVault() Vault {
-	if o == nil || o.Vault == nil {
+	if o == nil || isNil(o.Vault) {
 		var ret Vault
 		return ret
 	}
@@ -52,15 +52,15 @@ func (o *ExpandedAdminPositionAllOf) GetVault() Vault {
 // GetVaultOk returns a tuple with the Vault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPositionAllOf) GetVaultOk() (*Vault, bool) {
-	if o == nil || o.Vault == nil {
-		return nil, false
+	if o == nil || isNil(o.Vault) {
+    return nil, false
 	}
 	return o.Vault, true
 }
 
 // HasVault returns a boolean if a field has been set.
 func (o *ExpandedAdminPositionAllOf) HasVault() bool {
-	if o != nil && o.Vault != nil {
+	if o != nil && !isNil(o.Vault) {
 		return true
 	}
 
@@ -74,7 +74,7 @@ func (o *ExpandedAdminPositionAllOf) SetVault(v Vault) {
 
 // GetProtoConfig returns the ProtoConfig field value if set, zero value otherwise.
 func (o *ExpandedAdminPositionAllOf) GetProtoConfig() ProtoConfig {
-	if o == nil || o.ProtoConfig == nil {
+	if o == nil || isNil(o.ProtoConfig) {
 		var ret ProtoConfig
 		return ret
 	}
@@ -84,15 +84,15 @@ func (o *ExpandedAdminPositionAllOf) GetProtoConfig() ProtoConfig {
 // GetProtoConfigOk returns a tuple with the ProtoConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPositionAllOf) GetProtoConfigOk() (*ProtoConfig, bool) {
-	if o == nil || o.ProtoConfig == nil {
-		return nil, false
+	if o == nil || isNil(o.ProtoConfig) {
+    return nil, false
 	}
 	return o.ProtoConfig, true
 }
 
 // HasProtoConfig returns a boolean if a field has been set.
 func (o *ExpandedAdminPositionAllOf) HasProtoConfig() bool {
-	if o != nil && o.ProtoConfig != nil {
+	if o != nil && !isNil(o.ProtoConfig) {
 		return true
 	}
 
@@ -106,7 +106,7 @@ func (o *ExpandedAdminPositionAllOf) SetProtoConfig(v ProtoConfig) {
 
 // GetTokenA returns the TokenA field value if set, zero value otherwise.
 func (o *ExpandedAdminPositionAllOf) GetTokenA() Token {
-	if o == nil || o.TokenA == nil {
+	if o == nil || isNil(o.TokenA) {
 		var ret Token
 		return ret
 	}
@@ -116,15 +116,15 @@ func (o *ExpandedAdminPositionAllOf) GetTokenA() Token {
 // GetTokenAOk returns a tuple with the TokenA field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPositionAllOf) GetTokenAOk() (*Token, bool) {
-	if o == nil || o.TokenA == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenA) {
+    return nil, false
 	}
 	return o.TokenA, true
 }
 
 // HasTokenA returns a boolean if a field has been set.
 func (o *ExpandedAdminPositionAllOf) HasTokenA() bool {
-	if o != nil && o.TokenA != nil {
+	if o != nil && !isNil(o.TokenA) {
 		return true
 	}
 
@@ -138,7 +138,7 @@ func (o *ExpandedAdminPositionAllOf) SetTokenA(v Token) {
 
 // GetTokenB returns the TokenB field value if set, zero value otherwise.
 func (o *ExpandedAdminPositionAllOf) GetTokenB() Token {
-	if o == nil || o.TokenB == nil {
+	if o == nil || isNil(o.TokenB) {
 		var ret Token
 		return ret
 	}
@@ -148,15 +148,15 @@ func (o *ExpandedAdminPositionAllOf) GetTokenB() Token {
 // GetTokenBOk returns a tuple with the TokenB field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPositionAllOf) GetTokenBOk() (*Token, bool) {
-	if o == nil || o.TokenB == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenB) {
+    return nil, false
 	}
 	return o.TokenB, true
 }
 
 // HasTokenB returns a boolean if a field has been set.
 func (o *ExpandedAdminPositionAllOf) HasTokenB() bool {
-	if o != nil && o.TokenB != nil {
+	if o != nil && !isNil(o.TokenB) {
 		return true
 	}
 
@@ -170,16 +170,16 @@ func (o *ExpandedAdminPositionAllOf) SetTokenB(v Token) {
 
 func (o ExpandedAdminPositionAllOf) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Vault != nil {
+	if !isNil(o.Vault) {
 		toSerialize["vault"] = o.Vault
 	}
-	if o.ProtoConfig != nil {
+	if !isNil(o.ProtoConfig) {
 		toSerialize["protoConfig"] = o.ProtoConfig
 	}
-	if o.TokenA != nil {
+	if !isNil(o.TokenA) {
 		toSerialize["tokenA"] = o.TokenA
 	}
-	if o.TokenB != nil {
+	if !isNil(o.TokenB) {
 		toSerialize["tokenB"] = o.TokenB
 	}
 	return json.Marshal(toSerialize)

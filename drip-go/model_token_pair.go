@@ -56,7 +56,7 @@ func (o *TokenPair) GetId() string {
 // and a boolean to check if the value has been set.
 func (o *TokenPair) GetIdOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Id, true
 }
@@ -80,7 +80,7 @@ func (o *TokenPair) GetTokenA() string {
 // and a boolean to check if the value has been set.
 func (o *TokenPair) GetTokenAOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenA, true
 }
@@ -104,7 +104,7 @@ func (o *TokenPair) GetTokenB() string {
 // and a boolean to check if the value has been set.
 func (o *TokenPair) GetTokenBOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenB, true
 }

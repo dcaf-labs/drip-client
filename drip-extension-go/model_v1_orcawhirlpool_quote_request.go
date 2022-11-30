@@ -58,7 +58,7 @@ func (o *V1OrcawhirlpoolQuoteRequest) GetConnectionUrl() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuoteRequest) GetConnectionUrlOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ConnectionUrl, true
 }
@@ -82,7 +82,7 @@ func (o *V1OrcawhirlpoolQuoteRequest) GetWhirlpool() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuoteRequest) GetWhirlpoolOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Whirlpool, true
 }
@@ -106,7 +106,7 @@ func (o *V1OrcawhirlpoolQuoteRequest) GetInputTokenMint() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuoteRequest) GetInputTokenMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.InputTokenMint, true
 }
@@ -130,7 +130,7 @@ func (o *V1OrcawhirlpoolQuoteRequest) GetInputAmount() string {
 // and a boolean to check if the value has been set.
 func (o *V1OrcawhirlpoolQuoteRequest) GetInputAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.InputAmount, true
 }

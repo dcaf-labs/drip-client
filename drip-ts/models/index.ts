@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './ActiveWallet';
+export * from './CurrentTVLResponse';
 export * from './DripCommon';
 export * from './ErrorResponse';
 export * from './ExpandedAdminPosition';

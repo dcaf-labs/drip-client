@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  CurrentTVLResponse,
   ErrorResponse,
   MintRequest,
   MintResponse,
@@ -29,6 +30,8 @@ import type {
   VaultPeriod,
 } from '../models';
 import {
+    CurrentTVLResponseFromJSON,
+    CurrentTVLResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     MintRequestFromJSON,
@@ -200,6 +203,34 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async swaggerJsonGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.swaggerJsonGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get TVL across all Drip Vaults.
+     * Get current TVL across all vaults.
+     */
+    async v1AnalyticsTvlGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CurrentTVLResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/v1/analytics/tvl`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CurrentTVLResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get TVL across all Drip Vaults.
+     * Get current TVL across all vaults.
+     */
+    async v1AnalyticsTvlGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CurrentTVLResponse> {
+        const response = await this.v1AnalyticsTvlGetRaw(initOverrides);
         return await response.value();
     }
 

@@ -3,6 +3,7 @@ apis/DefaultApi.ts
 apis/index.ts
 index.ts
 models/ActiveWallet.ts
+models/CurrentTVLResponse.ts
 models/DripCommon.ts
 models/ErrorResponse.ts
 models/ExpandedAdminPosition.ts

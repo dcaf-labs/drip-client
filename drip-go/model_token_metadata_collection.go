@@ -54,7 +54,7 @@ func (o *TokenMetadataCollection) GetName() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadataCollection) GetNameOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Name, true
 }
@@ -78,7 +78,7 @@ func (o *TokenMetadataCollection) GetFamily() string {
 // and a boolean to check if the value has been set.
 func (o *TokenMetadataCollection) GetFamilyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Family, true
 }

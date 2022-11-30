@@ -62,7 +62,7 @@ func (o *ProtoConfig) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *ProtoConfig) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -86,7 +86,7 @@ func (o *ProtoConfig) GetAdmin() string {
 // and a boolean to check if the value has been set.
 func (o *ProtoConfig) GetAdminOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Admin, true
 }
@@ -110,7 +110,7 @@ func (o *ProtoConfig) GetGranularity() string {
 // and a boolean to check if the value has been set.
 func (o *ProtoConfig) GetGranularityOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Granularity, true
 }
@@ -134,7 +134,7 @@ func (o *ProtoConfig) GetTokenADripTriggerSpread() int32 {
 // and a boolean to check if the value has been set.
 func (o *ProtoConfig) GetTokenADripTriggerSpreadOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenADripTriggerSpread, true
 }
@@ -158,7 +158,7 @@ func (o *ProtoConfig) GetTokenBWithdrawalSpread() int32 {
 // and a boolean to check if the value has been set.
 func (o *ProtoConfig) GetTokenBWithdrawalSpreadOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBWithdrawalSpread, true
 }
@@ -182,7 +182,7 @@ func (o *ProtoConfig) GetTokenBReferralSpread() int32 {
 // and a boolean to check if the value has been set.
 func (o *ProtoConfig) GetTokenBReferralSpreadOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBReferralSpread, true
 }

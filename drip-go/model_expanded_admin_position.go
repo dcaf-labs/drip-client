@@ -73,7 +73,7 @@ func (o *ExpandedAdminPosition) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -97,7 +97,7 @@ func (o *ExpandedAdminPosition) GetVault() Vault {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetVaultOk() (*Vault, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Vault, true
 }
@@ -121,7 +121,7 @@ func (o *ExpandedAdminPosition) GetAuthority() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetAuthorityOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Authority, true
 }
@@ -145,7 +145,7 @@ func (o *ExpandedAdminPosition) GetDepositedTokenAAmount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetDepositedTokenAAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DepositedTokenAAmount, true
 }
@@ -169,7 +169,7 @@ func (o *ExpandedAdminPosition) GetWithdrawnTokenBAmount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetWithdrawnTokenBAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.WithdrawnTokenBAmount, true
 }
@@ -193,7 +193,7 @@ func (o *ExpandedAdminPosition) GetDepositTimestamp() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetDepositTimestampOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DepositTimestamp, true
 }
@@ -217,7 +217,7 @@ func (o *ExpandedAdminPosition) GetDcaPeriodIdBeforeDeposit() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetDcaPeriodIdBeforeDepositOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DcaPeriodIdBeforeDeposit, true
 }
@@ -241,7 +241,7 @@ func (o *ExpandedAdminPosition) GetNumberOfSwaps() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetNumberOfSwapsOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.NumberOfSwaps, true
 }
@@ -265,7 +265,7 @@ func (o *ExpandedAdminPosition) GetPeriodicDripAmount() string {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetPeriodicDripAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.PeriodicDripAmount, true
 }
@@ -289,7 +289,7 @@ func (o *ExpandedAdminPosition) GetIsClosed() bool {
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetIsClosedOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.IsClosed, true
 }
@@ -301,7 +301,7 @@ func (o *ExpandedAdminPosition) SetIsClosed(v bool) {
 
 // GetProtoConfig returns the ProtoConfig field value if set, zero value otherwise.
 func (o *ExpandedAdminPosition) GetProtoConfig() ProtoConfig {
-	if o == nil || o.ProtoConfig == nil {
+	if o == nil || isNil(o.ProtoConfig) {
 		var ret ProtoConfig
 		return ret
 	}
@@ -311,15 +311,15 @@ func (o *ExpandedAdminPosition) GetProtoConfig() ProtoConfig {
 // GetProtoConfigOk returns a tuple with the ProtoConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetProtoConfigOk() (*ProtoConfig, bool) {
-	if o == nil || o.ProtoConfig == nil {
-		return nil, false
+	if o == nil || isNil(o.ProtoConfig) {
+    return nil, false
 	}
 	return o.ProtoConfig, true
 }
 
 // HasProtoConfig returns a boolean if a field has been set.
 func (o *ExpandedAdminPosition) HasProtoConfig() bool {
-	if o != nil && o.ProtoConfig != nil {
+	if o != nil && !isNil(o.ProtoConfig) {
 		return true
 	}
 
@@ -333,7 +333,7 @@ func (o *ExpandedAdminPosition) SetProtoConfig(v ProtoConfig) {
 
 // GetTokenA returns the TokenA field value if set, zero value otherwise.
 func (o *ExpandedAdminPosition) GetTokenA() Token {
-	if o == nil || o.TokenA == nil {
+	if o == nil || isNil(o.TokenA) {
 		var ret Token
 		return ret
 	}
@@ -343,15 +343,15 @@ func (o *ExpandedAdminPosition) GetTokenA() Token {
 // GetTokenAOk returns a tuple with the TokenA field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetTokenAOk() (*Token, bool) {
-	if o == nil || o.TokenA == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenA) {
+    return nil, false
 	}
 	return o.TokenA, true
 }
 
 // HasTokenA returns a boolean if a field has been set.
 func (o *ExpandedAdminPosition) HasTokenA() bool {
-	if o != nil && o.TokenA != nil {
+	if o != nil && !isNil(o.TokenA) {
 		return true
 	}
 
@@ -365,7 +365,7 @@ func (o *ExpandedAdminPosition) SetTokenA(v Token) {
 
 // GetTokenB returns the TokenB field value if set, zero value otherwise.
 func (o *ExpandedAdminPosition) GetTokenB() Token {
-	if o == nil || o.TokenB == nil {
+	if o == nil || isNil(o.TokenB) {
 		var ret Token
 		return ret
 	}
@@ -375,15 +375,15 @@ func (o *ExpandedAdminPosition) GetTokenB() Token {
 // GetTokenBOk returns a tuple with the TokenB field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExpandedAdminPosition) GetTokenBOk() (*Token, bool) {
-	if o == nil || o.TokenB == nil {
-		return nil, false
+	if o == nil || isNil(o.TokenB) {
+    return nil, false
 	}
 	return o.TokenB, true
 }
 
 // HasTokenB returns a boolean if a field has been set.
 func (o *ExpandedAdminPosition) HasTokenB() bool {
-	if o != nil && o.TokenB != nil {
+	if o != nil && !isNil(o.TokenB) {
 		return true
 	}
 
@@ -427,13 +427,13 @@ func (o ExpandedAdminPosition) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["isClosed"] = o.IsClosed
 	}
-	if o.ProtoConfig != nil {
+	if !isNil(o.ProtoConfig) {
 		toSerialize["protoConfig"] = o.ProtoConfig
 	}
-	if o.TokenA != nil {
+	if !isNil(o.TokenA) {
 		toSerialize["tokenA"] = o.TokenA
 	}
-	if o.TokenB != nil {
+	if !isNil(o.TokenB) {
 		toSerialize["tokenB"] = o.TokenB
 	}
 	return json.Marshal(toSerialize)

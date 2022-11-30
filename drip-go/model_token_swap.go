@@ -65,7 +65,7 @@ func (o *TokenSwap) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -89,7 +89,7 @@ func (o *TokenSwap) GetMint() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Mint, true
 }
@@ -113,7 +113,7 @@ func (o *TokenSwap) GetAuthority() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetAuthorityOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Authority, true
 }
@@ -137,7 +137,7 @@ func (o *TokenSwap) GetFeeAccount() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetFeeAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.FeeAccount, true
 }
@@ -161,7 +161,7 @@ func (o *TokenSwap) GetTokenAAccount() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetTokenAAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAAccount, true
 }
@@ -185,7 +185,7 @@ func (o *TokenSwap) GetTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBAccount, true
 }
@@ -209,7 +209,7 @@ func (o *TokenSwap) GetPair() string {
 // and a boolean to check if the value has been set.
 func (o *TokenSwap) GetPairOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pair, true
 }

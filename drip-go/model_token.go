@@ -57,7 +57,7 @@ func (o *Token) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *Token) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -81,7 +81,7 @@ func (o *Token) GetDecimals() int32 {
 // and a boolean to check if the value has been set.
 func (o *Token) GetDecimalsOk() (*int32, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Decimals, true
 }
@@ -93,7 +93,7 @@ func (o *Token) SetDecimals(v int32) {
 
 // GetSymbol returns the Symbol field value if set, zero value otherwise.
 func (o *Token) GetSymbol() string {
-	if o == nil || o.Symbol == nil {
+	if o == nil || isNil(o.Symbol) {
 		var ret string
 		return ret
 	}
@@ -103,15 +103,15 @@ func (o *Token) GetSymbol() string {
 // GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Token) GetSymbolOk() (*string, bool) {
-	if o == nil || o.Symbol == nil {
-		return nil, false
+	if o == nil || isNil(o.Symbol) {
+    return nil, false
 	}
 	return o.Symbol, true
 }
 
 // HasSymbol returns a boolean if a field has been set.
 func (o *Token) HasSymbol() bool {
-	if o != nil && o.Symbol != nil {
+	if o != nil && !isNil(o.Symbol) {
 		return true
 	}
 
@@ -125,7 +125,7 @@ func (o *Token) SetSymbol(v string) {
 
 // GetIconUrl returns the IconUrl field value if set, zero value otherwise.
 func (o *Token) GetIconUrl() string {
-	if o == nil || o.IconUrl == nil {
+	if o == nil || isNil(o.IconUrl) {
 		var ret string
 		return ret
 	}
@@ -135,15 +135,15 @@ func (o *Token) GetIconUrl() string {
 // GetIconUrlOk returns a tuple with the IconUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Token) GetIconUrlOk() (*string, bool) {
-	if o == nil || o.IconUrl == nil {
-		return nil, false
+	if o == nil || isNil(o.IconUrl) {
+    return nil, false
 	}
 	return o.IconUrl, true
 }
 
 // HasIconUrl returns a boolean if a field has been set.
 func (o *Token) HasIconUrl() bool {
-	if o != nil && o.IconUrl != nil {
+	if o != nil && !isNil(o.IconUrl) {
 		return true
 	}
 
@@ -157,7 +157,7 @@ func (o *Token) SetIconUrl(v string) {
 
 // GetCoinGeckoId returns the CoinGeckoId field value if set, zero value otherwise.
 func (o *Token) GetCoinGeckoId() string {
-	if o == nil || o.CoinGeckoId == nil {
+	if o == nil || isNil(o.CoinGeckoId) {
 		var ret string
 		return ret
 	}
@@ -167,15 +167,15 @@ func (o *Token) GetCoinGeckoId() string {
 // GetCoinGeckoIdOk returns a tuple with the CoinGeckoId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Token) GetCoinGeckoIdOk() (*string, bool) {
-	if o == nil || o.CoinGeckoId == nil {
-		return nil, false
+	if o == nil || isNil(o.CoinGeckoId) {
+    return nil, false
 	}
 	return o.CoinGeckoId, true
 }
 
 // HasCoinGeckoId returns a boolean if a field has been set.
 func (o *Token) HasCoinGeckoId() bool {
-	if o != nil && o.CoinGeckoId != nil {
+	if o != nil && !isNil(o.CoinGeckoId) {
 		return true
 	}
 
@@ -195,13 +195,13 @@ func (o Token) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["decimals"] = o.Decimals
 	}
-	if o.Symbol != nil {
+	if !isNil(o.Symbol) {
 		toSerialize["symbol"] = o.Symbol
 	}
-	if o.IconUrl != nil {
+	if !isNil(o.IconUrl) {
 		toSerialize["iconUrl"] = o.IconUrl
 	}
-	if o.CoinGeckoId != nil {
+	if !isNil(o.CoinGeckoId) {
 		toSerialize["coinGeckoId"] = o.CoinGeckoId
 	}
 	return json.Marshal(toSerialize)

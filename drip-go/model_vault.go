@@ -73,7 +73,7 @@ func (o *Vault) GetPubkey() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetPubkeyOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Pubkey, true
 }
@@ -97,7 +97,7 @@ func (o *Vault) GetProtoConfig() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetProtoConfigOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.ProtoConfig, true
 }
@@ -121,7 +121,7 @@ func (o *Vault) GetTokenAAccount() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetTokenAAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAAccount, true
 }
@@ -145,7 +145,7 @@ func (o *Vault) GetTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBAccount, true
 }
@@ -169,7 +169,7 @@ func (o *Vault) GetTreasuryTokenBAccount() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetTreasuryTokenBAccountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TreasuryTokenBAccount, true
 }
@@ -193,7 +193,7 @@ func (o *Vault) GetTokenAMint() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetTokenAMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenAMint, true
 }
@@ -217,7 +217,7 @@ func (o *Vault) GetTokenBMint() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetTokenBMintOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.TokenBMint, true
 }
@@ -241,7 +241,7 @@ func (o *Vault) GetLastDcaPeriod() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetLastDcaPeriodOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.LastDcaPeriod, true
 }
@@ -265,7 +265,7 @@ func (o *Vault) GetDripAmount() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetDripAmountOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DripAmount, true
 }
@@ -289,7 +289,7 @@ func (o *Vault) GetDcaActivationTimestamp() string {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetDcaActivationTimestampOk() (*string, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.DcaActivationTimestamp, true
 }
@@ -313,7 +313,7 @@ func (o *Vault) GetEnabled() bool {
 // and a boolean to check if the value has been set.
 func (o *Vault) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-		return nil, false
+    return nil, false
 	}
 	return &o.Enabled, true
 }
