@@ -15,6 +15,9 @@ Name | Type | Description | Notes
 **DripAmount** | **string** |  | 
 **DcaActivationTimestamp** | **string** | unix timestamp | 
 **Enabled** | **bool** |  | 
+**MaxSlippageBps** | **int32** |  | 
+**MaxPriceDeviationBps** | **int32** |  | 
+**OracleConfig** | Pointer to **string** |  | [optional] 
 **ProtoConfigValue** | Pointer to [**ProtoConfig**](ProtoConfig.md) |  | [optional] 
 **TokenAMintValue** | Pointer to [**Token**](Token.md) |  | [optional] 
 **TokenBMintValue** | Pointer to [**Token**](Token.md) |  | [optional] 
@@ -26,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewExpandedAdminVault
 
-`func NewExpandedAdminVault(pubkey string, protoConfig string, tokenAAccount string, tokenBAccount string, treasuryTokenBAccount string, tokenAMint string, tokenBMint string, lastDcaPeriod string, dripAmount string, dcaActivationTimestamp string, enabled bool, ) *ExpandedAdminVault`
+`func NewExpandedAdminVault(pubkey string, protoConfig string, tokenAAccount string, tokenBAccount string, treasuryTokenBAccount string, tokenAMint string, tokenBMint string, lastDcaPeriod string, dripAmount string, dcaActivationTimestamp string, enabled bool, maxSlippageBps int32, maxPriceDeviationBps int32, ) *ExpandedAdminVault`
 
 NewExpandedAdminVault instantiates a new ExpandedAdminVault object
 This constructor will assign default values to properties that have it defined,
@@ -260,6 +263,71 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+
+### GetMaxSlippageBps
+
+`func (o *ExpandedAdminVault) GetMaxSlippageBps() int32`
+
+GetMaxSlippageBps returns the MaxSlippageBps field if non-nil, zero value otherwise.
+
+### GetMaxSlippageBpsOk
+
+`func (o *ExpandedAdminVault) GetMaxSlippageBpsOk() (*int32, bool)`
+
+GetMaxSlippageBpsOk returns a tuple with the MaxSlippageBps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxSlippageBps
+
+`func (o *ExpandedAdminVault) SetMaxSlippageBps(v int32)`
+
+SetMaxSlippageBps sets MaxSlippageBps field to given value.
+
+
+### GetMaxPriceDeviationBps
+
+`func (o *ExpandedAdminVault) GetMaxPriceDeviationBps() int32`
+
+GetMaxPriceDeviationBps returns the MaxPriceDeviationBps field if non-nil, zero value otherwise.
+
+### GetMaxPriceDeviationBpsOk
+
+`func (o *ExpandedAdminVault) GetMaxPriceDeviationBpsOk() (*int32, bool)`
+
+GetMaxPriceDeviationBpsOk returns a tuple with the MaxPriceDeviationBps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxPriceDeviationBps
+
+`func (o *ExpandedAdminVault) SetMaxPriceDeviationBps(v int32)`
+
+SetMaxPriceDeviationBps sets MaxPriceDeviationBps field to given value.
+
+
+### GetOracleConfig
+
+`func (o *ExpandedAdminVault) GetOracleConfig() string`
+
+GetOracleConfig returns the OracleConfig field if non-nil, zero value otherwise.
+
+### GetOracleConfigOk
+
+`func (o *ExpandedAdminVault) GetOracleConfigOk() (*string, bool)`
+
+GetOracleConfigOk returns a tuple with the OracleConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOracleConfig
+
+`func (o *ExpandedAdminVault) SetOracleConfig(v string)`
+
+SetOracleConfig sets OracleConfig field to given value.
+
+### HasOracleConfig
+
+`func (o *ExpandedAdminVault) HasOracleConfig() bool`
+
+HasOracleConfig returns a boolean if a field has been set.
 
 ### GetProtoConfigValue
 

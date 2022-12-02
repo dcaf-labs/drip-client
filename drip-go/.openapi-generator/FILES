@@ -62,6 +62,4 @@ model_token_swap.go
 model_vault.go
 model_vault_period.go
 response.go
-test/api_admin_test.go
-test/api_default_test.go
 utils.go

@@ -1305,16 +1305,19 @@ components:
       type: object
     vault:
       example:
+        oracleConfig: oracleConfig
+        protoConfig: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
+        maxPriceDeviationBps: 6
+        tokenBMint: ASuqwxvC4FXxJGT9XqZMXbCKDQBaRTApEhN2oN3VL3A8
+        lastDcaPeriod: "123"
+        enabled: true
         tokenAAccount: 6PmcdLzbELLxaPc3Fq6FjiSj7wtjA4MEt1UCZBnHh6tw
         tokenBAccount: 5q7HLgfvxmkqAK6QaEFYrNmvKvzQZjWJzjwRu4toi9Sw
         dripAmount: "123"
-        protoConfig: mRcJ27ztTCFntbUvv7V2PSxqL9fJfg1KH4fzZSYVP4L
         dcaActivationTimestamp: "1652747980"
         treasuryTokenBAccount: CrVdqMmYCbBs8zG2rmwdWgmsSArKTbMUv3qvTz8J6YWC
-        tokenBMint: ASuqwxvC4FXxJGT9XqZMXbCKDQBaRTApEhN2oN3VL3A8
-        lastDcaPeriod: "123"
+        maxSlippageBps: 0
         tokenAMint: BfqATYbPZJFdEdYWkEbFRBnhv1LB6wtLn299HjMmE4uq
-        enabled: true
         pubkey: 3iz6nZVjiGZtdEffAUDrVh4A5BnwN6ZoHj3nPPZtKJfV
       properties:
         pubkey:
@@ -1350,11 +1353,19 @@ components:
           type: string
         enabled:
           type: boolean
+        maxSlippageBps:
+          type: integer
+        maxPriceDeviationBps:
+          type: integer
+        oracleConfig:
+          type: string
       required:
       - dcaActivationTimestamp
       - dripAmount
       - enabled
       - lastDcaPeriod
+      - maxPriceDeviationBps
+      - maxSlippageBps
       - protoConfig
       - pubkey
       - tokenAAccount

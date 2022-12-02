@@ -85,6 +85,24 @@ export interface Vault {
      * @memberof Vault
      */
     enabled: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Vault
+     */
+    maxSlippageBps: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Vault
+     */
+    maxPriceDeviationBps: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Vault
+     */
+    oracleConfig?: string;
 }
 
 /**
@@ -103,6 +121,8 @@ export function instanceOfVault(value: object): boolean {
     isInstance = isInstance && "dripAmount" in value;
     isInstance = isInstance && "dcaActivationTimestamp" in value;
     isInstance = isInstance && "enabled" in value;
+    isInstance = isInstance && "maxSlippageBps" in value;
+    isInstance = isInstance && "maxPriceDeviationBps" in value;
 
     return isInstance;
 }
@@ -128,6 +148,9 @@ export function VaultFromJSONTyped(json: any, ignoreDiscriminator: boolean): Vau
         'dripAmount': json['dripAmount'],
         'dcaActivationTimestamp': json['dcaActivationTimestamp'],
         'enabled': json['enabled'],
+        'maxSlippageBps': json['maxSlippageBps'],
+        'maxPriceDeviationBps': json['maxPriceDeviationBps'],
+        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
     };
 }
 
@@ -151,6 +174,9 @@ export function VaultToJSON(value?: Vault | null): any {
         'dripAmount': value.dripAmount,
         'dcaActivationTimestamp': value.dcaActivationTimestamp,
         'enabled': value.enabled,
+        'maxSlippageBps': value.maxSlippageBps,
+        'maxPriceDeviationBps': value.maxPriceDeviationBps,
+        'oracleConfig': value.oracleConfig,
     };
 }
 

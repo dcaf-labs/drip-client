@@ -106,6 +106,24 @@ export interface ExpandedAdminVault {
     enabled: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof ExpandedAdminVault
+     */
+    maxSlippageBps: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ExpandedAdminVault
+     */
+    maxPriceDeviationBps: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExpandedAdminVault
+     */
+    oracleConfig?: string;
+    /**
+     * 
      * @type {ProtoConfig}
      * @memberof ExpandedAdminVault
      */
@@ -158,6 +176,8 @@ export function instanceOfExpandedAdminVault(value: object): boolean {
     isInstance = isInstance && "dripAmount" in value;
     isInstance = isInstance && "dcaActivationTimestamp" in value;
     isInstance = isInstance && "enabled" in value;
+    isInstance = isInstance && "maxSlippageBps" in value;
+    isInstance = isInstance && "maxPriceDeviationBps" in value;
 
     return isInstance;
 }
@@ -183,6 +203,9 @@ export function ExpandedAdminVaultFromJSONTyped(json: any, ignoreDiscriminator: 
         'dripAmount': json['dripAmount'],
         'dcaActivationTimestamp': json['dcaActivationTimestamp'],
         'enabled': json['enabled'],
+        'maxSlippageBps': json['maxSlippageBps'],
+        'maxPriceDeviationBps': json['maxPriceDeviationBps'],
+        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
         'protoConfigValue': !exists(json, 'protoConfigValue') ? undefined : ProtoConfigFromJSON(json['protoConfigValue']),
         'tokenAMintValue': !exists(json, 'tokenAMintValue') ? undefined : TokenFromJSON(json['tokenAMintValue']),
         'tokenBMintValue': !exists(json, 'tokenBMintValue') ? undefined : TokenFromJSON(json['tokenBMintValue']),
@@ -212,6 +235,9 @@ export function ExpandedAdminVaultToJSON(value?: ExpandedAdminVault | null): any
         'dripAmount': value.dripAmount,
         'dcaActivationTimestamp': value.dcaActivationTimestamp,
         'enabled': value.enabled,
+        'maxSlippageBps': value.maxSlippageBps,
+        'maxPriceDeviationBps': value.maxPriceDeviationBps,
+        'oracleConfig': value.oracleConfig,
         'protoConfigValue': ProtoConfigToJSON(value.protoConfigValue),
         'tokenAMintValue': TokenToJSON(value.tokenAMintValue),
         'tokenBMintValue': TokenToJSON(value.tokenBMintValue),

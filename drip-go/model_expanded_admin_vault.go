@@ -29,6 +29,9 @@ type ExpandedAdminVault struct {
 	// unix timestamp
 	DcaActivationTimestamp string `json:"dcaActivationTimestamp"`
 	Enabled bool `json:"enabled"`
+	MaxSlippageBps int32 `json:"maxSlippageBps"`
+	MaxPriceDeviationBps int32 `json:"maxPriceDeviationBps"`
+	OracleConfig *string `json:"oracleConfig,omitempty"`
 	ProtoConfigValue *ProtoConfig `json:"protoConfigValue,omitempty"`
 	TokenAMintValue *Token `json:"tokenAMintValue,omitempty"`
 	TokenBMintValue *Token `json:"tokenBMintValue,omitempty"`
@@ -41,7 +44,7 @@ type ExpandedAdminVault struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExpandedAdminVault(pubkey string, protoConfig string, tokenAAccount string, tokenBAccount string, treasuryTokenBAccount string, tokenAMint string, tokenBMint string, lastDcaPeriod string, dripAmount string, dcaActivationTimestamp string, enabled bool) *ExpandedAdminVault {
+func NewExpandedAdminVault(pubkey string, protoConfig string, tokenAAccount string, tokenBAccount string, treasuryTokenBAccount string, tokenAMint string, tokenBMint string, lastDcaPeriod string, dripAmount string, dcaActivationTimestamp string, enabled bool, maxSlippageBps int32, maxPriceDeviationBps int32) *ExpandedAdminVault {
 	this := ExpandedAdminVault{}
 	this.Pubkey = pubkey
 	this.ProtoConfig = protoConfig
@@ -54,6 +57,8 @@ func NewExpandedAdminVault(pubkey string, protoConfig string, tokenAAccount stri
 	this.DripAmount = dripAmount
 	this.DcaActivationTimestamp = dcaActivationTimestamp
 	this.Enabled = enabled
+	this.MaxSlippageBps = maxSlippageBps
+	this.MaxPriceDeviationBps = maxPriceDeviationBps
 	return &this
 }
 
@@ -329,6 +334,86 @@ func (o *ExpandedAdminVault) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+// GetMaxSlippageBps returns the MaxSlippageBps field value
+func (o *ExpandedAdminVault) GetMaxSlippageBps() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.MaxSlippageBps
+}
+
+// GetMaxSlippageBpsOk returns a tuple with the MaxSlippageBps field value
+// and a boolean to check if the value has been set.
+func (o *ExpandedAdminVault) GetMaxSlippageBpsOk() (*int32, bool) {
+	if o == nil {
+    return nil, false
+	}
+	return &o.MaxSlippageBps, true
+}
+
+// SetMaxSlippageBps sets field value
+func (o *ExpandedAdminVault) SetMaxSlippageBps(v int32) {
+	o.MaxSlippageBps = v
+}
+
+// GetMaxPriceDeviationBps returns the MaxPriceDeviationBps field value
+func (o *ExpandedAdminVault) GetMaxPriceDeviationBps() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.MaxPriceDeviationBps
+}
+
+// GetMaxPriceDeviationBpsOk returns a tuple with the MaxPriceDeviationBps field value
+// and a boolean to check if the value has been set.
+func (o *ExpandedAdminVault) GetMaxPriceDeviationBpsOk() (*int32, bool) {
+	if o == nil {
+    return nil, false
+	}
+	return &o.MaxPriceDeviationBps, true
+}
+
+// SetMaxPriceDeviationBps sets field value
+func (o *ExpandedAdminVault) SetMaxPriceDeviationBps(v int32) {
+	o.MaxPriceDeviationBps = v
+}
+
+// GetOracleConfig returns the OracleConfig field value if set, zero value otherwise.
+func (o *ExpandedAdminVault) GetOracleConfig() string {
+	if o == nil || isNil(o.OracleConfig) {
+		var ret string
+		return ret
+	}
+	return *o.OracleConfig
+}
+
+// GetOracleConfigOk returns a tuple with the OracleConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExpandedAdminVault) GetOracleConfigOk() (*string, bool) {
+	if o == nil || isNil(o.OracleConfig) {
+    return nil, false
+	}
+	return o.OracleConfig, true
+}
+
+// HasOracleConfig returns a boolean if a field has been set.
+func (o *ExpandedAdminVault) HasOracleConfig() bool {
+	if o != nil && !isNil(o.OracleConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetOracleConfig gets a reference to the given string and assigns it to the OracleConfig field.
+func (o *ExpandedAdminVault) SetOracleConfig(v string) {
+	o.OracleConfig = &v
+}
+
 // GetProtoConfigValue returns the ProtoConfigValue field value if set, zero value otherwise.
 func (o *ExpandedAdminVault) GetProtoConfigValue() ProtoConfig {
 	if o == nil || isNil(o.ProtoConfigValue) {
@@ -555,6 +640,15 @@ func (o ExpandedAdminVault) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["maxSlippageBps"] = o.MaxSlippageBps
+	}
+	if true {
+		toSerialize["maxPriceDeviationBps"] = o.MaxPriceDeviationBps
+	}
+	if !isNil(o.OracleConfig) {
+		toSerialize["oracleConfig"] = o.OracleConfig
 	}
 	if !isNil(o.ProtoConfigValue) {
 		toSerialize["protoConfigValue"] = o.ProtoConfigValue
