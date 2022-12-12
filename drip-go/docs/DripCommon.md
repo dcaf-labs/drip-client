@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **VaultTokenBAccount** | **string** |  | 
 **TokenAMint** | **string** |  | 
 **TokenBMint** | **string** |  | 
+**OracleConfig** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -149,6 +150,31 @@ and a boolean to check if the value has been set.
 
 SetTokenBMint sets TokenBMint field to given value.
 
+
+### GetOracleConfig
+
+`func (o *DripCommon) GetOracleConfig() string`
+
+GetOracleConfig returns the OracleConfig field if non-nil, zero value otherwise.
+
+### GetOracleConfigOk
+
+`func (o *DripCommon) GetOracleConfigOk() (*string, bool)`
+
+GetOracleConfigOk returns a tuple with the OracleConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOracleConfig
+
+`func (o *DripCommon) SetOracleConfig(v string)`
+
+SetOracleConfig sets OracleConfig field to given value.
+
+### HasOracleConfig
+
+`func (o *DripCommon) HasOracleConfig() bool`
+
+HasOracleConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

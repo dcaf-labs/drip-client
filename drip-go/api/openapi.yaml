@@ -1186,6 +1186,9 @@ components:
         tokenBMint:
           example: 5r23oKMycxnnjAJ4cEEkh1bbCowcZwzL6HYmhLqRazQa
           type: string
+        oracleConfig:
+          example: 5r23oKMycxnnjAJ4cEEkh1bbCowcZwzL6HYmhLqRazQa
+          type: string
       required:
       - tokenAMint
       - tokenBMint

@@ -55,6 +55,12 @@ export interface DripCommon {
      * @memberof DripCommon
      */
     tokenBMint: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DripCommon
+     */
+    oracleConfig?: string;
 }
 
 /**
@@ -88,6 +94,7 @@ export function DripCommonFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'vaultTokenBAccount': json['vaultTokenBAccount'],
         'tokenAMint': json['tokenAMint'],
         'tokenBMint': json['tokenBMint'],
+        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
     };
 }
 
@@ -106,6 +113,7 @@ export function DripCommonToJSON(value?: DripCommon | null): any {
         'vaultTokenBAccount': value.vaultTokenBAccount,
         'tokenAMint': value.tokenAMint,
         'tokenBMint': value.tokenBMint,
+        'oracleConfig': value.oracleConfig,
     };
 }
 

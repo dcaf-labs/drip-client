@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **VaultTokenBAccount** | **string** |  | 
 **TokenAMint** | **string** |  | 
 **TokenBMint** | **string** |  | 
+**OracleConfig** | Pointer to **string** |  | [optional] 
 **SwapTokenMint** | **string** |  | 
 **SwapTokenAAccount** | **string** |  | 
 **SwapTokenBAccount** | **string** |  | 
@@ -155,6 +156,31 @@ and a boolean to check if the value has been set.
 
 SetTokenBMint sets TokenBMint field to given value.
 
+
+### GetOracleConfig
+
+`func (o *SplTokenSwapConfig) GetOracleConfig() string`
+
+GetOracleConfig returns the OracleConfig field if non-nil, zero value otherwise.
+
+### GetOracleConfigOk
+
+`func (o *SplTokenSwapConfig) GetOracleConfigOk() (*string, bool)`
+
+GetOracleConfigOk returns a tuple with the OracleConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOracleConfig
+
+`func (o *SplTokenSwapConfig) SetOracleConfig(v string)`
+
+SetOracleConfig sets OracleConfig field to given value.
+
+### HasOracleConfig
+
+`func (o *SplTokenSwapConfig) HasOracleConfig() bool`
+
+HasOracleConfig returns a boolean if a field has been set.
 
 ### GetSwapTokenMint
 

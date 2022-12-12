@@ -60,6 +60,12 @@ export interface SplTokenSwapConfig {
      * @type {string}
      * @memberof SplTokenSwapConfig
      */
+    oracleConfig?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SplTokenSwapConfig
+     */
     swapTokenMint: string;
     /**
      * 
@@ -130,6 +136,7 @@ export function SplTokenSwapConfigFromJSONTyped(json: any, ignoreDiscriminator: 
         'vaultTokenBAccount': json['vaultTokenBAccount'],
         'tokenAMint': json['tokenAMint'],
         'tokenBMint': json['tokenBMint'],
+        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
         'swapTokenMint': json['swapTokenMint'],
         'swapTokenAAccount': json['swapTokenAAccount'],
         'swapTokenBAccount': json['swapTokenBAccount'],
@@ -154,6 +161,7 @@ export function SplTokenSwapConfigToJSON(value?: SplTokenSwapConfig | null): any
         'vaultTokenBAccount': value.vaultTokenBAccount,
         'tokenAMint': value.tokenAMint,
         'tokenBMint': value.tokenBMint,
+        'oracleConfig': value.oracleConfig,
         'swapTokenMint': value.swapTokenMint,
         'swapTokenAAccount': value.swapTokenAAccount,
         'swapTokenBAccount': value.swapTokenBAccount,

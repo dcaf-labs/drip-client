@@ -23,6 +23,7 @@ type SplTokenSwapConfig struct {
 	VaultTokenBAccount string `json:"vaultTokenBAccount"`
 	TokenAMint string `json:"tokenAMint"`
 	TokenBMint string `json:"tokenBMint"`
+	OracleConfig *string `json:"oracleConfig,omitempty"`
 	SwapTokenMint string `json:"swapTokenMint"`
 	SwapTokenAAccount string `json:"swapTokenAAccount"`
 	SwapTokenBAccount string `json:"swapTokenBAccount"`
@@ -204,6 +205,38 @@ func (o *SplTokenSwapConfig) SetTokenBMint(v string) {
 	o.TokenBMint = v
 }
 
+// GetOracleConfig returns the OracleConfig field value if set, zero value otherwise.
+func (o *SplTokenSwapConfig) GetOracleConfig() string {
+	if o == nil || isNil(o.OracleConfig) {
+		var ret string
+		return ret
+	}
+	return *o.OracleConfig
+}
+
+// GetOracleConfigOk returns a tuple with the OracleConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SplTokenSwapConfig) GetOracleConfigOk() (*string, bool) {
+	if o == nil || isNil(o.OracleConfig) {
+    return nil, false
+	}
+	return o.OracleConfig, true
+}
+
+// HasOracleConfig returns a boolean if a field has been set.
+func (o *SplTokenSwapConfig) HasOracleConfig() bool {
+	if o != nil && !isNil(o.OracleConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetOracleConfig gets a reference to the given string and assigns it to the OracleConfig field.
+func (o *SplTokenSwapConfig) SetOracleConfig(v string) {
+	o.OracleConfig = &v
+}
+
 // GetSwapTokenMint returns the SwapTokenMint field value
 func (o *SplTokenSwapConfig) GetSwapTokenMint() string {
 	if o == nil {
@@ -367,6 +400,9 @@ func (o SplTokenSwapConfig) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["tokenBMint"] = o.TokenBMint
+	}
+	if !isNil(o.OracleConfig) {
+		toSerialize["oracleConfig"] = o.OracleConfig
 	}
 	if true {
 		toSerialize["swapTokenMint"] = o.SwapTokenMint

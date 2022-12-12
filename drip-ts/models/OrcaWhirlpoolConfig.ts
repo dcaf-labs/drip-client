@@ -60,6 +60,12 @@ export interface OrcaWhirlpoolConfig {
      * @type {string}
      * @memberof OrcaWhirlpoolConfig
      */
+    oracleConfig?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrcaWhirlpoolConfig
+     */
     whirlpool: string;
     /**
      * 
@@ -116,6 +122,7 @@ export function OrcaWhirlpoolConfigFromJSONTyped(json: any, ignoreDiscriminator:
         'vaultTokenBAccount': json['vaultTokenBAccount'],
         'tokenAMint': json['tokenAMint'],
         'tokenBMint': json['tokenBMint'],
+        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
         'whirlpool': json['whirlpool'],
         'tokenVaultA': json['tokenVaultA'],
         'tokenVaultB': json['tokenVaultB'],
@@ -138,6 +145,7 @@ export function OrcaWhirlpoolConfigToJSON(value?: OrcaWhirlpoolConfig | null): a
         'vaultTokenBAccount': value.vaultTokenBAccount,
         'tokenAMint': value.tokenAMint,
         'tokenBMint': value.tokenBMint,
+        'oracleConfig': value.oracleConfig,
         'whirlpool': value.whirlpool,
         'tokenVaultA': value.tokenVaultA,
         'tokenVaultB': value.tokenVaultB,

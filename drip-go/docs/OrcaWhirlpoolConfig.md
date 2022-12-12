@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **VaultTokenBAccount** | **string** |  | 
 **TokenAMint** | **string** |  | 
 **TokenBMint** | **string** |  | 
+**OracleConfig** | Pointer to **string** |  | [optional] 
 **Whirlpool** | **string** |  | 
 **TokenVaultA** | **string** |  | 
 **TokenVaultB** | **string** |  | 
@@ -153,6 +154,31 @@ and a boolean to check if the value has been set.
 
 SetTokenBMint sets TokenBMint field to given value.
 
+
+### GetOracleConfig
+
+`func (o *OrcaWhirlpoolConfig) GetOracleConfig() string`
+
+GetOracleConfig returns the OracleConfig field if non-nil, zero value otherwise.
+
+### GetOracleConfigOk
+
+`func (o *OrcaWhirlpoolConfig) GetOracleConfigOk() (*string, bool)`
+
+GetOracleConfigOk returns a tuple with the OracleConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOracleConfig
+
+`func (o *OrcaWhirlpoolConfig) SetOracleConfig(v string)`
+
+SetOracleConfig sets OracleConfig field to given value.
+
+### HasOracleConfig
+
+`func (o *OrcaWhirlpoolConfig) HasOracleConfig() bool`
+
+HasOracleConfig returns a boolean if a field has been set.
 
 ### GetWhirlpool
 
