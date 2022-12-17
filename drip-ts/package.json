@@ -6,6 +6,7 @@
   "repository": "git://github.com/dcaf-labs/drip-client.git",
   "author": "Dcaf Labs",
   "types": "dist/index.d.ts",
+  "private": false,
   "scripts": {
     "build": "tsc",
     "prepublish": "yarn build"
