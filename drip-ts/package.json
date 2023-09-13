@@ -1,11 +1,12 @@
 {
   "name": "@dcaf-labs/drip-ts",
-  "version": "0.0.0-alpha.24",
+  "version": "0.3.0",
   "description": "Drip backend typescript client",
   "main": "dist/index.js",
   "repository": "git://github.com/dcaf-labs/drip-client.git",
-  "author": "Dcaf",
+  "author": "Dcaf Labs",
   "types": "dist/index.d.ts",
+  "private": false,
   "scripts": {
     "build": "tsc",
     "prepublish": "yarn build"
@@ -13,8 +14,5 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.6.3"
-  },
-  "publishConfig": {
-    "@dcaf-labs:registry": "https://npm.pkg.github.com"
   }
 }
