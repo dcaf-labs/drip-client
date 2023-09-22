@@ -33,17 +33,6 @@ export interface TokenMetadataCollection {
     family: string;
 }
 
-/**
- * Check if a given object implements the TokenMetadataCollection interface.
- */
-export function instanceOfTokenMetadataCollection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "family" in value;
-
-    return isInstance;
-}
-
 export function TokenMetadataCollectionFromJSON(json: any): TokenMetadataCollection {
     return TokenMetadataCollectionFromJSONTyped(json, false);
 }

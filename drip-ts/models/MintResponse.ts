@@ -27,16 +27,6 @@ export interface MintResponse {
     txHash: string;
 }
 
-/**
- * Check if a given object implements the MintResponse interface.
- */
-export function instanceOfMintResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "txHash" in value;
-
-    return isInstance;
-}
-
 export function MintResponseFromJSON(json: any): MintResponse {
     return MintResponseFromJSONTyped(json, false);
 }

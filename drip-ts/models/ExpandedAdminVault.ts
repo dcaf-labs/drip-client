@@ -13,24 +13,36 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ProtoConfig } from './ProtoConfig';
 import {
+    ExpandedAdminVaultAllOf,
+    ExpandedAdminVaultAllOfFromJSON,
+    ExpandedAdminVaultAllOfFromJSONTyped,
+    ExpandedAdminVaultAllOfToJSON,
+} from './ExpandedAdminVaultAllOf';
+import {
+    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigFromJSONTyped,
     ProtoConfigToJSON,
 } from './ProtoConfig';
-import type { Token } from './Token';
 import {
+    Token,
     TokenFromJSON,
     TokenFromJSONTyped,
     TokenToJSON,
 } from './Token';
-import type { TokenAccount } from './TokenAccount';
 import {
+    TokenAccount,
     TokenAccountFromJSON,
     TokenAccountFromJSONTyped,
     TokenAccountToJSON,
 } from './TokenAccount';
+import {
+    Vault,
+    VaultFromJSON,
+    VaultFromJSONTyped,
+    VaultToJSON,
+} from './Vault';
 
 /**
  * Internal vault schema.
@@ -112,18 +124,6 @@ export interface ExpandedAdminVault {
     maxSlippageBps: number;
     /**
      * 
-     * @type {number}
-     * @memberof ExpandedAdminVault
-     */
-    maxPriceDeviationBps: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ExpandedAdminVault
-     */
-    oracleConfig?: string;
-    /**
-     * 
      * @type {ProtoConfig}
      * @memberof ExpandedAdminVault
      */
@@ -160,28 +160,6 @@ export interface ExpandedAdminVault {
     treasuryTokenBAccountValue?: TokenAccount;
 }
 
-/**
- * Check if a given object implements the ExpandedAdminVault interface.
- */
-export function instanceOfExpandedAdminVault(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "protoConfig" in value;
-    isInstance = isInstance && "tokenAAccount" in value;
-    isInstance = isInstance && "tokenBAccount" in value;
-    isInstance = isInstance && "treasuryTokenBAccount" in value;
-    isInstance = isInstance && "tokenAMint" in value;
-    isInstance = isInstance && "tokenBMint" in value;
-    isInstance = isInstance && "lastDcaPeriod" in value;
-    isInstance = isInstance && "dripAmount" in value;
-    isInstance = isInstance && "dcaActivationTimestamp" in value;
-    isInstance = isInstance && "enabled" in value;
-    isInstance = isInstance && "maxSlippageBps" in value;
-    isInstance = isInstance && "maxPriceDeviationBps" in value;
-
-    return isInstance;
-}
-
 export function ExpandedAdminVaultFromJSON(json: any): ExpandedAdminVault {
     return ExpandedAdminVaultFromJSONTyped(json, false);
 }
@@ -204,8 +182,6 @@ export function ExpandedAdminVaultFromJSONTyped(json: any, ignoreDiscriminator: 
         'dcaActivationTimestamp': json['dcaActivationTimestamp'],
         'enabled': json['enabled'],
         'maxSlippageBps': json['maxSlippageBps'],
-        'maxPriceDeviationBps': json['maxPriceDeviationBps'],
-        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
         'protoConfigValue': !exists(json, 'protoConfigValue') ? undefined : ProtoConfigFromJSON(json['protoConfigValue']),
         'tokenAMintValue': !exists(json, 'tokenAMintValue') ? undefined : TokenFromJSON(json['tokenAMintValue']),
         'tokenBMintValue': !exists(json, 'tokenBMintValue') ? undefined : TokenFromJSON(json['tokenBMintValue']),
@@ -236,8 +212,6 @@ export function ExpandedAdminVaultToJSON(value?: ExpandedAdminVault | null): any
         'dcaActivationTimestamp': value.dcaActivationTimestamp,
         'enabled': value.enabled,
         'maxSlippageBps': value.maxSlippageBps,
-        'maxPriceDeviationBps': value.maxPriceDeviationBps,
-        'oracleConfig': value.oracleConfig,
         'protoConfigValue': ProtoConfigToJSON(value.protoConfigValue),
         'tokenAMintValue': TokenToJSON(value.tokenAMintValue),
         'tokenBMintValue': TokenToJSON(value.tokenBMintValue),

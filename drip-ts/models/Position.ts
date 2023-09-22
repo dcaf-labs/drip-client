@@ -81,25 +81,6 @@ export interface Position {
     isClosed: boolean;
 }
 
-/**
- * Check if a given object implements the Position interface.
- */
-export function instanceOfPosition(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "vault" in value;
-    isInstance = isInstance && "authority" in value;
-    isInstance = isInstance && "depositedTokenAAmount" in value;
-    isInstance = isInstance && "withdrawnTokenBAmount" in value;
-    isInstance = isInstance && "depositTimestamp" in value;
-    isInstance = isInstance && "dcaPeriodIdBeforeDeposit" in value;
-    isInstance = isInstance && "numberOfSwaps" in value;
-    isInstance = isInstance && "periodicDripAmount" in value;
-    isInstance = isInstance && "isClosed" in value;
-
-    return isInstance;
-}
-
 export function PositionFromJSON(json: any): Position {
     return PositionFromJSONTyped(json, false);
 }

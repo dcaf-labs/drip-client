@@ -51,20 +51,6 @@ export interface TokenAccount {
     state: string;
 }
 
-/**
- * Check if a given object implements the TokenAccount interface.
- */
-export function instanceOfTokenAccount(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "mint" in value;
-    isInstance = isInstance && "owner" in value;
-    isInstance = isInstance && "amount" in value;
-    isInstance = isInstance && "state" in value;
-
-    return isInstance;
-}
-
 export function TokenAccountFromJSON(json: any): TokenAccount {
     return TokenAccountFromJSONTyped(json, false);
 }

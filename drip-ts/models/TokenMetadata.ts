@@ -13,8 +13,8 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TokenMetadataCollection } from './TokenMetadataCollection';
 import {
+    TokenMetadataCollection,
     TokenMetadataCollectionFromJSON,
     TokenMetadataCollectionFromJSONTyped,
     TokenMetadataCollectionToJSON,
@@ -62,21 +62,6 @@ export interface TokenMetadata {
      * @memberof TokenMetadata
      */
     collection: TokenMetadataCollection;
-}
-
-/**
- * Check if a given object implements the TokenMetadata interface.
- */
-export function instanceOfTokenMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "image" in value;
-    isInstance = isInstance && "externalUrl" in value;
-    isInstance = isInstance && "collection" in value;
-
-    return isInstance;
 }
 
 export function TokenMetadataFromJSON(json: any): TokenMetadata {

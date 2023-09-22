@@ -57,20 +57,6 @@ export interface VaultPeriod {
     priceBOverA?: string;
 }
 
-/**
- * Check if a given object implements the VaultPeriod interface.
- */
-export function instanceOfVaultPeriod(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "vault" in value;
-    isInstance = isInstance && "periodId" in value;
-    isInstance = isInstance && "twap" in value;
-    isInstance = isInstance && "dar" in value;
-
-    return isInstance;
-}
-
 export function VaultPeriodFromJSON(json: any): VaultPeriod {
     return VaultPeriodFromJSONTyped(json, false);
 }

@@ -13,20 +13,20 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ProtoConfig } from './ProtoConfig';
 import {
+    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigFromJSONTyped,
     ProtoConfigToJSON,
 } from './ProtoConfig';
-import type { Token } from './Token';
 import {
+    Token,
     TokenFromJSON,
     TokenFromJSONTyped,
     TokenToJSON,
 } from './Token';
-import type { Vault } from './Vault';
 import {
+    Vault,
     VaultFromJSON,
     VaultFromJSONTyped,
     VaultToJSON,
@@ -62,15 +62,6 @@ export interface ExpandedAdminPositionAllOf {
      * @memberof ExpandedAdminPositionAllOf
      */
     tokenB?: Token;
-}
-
-/**
- * Check if a given object implements the ExpandedAdminPositionAllOf interface.
- */
-export function instanceOfExpandedAdminPositionAllOf(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
 }
 
 export function ExpandedAdminPositionAllOfFromJSON(json: any): ExpandedAdminPositionAllOf {

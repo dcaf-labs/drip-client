@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    DripCommon,
+    DripCommonFromJSON,
+    DripCommonFromJSONTyped,
+    DripCommonToJSON,
+} from './DripCommon';
+import {
+    OrcaWhirlpoolConfigAllOf,
+    OrcaWhirlpoolConfigAllOfFromJSON,
+    OrcaWhirlpoolConfigAllOfFromJSONTyped,
+    OrcaWhirlpoolConfigAllOfToJSON,
+} from './OrcaWhirlpoolConfigAllOf';
+
 /**
  * 
  * @export
@@ -60,12 +73,6 @@ export interface OrcaWhirlpoolConfig {
      * @type {string}
      * @memberof OrcaWhirlpoolConfig
      */
-    oracleConfig?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OrcaWhirlpoolConfig
-     */
     whirlpool: string;
     /**
      * 
@@ -87,25 +94,6 @@ export interface OrcaWhirlpoolConfig {
     oracle: string;
 }
 
-/**
- * Check if a given object implements the OrcaWhirlpoolConfig interface.
- */
-export function instanceOfOrcaWhirlpoolConfig(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "vault" in value;
-    isInstance = isInstance && "vaultProtoConfig" in value;
-    isInstance = isInstance && "vaultTokenAAccount" in value;
-    isInstance = isInstance && "vaultTokenBAccount" in value;
-    isInstance = isInstance && "tokenAMint" in value;
-    isInstance = isInstance && "tokenBMint" in value;
-    isInstance = isInstance && "whirlpool" in value;
-    isInstance = isInstance && "tokenVaultA" in value;
-    isInstance = isInstance && "tokenVaultB" in value;
-    isInstance = isInstance && "oracle" in value;
-
-    return isInstance;
-}
-
 export function OrcaWhirlpoolConfigFromJSON(json: any): OrcaWhirlpoolConfig {
     return OrcaWhirlpoolConfigFromJSONTyped(json, false);
 }
@@ -122,7 +110,6 @@ export function OrcaWhirlpoolConfigFromJSONTyped(json: any, ignoreDiscriminator:
         'vaultTokenBAccount': json['vaultTokenBAccount'],
         'tokenAMint': json['tokenAMint'],
         'tokenBMint': json['tokenBMint'],
-        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
         'whirlpool': json['whirlpool'],
         'tokenVaultA': json['tokenVaultA'],
         'tokenVaultB': json['tokenVaultB'],
@@ -145,7 +132,6 @@ export function OrcaWhirlpoolConfigToJSON(value?: OrcaWhirlpoolConfig | null): a
         'vaultTokenBAccount': value.vaultTokenBAccount,
         'tokenAMint': value.tokenAMint,
         'tokenBMint': value.tokenBMint,
-        'oracleConfig': value.oracleConfig,
         'whirlpool': value.whirlpool,
         'tokenVaultA': value.tokenVaultA,
         'tokenVaultB': value.tokenVaultB,

@@ -45,19 +45,6 @@ export interface OrcaWhirlpoolConfigAllOf {
     oracle: string;
 }
 
-/**
- * Check if a given object implements the OrcaWhirlpoolConfigAllOf interface.
- */
-export function instanceOfOrcaWhirlpoolConfigAllOf(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "whirlpool" in value;
-    isInstance = isInstance && "tokenVaultA" in value;
-    isInstance = isInstance && "tokenVaultB" in value;
-    isInstance = isInstance && "oracle" in value;
-
-    return isInstance;
-}
-
 export function OrcaWhirlpoolConfigAllOfFromJSON(json: any): OrcaWhirlpoolConfigAllOf {
     return OrcaWhirlpoolConfigAllOfFromJSONTyped(json, false);
 }

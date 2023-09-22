@@ -91,40 +91,6 @@ export interface Vault {
      * @memberof Vault
      */
     maxSlippageBps: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof Vault
-     */
-    maxPriceDeviationBps: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Vault
-     */
-    oracleConfig?: string;
-}
-
-/**
- * Check if a given object implements the Vault interface.
- */
-export function instanceOfVault(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "protoConfig" in value;
-    isInstance = isInstance && "tokenAAccount" in value;
-    isInstance = isInstance && "tokenBAccount" in value;
-    isInstance = isInstance && "treasuryTokenBAccount" in value;
-    isInstance = isInstance && "tokenAMint" in value;
-    isInstance = isInstance && "tokenBMint" in value;
-    isInstance = isInstance && "lastDcaPeriod" in value;
-    isInstance = isInstance && "dripAmount" in value;
-    isInstance = isInstance && "dcaActivationTimestamp" in value;
-    isInstance = isInstance && "enabled" in value;
-    isInstance = isInstance && "maxSlippageBps" in value;
-    isInstance = isInstance && "maxPriceDeviationBps" in value;
-
-    return isInstance;
 }
 
 export function VaultFromJSON(json: any): Vault {
@@ -149,8 +115,6 @@ export function VaultFromJSONTyped(json: any, ignoreDiscriminator: boolean): Vau
         'dcaActivationTimestamp': json['dcaActivationTimestamp'],
         'enabled': json['enabled'],
         'maxSlippageBps': json['maxSlippageBps'],
-        'maxPriceDeviationBps': json['maxPriceDeviationBps'],
-        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
     };
 }
 
@@ -175,8 +139,6 @@ export function VaultToJSON(value?: Vault | null): any {
         'dcaActivationTimestamp': value.dcaActivationTimestamp,
         'enabled': value.enabled,
         'maxSlippageBps': value.maxSlippageBps,
-        'maxPriceDeviationBps': value.maxPriceDeviationBps,
-        'oracleConfig': value.oracleConfig,
     };
 }
 

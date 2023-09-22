@@ -63,22 +63,6 @@ export interface TokenSwap {
     pair: string;
 }
 
-/**
- * Check if a given object implements the TokenSwap interface.
- */
-export function instanceOfTokenSwap(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "mint" in value;
-    isInstance = isInstance && "authority" in value;
-    isInstance = isInstance && "feeAccount" in value;
-    isInstance = isInstance && "tokenAAccount" in value;
-    isInstance = isInstance && "tokenBAccount" in value;
-    isInstance = isInstance && "pair" in value;
-
-    return isInstance;
-}
-
 export function TokenSwapFromJSON(json: any): TokenSwap {
     return TokenSwapFromJSONTyped(json, false);
 }

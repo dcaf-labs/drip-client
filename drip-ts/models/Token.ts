@@ -51,17 +51,6 @@ export interface Token {
     coinGeckoId?: string;
 }
 
-/**
- * Check if a given object implements the Token interface.
- */
-export function instanceOfToken(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "decimals" in value;
-
-    return isInstance;
-}
-
 export function TokenFromJSON(json: any): Token {
     return TokenFromJSONTyped(json, false);
 }

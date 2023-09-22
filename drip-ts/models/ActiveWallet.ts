@@ -33,17 +33,6 @@ export interface ActiveWallet {
     positionCount: number;
 }
 
-/**
- * Check if a given object implements the ActiveWallet interface.
- */
-export function instanceOfActiveWallet(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "owner" in value;
-    isInstance = isInstance && "positionCount" in value;
-
-    return isInstance;
-}
-
 export function ActiveWalletFromJSON(json: any): ActiveWallet {
     return ActiveWalletFromJSONTyped(json, false);
 }

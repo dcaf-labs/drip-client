@@ -13,20 +13,20 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ProtoConfig } from './ProtoConfig';
 import {
+    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigFromJSONTyped,
     ProtoConfigToJSON,
 } from './ProtoConfig';
-import type { Token } from './Token';
 import {
+    Token,
     TokenFromJSON,
     TokenFromJSONTyped,
     TokenToJSON,
 } from './Token';
-import type { TokenAccount } from './TokenAccount';
 import {
+    TokenAccount,
     TokenAccountFromJSON,
     TokenAccountFromJSONTyped,
     TokenAccountToJSON,
@@ -74,15 +74,6 @@ export interface ExpandedAdminVaultAllOf {
      * @memberof ExpandedAdminVaultAllOf
      */
     treasuryTokenBAccountValue?: TokenAccount;
-}
-
-/**
- * Check if a given object implements the ExpandedAdminVaultAllOf interface.
- */
-export function instanceOfExpandedAdminVaultAllOf(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
 }
 
 export function ExpandedAdminVaultAllOfFromJSON(json: any): ExpandedAdminVaultAllOf {

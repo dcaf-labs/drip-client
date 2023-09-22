@@ -55,27 +55,6 @@ export interface DripCommon {
      * @memberof DripCommon
      */
     tokenBMint: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof DripCommon
-     */
-    oracleConfig?: string;
-}
-
-/**
- * Check if a given object implements the DripCommon interface.
- */
-export function instanceOfDripCommon(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "vault" in value;
-    isInstance = isInstance && "vaultProtoConfig" in value;
-    isInstance = isInstance && "vaultTokenAAccount" in value;
-    isInstance = isInstance && "vaultTokenBAccount" in value;
-    isInstance = isInstance && "tokenAMint" in value;
-    isInstance = isInstance && "tokenBMint" in value;
-
-    return isInstance;
 }
 
 export function DripCommonFromJSON(json: any): DripCommon {
@@ -94,7 +73,6 @@ export function DripCommonFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'vaultTokenBAccount': json['vaultTokenBAccount'],
         'tokenAMint': json['tokenAMint'],
         'tokenBMint': json['tokenBMint'],
-        'oracleConfig': !exists(json, 'oracleConfig') ? undefined : json['oracleConfig'],
     };
 }
 
@@ -113,7 +91,6 @@ export function DripCommonToJSON(value?: DripCommon | null): any {
         'vaultTokenBAccount': value.vaultTokenBAccount,
         'tokenAMint': value.tokenAMint,
         'tokenBMint': value.tokenBMint,
-        'oracleConfig': value.oracleConfig,
     };
 }
 

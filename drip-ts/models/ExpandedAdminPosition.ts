@@ -13,20 +13,32 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ProtoConfig } from './ProtoConfig';
 import {
+    ExpandedAdminPositionAllOf,
+    ExpandedAdminPositionAllOfFromJSON,
+    ExpandedAdminPositionAllOfFromJSONTyped,
+    ExpandedAdminPositionAllOfToJSON,
+} from './ExpandedAdminPositionAllOf';
+import {
+    Position,
+    PositionFromJSON,
+    PositionFromJSONTyped,
+    PositionToJSON,
+} from './Position';
+import {
+    ProtoConfig,
     ProtoConfigFromJSON,
     ProtoConfigFromJSONTyped,
     ProtoConfigToJSON,
 } from './ProtoConfig';
-import type { Token } from './Token';
 import {
+    Token,
     TokenFromJSON,
     TokenFromJSONTyped,
     TokenToJSON,
 } from './Token';
-import type { Vault } from './Vault';
 import {
+    Vault,
     VaultFromJSON,
     VaultFromJSONTyped,
     VaultToJSON,
@@ -116,25 +128,6 @@ export interface ExpandedAdminPosition {
      * @memberof ExpandedAdminPosition
      */
     tokenB?: Token;
-}
-
-/**
- * Check if a given object implements the ExpandedAdminPosition interface.
- */
-export function instanceOfExpandedAdminPosition(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pubkey" in value;
-    isInstance = isInstance && "vault" in value;
-    isInstance = isInstance && "authority" in value;
-    isInstance = isInstance && "depositedTokenAAmount" in value;
-    isInstance = isInstance && "withdrawnTokenBAmount" in value;
-    isInstance = isInstance && "depositTimestamp" in value;
-    isInstance = isInstance && "dcaPeriodIdBeforeDeposit" in value;
-    isInstance = isInstance && "numberOfSwaps" in value;
-    isInstance = isInstance && "periodicDripAmount" in value;
-    isInstance = isInstance && "isClosed" in value;
-
-    return isInstance;
 }
 
 export function ExpandedAdminPositionFromJSON(json: any): ExpandedAdminPosition {

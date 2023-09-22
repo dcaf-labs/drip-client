@@ -39,18 +39,6 @@ export interface MintRequest {
     amount: string;
 }
 
-/**
- * Check if a given object implements the MintRequest interface.
- */
-export function instanceOfMintRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "mint" in value;
-    isInstance = isInstance && "wallet" in value;
-    isInstance = isInstance && "amount" in value;
-
-    return isInstance;
-}
-
 export function MintRequestFromJSON(json: any): MintRequest {
     return MintRequestFromJSONTyped(json, false);
 }
