@@ -3,7 +3,8 @@
 ## Generate drip-ts
 
 ```bash
-openapi-generator generate -i ../drip-backend/docs/swagger.yaml -g typescript-fetch -o drip-ts
+openapi-generator-cli generate -i ../drip-backend/docs/swagger.yaml -g typescript-fetch -o drip-ts
+# openapi-generator generate -i ../drip-backend/docs/swagger.yaml -g typescript-fetch -o drip-ts
 ```
 
 ## Generate drip-go
